@@ -1,0 +1,134 @@
+{
+  "generated_at": "2026-03-30T01:03:11.885345Z",
+  "source_system": "scjn_bicentenario_repository",
+  "document_kind": "acuerdo",
+  "status": "ok",
+  "source_endpoint": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/reforma/fuentes/1",
+  "source_index": "acuerdos",
+  "fuente_definition": {
+    "idFuente": 4,
+    "indice": "acuerdos",
+    "etiqueta": "Acuerdo",
+    "identificador": "idAcuerdo",
+    "fecha": "fechaPublicado",
+    "filterName": "Fecha de publicación SJF",
+    "visible": true,
+    "idGrupo": 1,
+    "orden": 4
+  },
+  "api_contract": {
+    "count": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/acuerdos/count",
+    "ids": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/acuerdos/ids?page={page}&size={size}",
+    "default": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/acuerdos/default",
+    "detail": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/acuerdos/{registry_id}"
+  },
+  "count_total": 4035,
+  "page_size": 10,
+  "start_page": 1,
+  "pages_fetched": 1,
+  "items_truncated": true,
+  "items": [
+    {
+      "registry_id": "6116",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 0,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/acuerdos/6116"
+    },
+    {
+      "registry_id": "6115",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 1,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/acuerdos/6115"
+    },
+    {
+      "registry_id": "6114",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 2,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/acuerdos/6114"
+    },
+    {
+      "registry_id": "6113",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 3,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/acuerdos/6113"
+    },
+    {
+      "registry_id": "6112",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 4,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/acuerdos/6112"
+    },
+    {
+      "registry_id": "6111",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 5,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/acuerdos/6111"
+    },
+    {
+      "registry_id": "6110",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 6,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/acuerdos/6110"
+    },
+    {
+      "registry_id": "6109",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 7,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/acuerdos/6109"
+    },
+    {
+      "registry_id": "6108",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 8,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/acuerdos/6108"
+    },
+    {
+      "registry_id": "6107",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 9,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/acuerdos/6107"
+    }
+  ],
+  "first_detail": {
+    "registry_id": "6126",
+    "title": "ACUERDO GENERAL CONJUNTO DEL PLENO DEL ÓRGANO DE ADMINISTRACIÓN JUDICIAL Y DEL PLENO DEL TRIBUNAL DE DISCIPLINA JUDICIAL DEL PODER JUDICIAL DE LA FEDERACIÓN, POR EL QUE SE DETERMINAN LAS DISPOSICIONES DE ORGANIZACIÓN Y FUNCIONAMIENTO DE LA JUNTA DE COORDINACIÓN",
+    "citation_label": "registro digital 6126",
+    "type": "",
+    "epoch": "Duodécima Época",
+    "instance": "Conjuntos",
+    "organ": "Plenos del OAJ y del TDJ",
+    "publication_date": "Este acuerdo se publicó el viernes 20 de marzo de 2026 a las 10:23 horas en el Semanario Judicial de la Federación.",
+    "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/acuerdos/6126",
+    "retrieved_at": "2026-03-30T01:03:11.885345Z"
+  },
+  "default_document_raw": {
+    "idAcuerdo": 6126,
+    "instancia": "Conjuntos",
+    "organoJuris": "Plenos del OAJ y del TDJ",
+    "epoca": "Duodécima Época",
+    "volumen": "Libro 7, Marzo de 2026",
+    "tomo": "",
+    "fuente": "Semanario Judicial de la Federación",
+    "rubro": "ACUERDO GENERAL CONJUNTO DEL PLENO DEL ÓRGANO DE ADMINISTRACIÓN JUDICIAL Y DEL PLENO DEL TRIBUNAL DE DISCIPLINA JUDICIAL DEL PODER JUDICIAL DE LA FEDERACIÓN, POR EL QUE SE DETERMINAN LAS DISPOSICIONES DE ORGANIZACIÓN Y FUNCIONAMIENTO DE LA JUNTA DE COORDINACIÓN ",
+    "texto": "AG CONJUNTO-POAJ Y PTDJ-001/2025 \r\n\r\nEl Pleno del Órgano de Administración Judicial del Poder Judicial de la Federación, con fundamento en los artículos 94, párrafo segundo, 100, párrafos décimo segundo, décimo tercero y décimo octavo de la Constitución Política de los Estados Unidos Mexicanos, así como 1, fracción VIII, 70, 71, 78, 79, primer párrafo, y 80, fracción II, de la Ley Orgánica del Poder Judicial de la Federación.\r\n\r\nCONSIDERANDO\r\n\r\n1. Que, conforme a lo dispuesto en los artículos 94 párrafo segundo de la Constitución Política de los Estados Unidos Mexicanos, 1o fracción VIII, 70 y 80 fracción III de la Ley Orgánica del Poder Judicial de la Federación, la administración de todos los órganos del Poder Judicial de la Federación y la coordinación de su funcionamiento corresponde al Órgano de Administración Judicial.\r\n\r\n2. De conformidad con lo establecido en el artículo 100 párrafos décimo segundo y décimo octavo de la Constitución Política de los Estados Unidos Mexicanos, y el artículo 80 fracción II de la Ley Orgánica del Poder Judicial de la Federación, el Órgano de Administración Judicial cuenta con la facultad para expedir los acuerdos generales que sean necesarios para el ejercicio de sus atribuciones.\r\n\r\n3. En términos de lo establecido en el artículo 86 párrafo primero de la Ley Orgánica del Poder Judicial de la Federación, el Órgano de Administración Judicial contará con una Junta de Coordinación que fungirá como agencia permanente de coordinación institucional entre el propio órgano y el Tribunal de Disciplina Judicial, la cual estará encabezada por la persona titular de la Secretaría Ejecutiva del Pleno del Órgano de Administración Judicial y la persona titular de la Secretaría General de Acuerdos del Tribunal de Disciplina Judicial.\r\n\r\n4. Que los artículos 86 párrafo tercero y 101 de la Ley Orgánica del Poder Judicial de la Federación establecen que las atribuciones de la Junta de Coordinación estarán contenidas en la propia Ley y en las que determine el Órgano de Administración Judicial mediante acuerdos generales.\r\n\r\nSu atribución primordial es facilitar la debida y pronta substanciación de los procedimientos de responsabilidad administrativa. La eficacia de esta Junta de Coordinación es crítica para asegurar que la separación de funciones entre la gestión del Órgano de Administración Judicial y el Tribunal de Disciplina Judicial no resulte en retrasos o conflictos competenciales que afecten la celeridad de los procedimientos de responsabilidad administrativa, contraviniendo el principio de justicia pronta establecido en el artículo 17 constitucional.\r\n\r\n5. Que, de conformidad con el artículo 100 párrafos cuarto y sexto de la Constitución Política de los Estados Unidos Mexicanos, el Tribunal de Disciplina Judicial podrá ordenar el inicio de investigaciones, atraer procedimientos relacionados con faltas graves o hechos que las leyes señalen como delitos, requerir información y documentación, realizar inspecciones, ordenar medidas cautelares y de apremio, e imponer sanciones.\r\n\r\n6. Que los artículos 80 fracciones XVIII y XIX, 101 y 102 de la Ley Orgánica del Poder Judicial de la Federación, establecen que el Órgano de Administración Judicial dictará las medidas que faciliten y permitan la efectiva substanciación de los procedimientos de responsabilidad administrativa, en coordinación con el Tribunal de Disciplina Judicial.\r\n\r\n7. Que los artículos 80 fracciones XV y XVI, 88, 134 párrafo primero, 154 fracciones XV, XVI y XVII, 182, 192 y 193 de la Ley Orgánica del Poder Judicial de la Federación, disponen que el Tribunal de Disciplina Judicial se encargará de los procedimientos disciplinarios que involucren personal jurisdiccional, los recursos de revisión de personal administrativo cuando se trate de faltas graves y los conflictos de competencia; y el Órgano de Administración Judicial de los procedimientos del personal que desempeñe funciones administrativas y de los recursos de revisión en los casos de faltas no graves.\r\n\r\n8. Que la necesidad de establecer mecanismos de coordinación robustos radica en la interacción inevitable entre la esfera administrativa y la disciplinaria. El Órgano de Administración Judicial es competente para la investigación, substanciación y resolución de procedimientos de responsabilidad administrativa por faltas cometidas por el personal administrativo, de conformidad con lo previsto en los artículos 182 y 193, mientras que el Tribunal de Disciplina Judicial es competente para faltas cometidas por personas que desempeñan actividades jurisdiccionales y la resolución de recursos de revisión en faltas graves de personal administrativo, conforme a lo establecido en los artículos 182, 192, 195 de la Ley Orgánica del Poder Judicial de la Federación.\r\n\r\n9. Que el artículo 101 de la ley supracitada establece que el Secretariado Ejecutivo del Pleno del Órgano de Administración Judicial auxiliará al Tribunal de Disciplina Judicial, a través de la Junta de Coordinación, en la sustanciación de procedimientos disciplinarios y de responsabilidad contra personas servidoras públicas adscritas a órganos a cargo del Órgano, lo que subraya la naturaleza de la Junta de Coordinación como un puente operacional necesario.\r\n\r\nEn consecuencia, se emite el siguiente:\r\n\r\nACUERDO GENERAL CONJUNTO DEL PLENO DEL ÓRGANO DE ADMINISTRACIÓN JUDICIAL Y DEL PLENO DEL TRIBUNAL DE DISCIPLINA JUDICIAL DEL PODER JUDICIAL DE LA FEDERACIÓN, POR EL QUE SE DETERMINAN LAS DISPOSICIONES DE ORGANIZACIÓN Y FUNCIONAMIENTO DE LA JUNTA DE COORDINACIÓN\r\n\r\nArtículo 1. El presente Acuerdo General tiene por objeto determinar la integración, competencia, atribuciones y los mecanismos de coordinación operativa y técnica de la Junta de Coordinación, garantizando la eficiencia en la gestión administrativa de los procedimientos de responsabilidad y el respeto a la independencia disciplinaria del Tribunal de Disciplina Judicial del Poder Judicial de la Federación.\r\n\r\nLo anterior, a efecto de coadyuvar en la sustanciación de los procedimientos disciplinarios y de responsabilidad administrativa que se tramitan contra personas servidoras públicas adscritas a las áreas a cargo del Órgano de Administración Judicial y del Tribunal de Disciplina Judicial, en términos del artículo 101 de la Ley Orgánica del Poder Judicial de la Federación.\r\n\r\nArtículo 2. Definiciones. Para los efectos de este Acuerdo se entenderá por:\r\n\r\nI. Acuerdo: Acuerdo General conjunto del Pleno del Órgano de Administración Judicial y del Pleno del Tribunal de Disciplina Judicial del Poder Judicial de la Federación, por el que se determinan las disposiciones de organización y funcionamiento de la Junta de Coordinación.\r\n\r\nII. Junta: La Junta de Coordinación.\r\n\r\nIII. Órgano: El Órgano de Administración Judicial.\r\n\r\nIV. Tribunal: El Tribunal de Disciplina Judicial. \r\n\r\nV. Áreas administrativas: Las unidades administrativas y órganos auxiliares adscritos al Órgano de Administración Judicial y al Tribunal de Disciplina Judicial, respectivamente.\r\n\r\nVI. Autoridades disciplinarias: Las autoridades investigadoras, substanciadoras o resolutoras de los procedimientos de responsabilidad administrativa, adscritas al Tribunal de Disciplina Judicial o al Órgano de Administración Judicial, en el ámbito de su competencia.\r\n\r\nArtículo 3. La Junta está encabezada por la persona titular de la Secretaría Ejecutiva del Pleno de este y por la persona titular de la Secretaría General de Acuerdos del Tribunal, quienes llevarán a cabo reuniones de trabajo al menos cada quince días.\r\n\r\nLa Junta fungirá como agencia de enlace, coordinación y comunicación institucional entre el Órgano y el Tribunal, por lo que podrá llevar a cabo actividades encaminadas a facilitar dichos aspectos.\r\n\r\nAsimismo, auxiliará al Tribunal en la atención y cumplimiento de los requerimientos y determinaciones que emitan las autoridades disciplinarias y contribuirá a facilitar la debida y pronta substanciación de los procedimientos de responsabilidad administrativa, conforme al marco normativo aplicable.\r\n\r\nLa Junta carece de facultades decisorias, resolutorias, o sancionatorias en materia de procedimientos de responsabilidad administrativa. Su función se limita estrictamente a la facilitación, coordinación y articulación logística para asegurar que las distintas fases de los procedimientos, así como las demás actividades que competen a las Comisiones y Plenos del Órgano o del Tribunal, se desarrollen con la máxima celeridad y eficiencia.\r\n\r\nArtículo 4. Las actuaciones de la Junta de Coordinación y del personal de apoyo se regirán por los siguientes principios, necesarios para la operatividad del nuevo régimen de responsabilidades:\r\n\r\nI. Colaboración interinstitucional: Actuación coordinada y recíproca entre el Órgano y el Tribunal para el cumplimiento del mandato constitucional de una justicia pronta y expedita, enfocada en los plazos de los procedimientos.\r\n\r\nII. Independencia técnica y de Gestión: La coordinación logística provista por el Órgano, a través de la Junta, respetará en todo momento la autonomía técnica y de gestión del Tribunal, así como su facultad para emitir resoluciones. Los requerimientos del Tribunal que pasen por la Junta para optimizar la substanciación serán de cumplimiento prioritario por las áreas administrativas del Órgano y así recíprocamente.\r\n\r\nIII. Celeridad y prontitud: Toda actuación de la Junta se orientará a eliminar los posibles retrasos que puedan poner en riesgo la prescripción de la acción disciplinaria o la caducidad de la instancia garantizando la \"pronta substanciación\" de los procedimientos.\r\n\r\nIV. Legalidad y debido proceso: La Junta garantizará que los flujos de información y la provisión de recursos logísticos respeten las etapas procesales y los derechos humanos aplicables a los procedimientos en el marco de las actuaciones que realice a petición del Tribunal, incluyendo la presunción de inocencia y el derecho de defensa.\r\n\r\nV. Transversalidad de género: Coadyuvar en la incorporación de la perspectiva de género en la definición de protocolos, especialmente en la coordinación de medidas cautelares para salvaguardar la integridad de las posibles víctimas de violencia sexual y de género.\r\n\r\nArtículo 5. En caso de ausencia temporal o definitiva de los integrantes de la Junta:\r\n\r\nI. El Titular de la Secretaría Ejecutiva del Pleno del Órgano será suplido por la persona que designe el Pleno del Órgano.\r\n\r\nII. El Titular de la Secretaría General de Acuerdos del Tribunal será suplido por la persona que designe el Pleno del Tribunal.\r\n\r\nArtículo 6. Cada una de las personas titulares que integran la Junta designarán, de entre su plantilla existente, a una persona Secretaria Técnica, así como al personal que estimen necesario, para el despacho y gestión de sus atribuciones, en el ámbito de la competencia de la propia Junta.\r\n\r\nArtículo 7. La Junta podrá solicitar a cualquier unidad, dirección general, área administrativa y demás que integran el Poder Judicial de la Federación, la información necesaria que contribuya en el cumplimiento de sus atribuciones para agilizar el trámite de los procedimientos correspondientes.\r\n\r\nArtículo 8. Las autoridades disciplinarias del Tribunal deberán presentar sus solicitudes y requerimientos ante la Junta, la cual se encargará de turnarlos a las áreas administrativas competentes, vigilando que se brinde el debido cumplimiento.\r\n\r\nLa misma vía será aplicable para el caso de las solicitudes provenientes de las autoridades disciplinarias del Órgano, que se dirijan a alguna área del Tribunal.\r\n\r\nArtículo 9. La Junta de Coordinación podrá brindar auxilio en la investigación, sustanciación y ejecución de resoluciones, en los términos en que el Tribunal lo solicite y en la forma en que sea requerida.\r\n\r\nArtículo 10. Las áreas administrativas deberán atender las solicitudes y requerimientos en el término señalado por la autoridad disciplinaria requirente, a la cual deberán enviar la respuesta, con conocimiento para la Junta. En caso de que la petición no establezca un término, deberá atenderse en un plazo que no exceda de 10 días hábiles de acuerdo con la naturaleza del asunto.\r\n\r\nAnte la omisión de brindar respuesta o el incumplimiento de atención a las instrucciones de la Junta, esta dará vista a las autoridades correspondientes a fin de que se pronuncie sobre la actualización de alguna causa de responsabilidad administrativa.\r\n\r\nArtículo 11. En el supuesto de que una persona integrante del Pleno del Órgano o titular de alguna de las áreas administrativas advierta la existencia de una posible causa de responsabilidad que sea competencia del Tribunal, lo hará del conocimiento de la Junta a fin de presentar la queja o denuncia correspondiente.\r\n\r\nArtículo 12. En los casos de conflicto de competencia entre el Órgano y el Tribunal, el Pleno de aquel será el encargado de plantearlo ante este último a través de la Junta de Coordinación, a fin de que el asunto sea resuelto en términos del artículo 189 último párrafo de la Ley Orgánica del Poder Judicial de la Federación.\r\n\r\nArtículo 13. Las autoridades disciplinarias del Órgano informarán a la Junta sobre la remisión que hagan al Tribunal de los recursos de revisión, cuando estos se interpongan en los procedimientos disciplinarios que impongan sanciones al personal administrativo, por faltas graves.\r\n\r\nArtículo 14. La Junta ejercerá sus atribuciones en el marco de la competencia que le corresponde, sin realizar actos que excedan las mismas ni asumir funciones reservadas a otras instancias.\r\n\r\nArtículo 15. La Junta podrá tener las demás facultades que establezca la Ley Orgánica del Poder Judicial de la Federación, los Acuerdos Generales del Pleno del Órgano de Administración Judicial y las demás que determinen conjuntamente los Plenos.\r\n\r\nArtículo 16. La Junta estará facultada para interpretar el presente instrumento.\r\n\r\nTRANSITORIOS\r\n\r\nPRIMERO. El presente acuerdo entrará en vigor al día siguiente de su publicación en el Diario Oficial de la Federación.\r\n\r\nSEGUNDO. Publíquese en el Diario Oficial de la Federación, en la Gaceta del Semanario Judicial de la Federación, así como en el Portal del Órgano de Administración Judicial del Poder Judicial de la Federación en internet e intranet.\r\n\r\nFirman al calce el Presidente del Órgano de Administración Judicial y la persona titular de la Secretaría Ejecutiva del Pleno, de conformidad con lo dispuesto en los artículos 91, 99, fracción VIII y 100, párrafo primero de la Ley Orgánica del Poder Judicial de la Federación.\r\n\r\nEL MAESTRO CÉSAR MAURICIO LÓPEZ RAMIREZ, SECRETARIO EJECUTIVO DEL PLENO DEL ÓRGANO DE ADMINISTRACIÓN JUDICIAL, \r\n\r\nC E R T I F I C A:\r\n\r\nQue este Acuerdo General Conjunto del Pleno del Órgano de Administración Judicial y del Pleno del Tribunal de Disciplina Judicial del Poder Judicial de la Federación, por el que se determinan las disposiciones de organización y funcionamiento de la Junta de Coordinación, fue aprobado por el Pleno del propio Órgano, en sesión celebrada el 11 de diciembre de 2025, por unanimidad de votos de las personas integrantes: Maestro Néstor Vargas Solano, Presidente; Licenciada Surit Berenice Romero Domínguez; Doctora Lorena Josefina Pérez Romo; Maestra Catalina Ramírez Hernández y Maestro José Alberto Gallegos Ramírez.–Ciudad de México, a 10 de febrero de 2026.—Conste.",
+    "anio": 2026,
+    "mes": "Marzo",
+    "anexos": "",
+    "notaPublica": "Este acuerdo se publicó el viernes 20 de marzo de 2026 a las 10:23 horas en el Semanario Judicial de la Federación.",
+    "huellaDigital": "2798264e4e7a8908794c4cd2371834e99ba9838648b2c5217a462aec3d30ee5c"
+  },
+  "notes": [
+    "Este catalogo usa la API oficial del Repositorio de la SCJN publicada en bicentenario.scjn.gob.mx/repositorio-scjn.",
+    "La ruta del frontend SJF carga getFuentes(1) y resuelve `tesis` como indice del API v1."
+  ]
+}

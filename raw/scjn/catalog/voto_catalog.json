@@ -1,0 +1,138 @@
+{
+  "generated_at": "2026-03-30T01:03:05.054049Z",
+  "source_system": "scjn_bicentenario_repository",
+  "document_kind": "voto",
+  "status": "ok",
+  "source_endpoint": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/reforma/fuentes/1",
+  "source_index": "votos",
+  "fuente_definition": {
+    "idFuente": 3,
+    "indice": "votos",
+    "etiqueta": "Votos",
+    "identificador": "idVoto",
+    "fecha": "",
+    "filterName": "",
+    "visible": true,
+    "idGrupo": 1,
+    "orden": 2
+  },
+  "api_contract": {
+    "count": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/votos/count",
+    "ids": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/votos/ids?page={page}&size={size}",
+    "default": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/votos/default",
+    "detail": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/votos/{registry_id}"
+  },
+  "count_total": 9931,
+  "page_size": 10,
+  "start_page": 1,
+  "pages_fetched": 1,
+  "items_truncated": true,
+  "items": [
+    {
+      "registry_id": "300172",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 0,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/votos/300172"
+    },
+    {
+      "registry_id": "47490",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 1,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/votos/47490"
+    },
+    {
+      "registry_id": "47489",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 2,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/votos/47489"
+    },
+    {
+      "registry_id": "47488",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 3,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/votos/47488"
+    },
+    {
+      "registry_id": "47487",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 4,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/votos/47487"
+    },
+    {
+      "registry_id": "47486",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 5,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/votos/47486"
+    },
+    {
+      "registry_id": "47485",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 6,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/votos/47485"
+    },
+    {
+      "registry_id": "47484",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 7,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/votos/47484"
+    },
+    {
+      "registry_id": "47483",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 8,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/votos/47483"
+    },
+    {
+      "registry_id": "47482",
+      "page": 1,
+      "page_size": 10,
+      "position_in_page": 9,
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/votos/47482"
+    }
+  ],
+  "first_detail": {
+    "registry_id": "300182",
+    "title": "",
+    "citation_label": "registro digital 300182",
+    "type": "",
+    "epoch": "Duodécima Época",
+    "instance": "Suprema Corte de Justicia de la Nación",
+    "organ": "Pleno",
+    "publication_date": "",
+    "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/votos/300182",
+    "retrieved_at": "2026-03-30T01:03:05.054049Z"
+  },
+  "default_document_raw": {
+    "idVoto": 300182,
+    "instancia": "Suprema Corte de Justicia de la Nación",
+    "organoJuris": "Pleno",
+    "epoca": "Duodécima Época",
+    "volumen": "Libro 6, Febrero de 2026",
+    "tomo": "Tomo IV, Volumen 1",
+    "rubro": "",
+    "texto": " Voto particular que formula la Ministra Sara Irene Herrerías Guerra en la contradicción de criterios 120/2025.\n\nEn sesión de cuatro de noviembre de dos mil veinticinco, el Pleno de la Suprema Corte de Justicia de la Nación resolvió la Contradicción de Criterios citada al rubro, en la que por mayoría de cinco votos se determinó la existencia de la contradicción denunciada y que debía prevalecer con carácter de jurisprudencia el criterio sustentado por el Tribunal Pleno.\n\nLa mayoría consideró que debe concederse la suspensión provisional en contra de los efectos y consecuencias derivados del artículo 29, penúltimo párrafo, de la Ley del Instituto del Fondo Nacional de la Vivienda para los Trabajadores vigente a partir del veintidós de febrero de dos mil veinticinco,(1) respecto de la obligación de pagar los descuentos a los créditos de vivienda de los trabajadores ausentes o incapacitados, previa exhibición de garantía suficiente, de conformidad con el artículo 135 de la Ley de Amparo, al actualizarse la apariencia del buen derecho; además, de no afectar el interés social ni contravenir disposiciones de orden público.\n\nAhora, debo decir que no comparto la determinación anterior, principalmente por tres razones.\n\nLa primera porque se toma a la figura de la apariencia del buen derecho como sustento para conceder la suspensión provisional, lo cual, desde mi punto de vista, hace presumir la inconstitucionalidad del artículo 29, penúltimo párrafo, de la Ley del Instituto del Fondo Nacional de la Vivienda para los Trabajadores; aspecto que no debe considerarse así, pues la norma es acorde con el contenido del artículo 123, apartado A, fracción XII, de la Constitución Política de los Estados Unidos Mexicanos.(2)\n\nEn segundo lugar, porque contrario a lo que sostuvo la mayoría, considero que con la concesión de la suspensión provisional se contravendría el interés social, debido a que de la exposición de motivos del Decreto por el que se reforman, adicionan y derogan diversas disposiciones de la Ley del Instituto del Fondo Nacional de la Vivienda para los Trabajadores y de la Ley Federal del Trabajo, en materia de vivienda con orientación social, publicado en el Diario Oficial de la Federación el veintiuno de febrero de dos mil veinticinco, se advierte que la reforma a dicho artículo se realizó para dotar de mayor sostenibilidad financiera al Fondo Nacional de la Vivienda para los Trabajadores, con la finalidad de otorgar créditos a más personas trabajadoras y de esta manera, gozaran del derecho a una vivienda reconocido en el artículo 123, apartado A, fracción XII, de la Constitución Federal.\n\nPor último, estimo que la suspensión provisional no tiene un fin práctico, porque, precisamente, lo que buscan las personas empleadoras con la medida cautelar es no erogar recursos para el pago de los créditos de las personas trabajadoras.\n\nEn este sentido, si se determina que de cualquier forma las personas empleadoras deben cubrir la garantía prevista en el artículo 135 de la Ley de Amparo, se traduce en que tendrán que otorgar la cantidad del crédito y, en su caso, se perderá ese dinero cuando se niegue el amparo a las quejosas, por lo que no tendría un fin práctico para dichas personas.\n\nPor tales razones, estimo, respetuosamente, que la suspensión provisional debe negarse en los casos en que se impugne el penúltimo párrafo del artículo 29 de la Ley del Instituto del Fondo Nacional de la Vivienda para los Trabajadores; aunado a que a las personas empleadoras no se les afecta su esfera jurídica, porque el artículo 110, fracción III, de la Ley Federal del Trabajo(3) les permite realizar los descuentos correspondientes al salario de las personas trabajadoras.\n\nConforme a lo anterior, emito el presente voto particular.\n\n\n\n\n\n\n\n________________\n1. Artículo 29. Son obligaciones de los patrones: ()\nIII. Hacer los descuentos a sus trabajadores en sus salarios, conforme a lo previsto en los artículos 97 y 110 de la Ley Federal del Trabajo, que se destinen al pago de abonos para cubrir préstamos otorgados por el Instituto, así como enterar el importe de dichos descuentos en las entidades receptoras que actúen por cuenta y orden del Instituto, en la forma y términos que establece esta Ley y sus disposiciones reglamentarias. La integración y cálculo de la base salarial para efectos de los descuentos será la contenida en la fracción II del presente artículo.\nA fin de que el Instituto pueda individualizar dichos descuentos, los patrones deberán proporcionarle la información relativa a cada trabajador en la forma y periodicidad que al efecto establezcan esta Ley y sus disposiciones reglamentarias; ()\nLa obligación de efectuar las aportaciones a que se refiere la fracción II anterior, se suspenderá cuando no se paguen salarios por ausencias en los términos de la Ley del Seguro Social, siempre que se dé aviso oportuno al Instituto, en conformidad al artículo 31. Tratándose de incapacidades expedidas por el Instituto Mexicano del Seguro Social, subsistirá la obligación del pago de aportaciones. Cuando se trate de la obligación de hacer los descuentos a que se refiere la fracción III no se suspenderá por ausencias o incapacidades en términos de la Ley del Seguro Social.\n\n2. Artículo 123. Toda persona tiene derecho al trabajo digno y socialmente útil; al efecto, se promoverán la creación de empleos y la organización social de trabajo, conforme a la ley. ()\nA. Entre los obreros, jornaleros, empleados domésticos, artesanos y de una manera general, todo contrato de trabajo: ()\nXII. Toda empresa agrícola, industrial, minera o de cualquier otra clase de trabajo, estará obligada, según lo determinen las leyes reglamentarias a proporcionar a sus personas trabajadoras viviendas adecuadas. Esta obligación se cumplirá mediante las aportaciones que las empresas hagan a un fondo nacional de la vivienda a fin de constituir depósitos en favor de sus personas trabajadoras.\nEl fondo establecerá un sistema de vivienda con orientación social para las personas trabajadoras derechohabientes que permita obtener crédito barato y suficiente para su adquisición o mejora; también podrá adquirir suelo y construir vivienda, en los términos que fije la ley.\nSe considera de utilidad social la expedición de una ley para la creación de un organismo integrado por representantes del Gobierno Federal, de las personas trabajadoras y empleadoras, que administre los recursos del fondo nacional de la vivienda. Dicha ley regulará las formas y procedimientos conforme a los cuales las personas trabajadoras podrán acceder a los créditos y viviendas en arrendamiento social, antes mencionadas.\nLa ley establecerá los términos y condiciones para que las personas trabajadoras puedan acceder a las viviendas en arrendamiento social, así como al derecho de adquirirlas en propiedad. La mensualidad del arrendamiento social no podrá exceder del treinta por ciento del salario de las personas trabajadoras.\nEn cualquier caso, se dará preferencia de acceso a la vivienda en arrendamiento social a las personas trabajadoras que hayan aportado continuamente al fondo y no cuenten con vivienda propia. La ley preverá mecanismos para evitar discrecionalidad o injerencias arbitrarias que limiten el acceso a este derecho.\nLas negociaciones a que se refiere el párrafo primero de esta fracción, situadas fuera de las poblaciones, están obligadas a establecer escuelas, enfermerías y demás servicios necesarios a la comunidad. Además, en esos mismos centros de trabajo, cuando su población exceda de doscientos habitantes, deberá reservarse un espacio de terreno, que no será menor de cinco mil metros cuadrados, para el establecimiento de mercados públicos, instalación de edificios destinados a los servicios municipales y centros recreativos.\nQueda prohibido en todo centro de trabajo, el establecimiento de expendios de bebidas embriagantes y de casas de juego de azar.\n\n3. Artículo 110. Los descuentos en los salarios de los trabajadores, están prohibidos salvo en los casos y con los requisitos siguientes: ()\nIII. Pago de abonos para cubrir préstamos o rentas provenientes del Fondo Nacional de la Vivienda para los Trabajadores destinados al arrendamiento social, adquisición, construcción, reparación, ampliación o mejoras de vivienda o al pago de pasivos adquiridos por estos conceptos. Estos descuentos deberán haber sido aceptados libremente por la persona trabajadora. ",
+    "fuente": "Gaceta del Semanario Judicial de la Federación",
+    "asunto": "CONTRADICCIÓN DE CRITERIOS (ANTES CONTRADICCIÓN DE TESIS) 120/2025.",
+    "promovente": "ENTRE LOS SUSTENTADOS POR EL SEGUNDO TRIBUNAL COLEGIADO EN MATERIA ADMINISTRATIVA DEL SÉPTIMO CIRCUITO Y EL SEGUNDO TRIBUNAL COLEGIADO DEL TRIGÉSIMO CIRCUITO.",
+    "clasificacion": "Voto particular",
+    "ponente": "Ministra Sara Irene Herrerías Guerra",
+    "notaPublica": "",
+    "anio": 2026,
+    "mes": "Febrero",
+    "anexos": "",
+    "huellaDigital": "cf837e387058530b945011feb1134fee094297ab7f32f3ee3f354549b0f172dc"
+  },
+  "notes": [
+    "Este catalogo usa la API oficial del Repositorio de la SCJN publicada en bicentenario.scjn.gob.mx/repositorio-scjn.",
+    "La ruta del frontend SJF carga getFuentes(1) y resuelve `tesis` como indice del API v1."
+  ]
+}

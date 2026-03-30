@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legalize-mx.local/schemas/law_document.schema.json",
+  "title": "LawDocument",
+  "type": "object",
+  "required": [
+    "doc_type",
+    "country",
+    "jurisdiction",
+    "norm_id",
+    "source_system",
+    "source_url",
+    "title",
+    "category",
+    "rank",
+    "status",
+    "version_type"
+  ],
+  "properties": {
+    "doc_type": { "const": "legislation" },
+    "country": { "type": "string", "const": "mx" },
+    "jurisdiction": { "type": "string" },
+    "state_code": { "type": ["string", "null"] },
+    "municipality_code": { "type": ["string", "null"] },
+    "norm_id": { "type": "string" },
+    "source_system": { "type": "string" },
+    "source_id": { "type": ["string", "null"] },
+    "source_url": { "type": "string" },
+    "official_publication": { "type": ["string", "null"] },
+    "official_publication_url": { "type": ["string", "null"] },
+    "title": { "type": "string" },
+    "short_title": { "type": ["string", "null"] },
+    "category": { "type": "string" },
+    "rank": { "type": "string" },
+    "subject_tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "publication_date": { "type": ["string", "null"] },
+    "effective_date": { "type": ["string", "null"] },
+    "last_reform_date": { "type": ["string", "null"] },
+    "consolidation_date": { "type": ["string", "null"] },
+    "status": { "type": "string" },
+    "language": { "type": ["string", "null"] },
+    "version_type": { "type": "string" },
+    "checksum_sha256": { "type": ["string", "null"] }
+  },
+  "additionalProperties": true
+}

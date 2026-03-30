@@ -1,0 +1,12 @@
+[Unit]
+Description=Run legalize-mx jurisprudence batch periodically
+
+[Timer]
+OnBootSec=12m
+OnUnitActiveSec=6h
+RandomizedDelaySec=15m
+Persistent=true
+Unit=legalize-mx-jurisprudence.service
+
+[Install]
+WantedBy=timers.target

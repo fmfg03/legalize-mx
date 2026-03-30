@@ -1,0 +1,163 @@
+{
+  "request": {
+    "task_id": "legal-panel-amparo-susp-pass-001",
+    "task_kind": "demand_drafting",
+    "objective": "Emitir una recomendacion preliminar de suspension en amparo cuando la medida cautelar aparece defendible.",
+    "query": "¿Como estructurar una recomendacion preliminar para solicitar suspension en amparo sin afectar interes social ni orden publico?",
+    "jurisdiction": "federal",
+    "matter_profile": "amparo_suspension",
+    "query_date": "2026-03-30",
+    "complexity": "high",
+    "consequence_level": "critical",
+    "requires_jurisprudence": false,
+    "writes_for_user": true
+  },
+  "draft_bundle": {
+    "request_id": "req-amparo-susp-pass-001",
+    "response_type": "recommendation",
+    "jurisdiction": "federal",
+    "query_date": "2026-03-30",
+    "response_text": "La recomendacion preliminar de suspension debe sostener una apariencia suficiente del derecho invocado, mostrar el riesgo de dano irreparable y justificar que la medida no afecta el interes social ni contraviene disposiciones de orden publico.",
+    "citations": [
+      {
+        "citation_id": "cit-cpeum-1-amparo-susp-pass",
+        "doc_type": "legislation",
+        "doc_id": "mx-federal-cpeum",
+        "title": "Constitucion Politica de los Estados Unidos Mexicanos",
+        "locator": "articulo 1o.",
+        "jurisdiction": "federal",
+        "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm",
+        "official_publication": "DOF",
+        "quote": "Todas las autoridades, en el ambito de sus competencias, tienen la obligacion de promover, respetar, proteger y garantizar los derechos humanos",
+        "quote_sha256": "a1b84d8b3aa42312c92174c049819ed8f77a0c7292f119ad335d6d0bc4847ad3"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "clm-amparo-susp-pass-1",
+        "text": "La recomendacion cautelar debe justificarse con apariencia del derecho, riesgo de dano y ausencia de afectacion grave al interes social u orden publico.",
+        "kind": "legislation",
+        "citation_ids": [
+          "cit-cpeum-1-amparo-susp-pass"
+        ]
+      }
+    ]
+  },
+  "initial_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "approve",
+      "confidence": 0.88,
+      "justification": "La solicitud cautelar es articulable en forma prudente."
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "conditional",
+      "confidence": 0.73,
+      "justification": "Debe delimitarse mejor la medida y su alcance."
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "approve",
+      "confidence": 0.82,
+      "justification": "La estructura cautelar es proyectable.",
+      "metadata": {
+        "amparo_suspension": {
+          "proyecto_cautelar_madurez": "apto"
+        }
+      }
+    },
+    {
+      "persona": "revisor_suspension_amparo",
+      "decision": "approve",
+      "confidence": 0.85,
+      "justification": "Veo apariencia suficiente y riesgo cautelar atendible.",
+      "metadata": {
+        "amparo_suspension": {
+          "apariencia_status": "solida",
+          "peligro_demora_status": "acreditado",
+          "medida_status": "viable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_interes_social_orden_publico",
+      "decision": "approve",
+      "confidence": 0.83,
+      "justification": "No advierto afectacion significativa al interes social ni al orden publico.",
+      "metadata": {
+        "amparo_suspension": {
+          "interes_social_status": "neutro",
+          "orden_publico_status": "neutro"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.79,
+      "justification": "No hay problema citacional en esta recomendacion preliminar."
+    }
+  ],
+  "final_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "approve",
+      "confidence": 0.89,
+      "justification": "La recomendacion cautelar sigue siendo defendible."
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "approve",
+      "confidence": 0.77,
+      "justification": "La deliberacion acoto mejor la medida solicitada.",
+      "structured_change_justification": {
+        "trigger": "La medida cautelar quedo mas precisa y menos intrusiva.",
+        "evidence_delta": "Se aclaro el alcance de la suspension solicitada.",
+        "reasoning_delta": "Disminuyo el riesgo de excesos cautelares."
+      }
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "approve",
+      "confidence": 0.84,
+      "justification": "La estructura es proyectable como peticion cautelar preliminar.",
+      "metadata": {
+        "amparo_suspension": {
+          "proyecto_cautelar_madurez": "apto"
+        }
+      }
+    },
+    {
+      "persona": "revisor_suspension_amparo",
+      "decision": "approve",
+      "confidence": 0.86,
+      "justification": "La apariencia del derecho y el peligro en la demora quedan suficientemente articulados.",
+      "metadata": {
+        "amparo_suspension": {
+          "apariencia_status": "solida",
+          "peligro_demora_status": "acreditado",
+          "medida_status": "viable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_interes_social_orden_publico",
+      "decision": "approve",
+      "confidence": 0.84,
+      "justification": "La medida no desplaza interes social ni orden publico en forma visible.",
+      "metadata": {
+        "amparo_suspension": {
+          "interes_social_status": "neutro",
+          "orden_publico_status": "neutro"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.80,
+      "justification": "La salida no inventa precedentes ni sobreextiende criterios."
+    }
+  ]
+}

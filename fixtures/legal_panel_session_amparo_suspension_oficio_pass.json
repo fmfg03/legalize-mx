@@ -1,0 +1,163 @@
+{
+  "request": {
+    "task_id": "legal-panel-amparo-susp-oficio-pass-001",
+    "task_kind": "demand_drafting",
+    "objective": "Emitir una recomendacion preliminar de suspension de oficio cuando el supuesto de tutela inmediata esta claramente identificado.",
+    "query": "¿Puede liberarse una recomendacion de suspension de oficio cuando el supuesto material esta claro y la medida no compromete interes social ni orden publico?",
+    "jurisdiction": "federal",
+    "matter_profile": "amparo_suspension_oficio",
+    "query_date": "2026-03-30",
+    "complexity": "high",
+    "consequence_level": "critical",
+    "requires_jurisprudence": false,
+    "writes_for_user": true
+  },
+  "draft_bundle": {
+    "request_id": "req-amparo-susp-oficio-pass-001",
+    "response_type": "recommendation",
+    "jurisdiction": "federal",
+    "query_date": "2026-03-30",
+    "response_text": "La recomendacion preliminar de suspension de oficio puede liberarse cuando el supuesto de tutela inmediata esta debidamente identificado, el riesgo grave aparece acreditado y la medida no afecta interes social ni orden publico.",
+    "citations": [
+      {
+        "citation_id": "cit-cpeum-1-amparo-susp-oficio-pass",
+        "doc_type": "legislation",
+        "doc_id": "mx-federal-cpeum",
+        "title": "Constitucion Politica de los Estados Unidos Mexicanos",
+        "locator": "articulo 1o.",
+        "jurisdiction": "federal",
+        "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm",
+        "official_publication": "DOF",
+        "quote": "Todas las autoridades, en el ambito de sus competencias, tienen la obligacion de promover, respetar, proteger y garantizar los derechos humanos",
+        "quote_sha256": "a1b84d8b3aa42312c92174c049819ed8f77a0c7292f119ad335d6d0bc4847ad3"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "clm-amparo-susp-oficio-pass-1",
+        "text": "La suspension de oficio solo debe recomendarse cuando el supuesto de tutela inmediata y el riesgo grave estan articulados con precision.",
+        "kind": "legislation",
+        "citation_ids": [
+          "cit-cpeum-1-amparo-susp-oficio-pass"
+        ]
+      }
+    ]
+  },
+  "initial_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "approve",
+      "confidence": 0.87,
+      "justification": "La tutela inmediata esta bien planteada."
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "conditional",
+      "confidence": 0.74,
+      "justification": "La medida requiere delimitacion fina."
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "approve",
+      "confidence": 0.82,
+      "justification": "El proyecto cautelar es resoluble.",
+      "metadata": {
+        "amparo_suspension_oficio": {
+          "proyecto_cautelar_madurez": "apto"
+        }
+      }
+    },
+    {
+      "persona": "revisor_suspension_oficio_amparo",
+      "decision": "approve",
+      "confidence": 0.86,
+      "justification": "El supuesto de suspension de oficio y el riesgo grave estan claros.",
+      "metadata": {
+        "amparo_suspension_oficio": {
+          "supuesto_oficio_status": "claro",
+          "riesgo_grave_status": "acreditado",
+          "medida_status": "viable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_interes_social_orden_publico",
+      "decision": "approve",
+      "confidence": 0.83,
+      "justification": "No advierto conflicto relevante con interes social ni orden publico.",
+      "metadata": {
+        "amparo_suspension_oficio": {
+          "interes_social_status": "neutro",
+          "orden_publico_status": "neutro"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.79,
+      "justification": "No hay problema citacional en esta recomendacion."
+    }
+  ],
+  "final_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "approve",
+      "confidence": 0.88,
+      "justification": "La tutela inmediata sigue estando bien fundada."
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "approve",
+      "confidence": 0.77,
+      "justification": "La deliberacion acoto suficientemente la medida.",
+      "structured_change_justification": {
+        "trigger": "La medida de oficio quedo delimitada con menor impacto operativo.",
+        "evidence_delta": "Se preciso el alcance temporal y material de la tutela.",
+        "reasoning_delta": "Disminuyo el riesgo de exceso cautelar."
+      }
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "approve",
+      "confidence": 0.83,
+      "justification": "El proyecto cautelar es emitible.",
+      "metadata": {
+        "amparo_suspension_oficio": {
+          "proyecto_cautelar_madurez": "apto"
+        }
+      }
+    },
+    {
+      "persona": "revisor_suspension_oficio_amparo",
+      "decision": "approve",
+      "confidence": 0.87,
+      "justification": "Se conserva un supuesto claro de tutela inmediata con riesgo grave acreditado.",
+      "metadata": {
+        "amparo_suspension_oficio": {
+          "supuesto_oficio_status": "claro",
+          "riesgo_grave_status": "acreditado",
+          "medida_status": "viable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_interes_social_orden_publico",
+      "decision": "approve",
+      "confidence": 0.84,
+      "justification": "La medida sigue siendo neutral para interes social y orden publico.",
+      "metadata": {
+        "amparo_suspension_oficio": {
+          "interes_social_status": "neutro",
+          "orden_publico_status": "neutro"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.8,
+      "justification": "No observo problema citacional."
+    }
+  ]
+}

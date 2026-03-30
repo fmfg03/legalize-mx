@@ -1,0 +1,7 @@
+# Lista inicial de normas para el timer.
+# Sustituye este archivo por el inventario federal completo cuando el bootstrap
+# este estabilizado.
+
+cpeum
+ccf
+cpf

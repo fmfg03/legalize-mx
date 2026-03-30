@@ -1,0 +1,18 @@
+{
+  "registry_id": "2006737",
+  "source_url": "https://www.scjn.gob.mx/sites/default/files/pagina_transparencia/documento/2016-11/Criterios_PJF_Proteccion_datos_2a_Ed_Feb_2016.pdf",
+  "retrieved_at": "2026-03-30T00:00:00Z",
+  "last_seen_at": "2026-03-30T00:00:00Z",
+  "source_payload_path": "/root/legalize-mx/fixtures/scjn_tesis_2006737_raw.json",
+  "Rubro": "DAÑO MORAL. SU CLASIFICACIÓN EN CUANTO AL CARÁCTER DEL INTERÉS AFECTADO.",
+  "Texto": "En nuestro ordenamiento jurídico se plantea una distinción en el tratamiento de la responsabilidad por daño al patrimonio moral, dependiendo de su carácter. En efecto, puede sostenerse que el daño moral es un género dividido en tres especies, a saber: (i) daño al honor, el cual afecta a una persona en su vida privada, honor o propia imagen; (ii) daños estéticos, que son los que afectan la configuración y los aspectos físicos de las personas; y, (iii) daños a los sentimientos o a la parte afectiva del patrimonio moral, como se les ha denominado en la doctrina, y que hieren a un individuo en sus afectos.",
+  "Epoca": "Décima Época",
+  "Instancia": "Primera Sala",
+  "FechaPublicacion": "2014-06-20",
+  "TipoTesis": null,
+  "Tribunal": "Primera Sala",
+  "MateriasTesis": [
+    "Civil"
+  ],
+  "source_note": "Fixture semilla construido a partir de una publicacion oficial de la SCJN que cita y transcribe la tesis con registro digital 2006737."
+}

@@ -1,0 +1,869 @@
+{
+  "connectors": [
+    {
+      "connector_id": "sonora_leyes_reglamentos",
+      "display_name": "Sonora - Leyes y Reglamentos",
+      "jurisdiction": "state",
+      "state_code": "son",
+      "connector_status": "verified_state_source",
+      "source_classification": "government_compilation",
+      "official_source_name": "Oficialia Mayor del Estado de Sonora / Boletin Oficial del Estado",
+      "officiality_notice": "Usar el portal de leyes y reglamentos para consulta y el Boletin Oficial del Estado de Sonora para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://oficialiamayor.sonora.gob.mx/servicios-e-informacion/leyes-y-reglamentos.html",
+        "code": "https://oficialiamayor.sonora.gob.mx/servicios-e-informacion/leyes-y-reglamentos.html",
+        "regulation": "https://oficialiamayor.sonora.gob.mx/servicios-e-informacion/leyes-y-reglamentos.html"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "sonora",
+        "estado de sonora",
+        "son"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "tabasco_normateca_codigos",
+      "display_name": "Tabasco - Normateca Codigos",
+      "jurisdiction": "state",
+      "state_code": "tab",
+      "connector_status": "verified_state_source",
+      "source_classification": "government_compilation",
+      "official_source_name": "Portal Tabasco / Periódico Oficial del Estado",
+      "officiality_notice": "Usar la Normateca estatal para consulta y el Periodico Oficial del Estado de Tabasco para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://tabasco.gob.mx/leyes",
+        "code": "https://tabasco.gob.mx/sesesp/normateca/codigos",
+        "regulation": "https://tabasco.gob.mx/sesesp/normateca/reglamentos"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "tabasco",
+        "estado de tabasco",
+        "tab"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "congreso_tlaxcala_legislacion",
+      "display_name": "Congreso de Tlaxcala - Legislacion",
+      "jurisdiction": "state",
+      "state_code": "tlax",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "Congreso del Estado de Tlaxcala / Periodico Oficial del Estado",
+      "officiality_notice": "Usar la legislacion del Congreso para consulta y el Periodico Oficial del Estado de Tlaxcala para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://congresodetlaxcala.gob.mx/leyes-del-estado-tlaxcala/",
+        "code": "https://congresodetlaxcala.gob.mx/legislacion/",
+        "regulation": "https://congresodetlaxcala.gob.mx/legislacion/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "tlaxcala",
+        "estado de tlaxcala",
+        "tlax"
+      ],
+      "seeded_targets": [
+        {
+          "title": "Codigo Civil para el Estado Libre y Soberano de Tlaxcala",
+          "document_type": "code",
+          "external_id": "1_codigo_civil_par",
+          "detail_url": "https://congresodetlaxcala.gob.mx/legislacion/",
+          "document_url": "https://congresodetlaxcala.gob.mx/archivo/leyes2020/pdf/1_codigo_civil_par.pdf",
+          "aliases": [
+            "codigo civil de tlaxcala",
+            "codigo civil del estado de tlaxcala",
+            "codigo civil para el estado libre y soberano de tlaxcala"
+          ],
+          "last_known_reform_note": "PDF del Congreso visible con ultima reforma publicada el 18 de junio de 2024."
+        }
+      ]
+    },
+    {
+      "connector_id": "veracruz_normativa_vigente",
+      "display_name": "Veracruz - Normativa Vigente",
+      "jurisdiction": "state",
+      "state_code": "ver",
+      "connector_status": "verified_state_source",
+      "source_classification": "government_compilation",
+      "official_source_name": "Gobierno del Estado de Veracruz / Gaceta Oficial del Estado",
+      "officiality_notice": "Usar la normativa vigente del Gobierno de Veracruz para consulta y la Gaceta Oficial del Estado para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://www.veracruz.gob.mx/normativa-vigente/",
+        "code": "https://www.veracruz.gob.mx/ipe/transparencia/obligaciones-de-transparencia-0/fraccion-i-marco-legal/codigos/",
+        "regulation": "https://www.veracruz.gob.mx/normativa-vigente/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "veracruz",
+        "veracruz de ignacio de la llave",
+        "estado de veracruz",
+        "ver"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "congreso_yucatan_codigos",
+      "display_name": "Congreso de Yucatan - Codigos",
+      "jurisdiction": "state",
+      "state_code": "yuc",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "Congreso del Estado de Yucatan / Diario Oficial del Gobierno del Estado",
+      "officiality_notice": "Usar la compilacion legislativa del Congreso de Yucatan para consulta y el Diario Oficial del Gobierno del Estado para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://www.congresoyucatan.gob.mx/legislacion/leyes",
+        "code": "https://www.congresoyucatan.gob.mx/legislacion/codigos",
+        "regulation": "https://www.aafy.yucatan.gob.mx/legislacion.php"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "yucatan",
+        "estado de yucatan",
+        "yuc"
+      ],
+      "seeded_targets": [
+        {
+          "title": "Codigo Civil del Estado de Yucatan",
+          "document_type": "code",
+          "external_id": "622",
+          "detail_url": "https://www.congresoyucatan.gob.mx/legislacion/codigos",
+          "document_url": "https://www.congresoyucatan.gob.mx/storage/legislacion/codigos/ca9da342d9e6c5faf13d9e39e9ec6591_2022-06-10.pdf",
+          "aliases": [
+            "codigo civil de yucatan",
+            "codigo civil del estado de yucatan"
+          ],
+          "last_known_reform_note": "Portal del Congreso lista el Codigo Civil del Estado de Yucatan con ultima reforma 07-junio-2022 y PDF descargable."
+        }
+      ]
+    },
+    {
+      "connector_id": "congreso_zacatecas_sistema_normativo",
+      "display_name": "Congreso de Zacatecas - Sistema Estatal Normativo",
+      "jurisdiction": "state",
+      "state_code": "zac",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "Congreso del Estado de Zacatecas / Periodico Oficial del Gobierno del Estado",
+      "officiality_notice": "Usar el Sistema Estatal Normativo del Congreso para consulta y el Periodico Oficial del Gobierno del Estado de Zacatecas para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://www.congresozac.gob.mx/f/todojuridico&mat=Derecho_Civil",
+        "code": "https://www.congresozac.gob.mx/f/todojuridico&mat=Derecho_Civil",
+        "regulation": "https://sefin.zacatecas.gob.mx/orden-juridico/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "zacatecas",
+        "estado de zacatecas",
+        "zac"
+      ],
+      "seeded_targets": [
+        {
+          "title": "Codigo Civil del Estado de Zacatecas",
+          "document_type": "code",
+          "external_id": "101",
+          "detail_url": "https://www.congresozac.gob.mx/f/todojuridico&cual=101",
+          "document_url": "https://www.congresozac.gob.mx/f/todojuridico&cual=101",
+          "aliases": [
+            "codigo civil de zacatecas",
+            "codigo civil del estado de zacatecas"
+          ],
+          "last_known_reform_note": "El Sistema Estatal Normativo del Congreso lista el Codigo Civil y reporta actualizacion al 09 de marzo de 2026."
+        }
+      ]
+    },
+    {
+      "connector_id": "puebla_marco_normativo",
+      "display_name": "Puebla - Marco Normativo",
+      "jurisdiction": "state",
+      "state_code": "pue",
+      "connector_status": "verified_state_source",
+      "source_classification": "government_compilation",
+      "official_source_name": "Gobierno del Estado de Puebla / Periódico Oficial del Estado",
+      "officiality_notice": "Usar los portales de marco normativo del Gobierno del Estado de Puebla para consulta y el Periódico Oficial del Estado para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://planeacion.puebla.gob.mx/marco/",
+        "code": "https://planeacion.puebla.gob.mx/marco/",
+        "regulation": "https://planeacion.puebla.gob.mx/marco/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "puebla",
+        "estado de puebla",
+        "pue"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "queretaro_biblioteca_juridica",
+      "display_name": "Queretaro - Biblioteca Juridica",
+      "jurisdiction": "state",
+      "state_code": "qro",
+      "connector_status": "verified_state_source",
+      "source_classification": "judicial_compilation",
+      "official_source_name": "Poder Judicial del Estado de Queretaro / Periódico Oficial La Sombra de Arteaga",
+      "officiality_notice": "Usar la biblioteca juridica del Poder Judicial para consulta y el Periodico Oficial La Sombra de Arteaga para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://www.legislaturaqueretaro.gob.mx/leyes/",
+        "code": "https://www.poderjudicialqro.gob.mx/nv/legislacion-codigos.php",
+        "regulation": "https://queretaro.gob.mx/en/web/archivoh/normatividad"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "queretaro",
+        "estado de queretaro",
+        "qro"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "congreso_quintana_roo_codigos",
+      "display_name": "Congreso de Quintana Roo - Codigos",
+      "jurisdiction": "state",
+      "state_code": "qroo",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "Poder Legislativo del Estado de Quintana Roo / Periódico Oficial del Estado",
+      "officiality_notice": "Usar el portal legislativo del Congreso para consulta y el Periódico Oficial del Estado de Quintana Roo para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://www.congresoqroo.gob.mx/",
+        "code": "https://www.congresoqroo.gob.mx/codigos",
+        "regulation": "https://www.congresoqroo.gob.mx/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "quintana roo",
+        "estado de quintana roo",
+        "q roo",
+        "qroo"
+      ],
+      "seeded_targets": [
+        {
+          "title": "Codigo Civil para el Estado de Quintana Roo",
+          "document_type": "code",
+          "external_id": "2",
+          "detail_url": "https://www.congresoqroo.gob.mx/codigos/2",
+          "document_url": "https://documentos.congresoqroo.gob.mx/codigos/C2-XVI-23032022-L1620220323212.pdf",
+          "aliases": [
+            "codigo civil de quintana roo",
+            "codigo civil del estado de quintana roo",
+            "codigo civil de qroo"
+          ],
+          "last_known_reform_note": "La ficha legislativa del Congreso muestra reformas hasta 09-oct-2024 y enlaza archivo del codigo."
+        }
+      ]
+    },
+    {
+      "connector_id": "slp_legislacion_estatal",
+      "display_name": "San Luis Potosi - Legislacion Estatal",
+      "jurisdiction": "state",
+      "state_code": "slp",
+      "connector_status": "verified_state_source",
+      "source_classification": "government_compilation",
+      "official_source_name": "Gobierno del Estado de San Luis Potosi / Periodico Oficial del Estado",
+      "officiality_notice": "Usar los portales de legislacion y normatividad del Estado de San Luis Potosi para consulta y el Periodico Oficial del Estado para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://segam.slp.gob.mx/legislacion/",
+        "code": "https://segam.slp.gob.mx/legislacion/",
+        "regulation": "https://sct.slp.gob.mx/normatividad/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "san luis potosi",
+        "estado de san luis potosi",
+        "slp"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "sinaloa_legislacion_estatal",
+      "display_name": "Sinaloa - Legislacion Estatal",
+      "jurisdiction": "state",
+      "state_code": "sin",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "Congreso del Estado de Sinaloa / Periódico Oficial del Estado",
+      "officiality_notice": "Usar los portales legislativos y registrales del Estado de Sinaloa para consulta y el Periódico Oficial del Estado para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://iip.congresosinaloa.gob.mx/estatales.html",
+        "code": "https://iip.congresosinaloa.gob.mx/estatales.html",
+        "regulation": "https://portalregistral.sinaloa.gob.mx/MarcoJuridico.aspx"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "sinaloa",
+        "estado de sinaloa",
+        "sin"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "michoacan_normativa_estatal",
+      "display_name": "Michoacan - Normativa Estatal",
+      "jurisdiction": "state",
+      "state_code": "mich",
+      "connector_status": "verified_state_source",
+      "source_classification": "government_compilation",
+      "official_source_name": "Gobierno del Estado de Michoacan / Periodico Oficial del Estado",
+      "officiality_notice": "Usar la normativa estatal del Gobierno de Michoacan para consulta y el Periodico Oficial del Estado para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://michoacan.gob.mx/coordinacion-de-comunicacion/normativa-estatal/",
+        "code": "https://michoacan.gob.mx/coordinacion-de-comunicacion/normativa-estatal/",
+        "regulation": "https://michoacan.gob.mx/coordinacion-de-comunicacion/normativa-estatal/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "michoacan",
+        "michoacan de ocampo",
+        "estado de michoacan",
+        "mich"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "morelos_marco_juridico",
+      "display_name": "Morelos - Marco Juridico",
+      "jurisdiction": "state",
+      "state_code": "mor",
+      "connector_status": "verified_state_source",
+      "source_classification": "government_compilation",
+      "official_source_name": "Consejeria Juridica del Poder Ejecutivo de Morelos / Periodico Oficial Tierra y Libertad",
+      "officiality_notice": "La propia Consejeria Juridica indica que la edicion electronica no es oficial. La validez juridica corresponde al Periodico Oficial Tierra y Libertad.",
+      "listing_urls": {
+        "law": "https://marcojuridico.morelos.gob.mx/leyes.jsp",
+        "code": "https://marcojuridico.morelos.gob.mx/codigos.jsp",
+        "regulation": "https://marcojuridico.morelos.gob.mx/reglamentoestatal.jsp"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "morelos",
+        "estado de morelos",
+        "mor"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "congreso_nayarit_legislacion_estatal",
+      "display_name": "Congreso de Nayarit - Legislacion Estatal",
+      "jurisdiction": "state",
+      "state_code": "nay",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "H. Congreso del Estado de Nayarit / Periodico Oficial del Estado",
+      "officiality_notice": "El propio Congreso de Nayarit indica que la informacion es meramente informativa y que la unica fuente oficial es el Periodico Oficial del Estado.",
+      "listing_urls": {
+        "law": "https://congresonayarit.gob.mx/legislacion-estatal-leyes/",
+        "code": "https://congresonayarit.gob.mx/legislacion-estatal/",
+        "regulation": "https://congresonayarit.gob.mx/legislacion-estatal/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "nayarit",
+        "estado de nayarit",
+        "nay"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "congreso_nuevo_leon_codigos",
+      "display_name": "Congreso de Nuevo Leon - Codigos",
+      "jurisdiction": "state",
+      "state_code": "nl",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "H. Congreso del Estado de Nuevo Leon / Periodico Oficial del Estado",
+      "officiality_notice": "Usar la compilacion legislativa del Congreso para consulta y el Periodico Oficial del Estado de Nuevo Leon para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://www.hcnl.gob.mx/trabajo_legislativo/leyes/",
+        "code": "https://www.hcnl.gob.mx/trabajo_legislativo/leyes/codigos.php",
+        "regulation": "https://www.hcnl.gob.mx/trabajo_legislativo/leyes/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "nuevo leon",
+        "estado de nuevo leon",
+        "nl"
+      ],
+      "seeded_targets": [
+        {
+          "title": "Codigo Civil para el Estado de Nuevo Leon",
+          "document_type": "code",
+          "external_id": "codigo_civil_para_el_estado_de_nuevo_leon",
+          "detail_url": "https://www.hcnl.gob.mx/trabajo_legislativo/leyes/codigos/codigo_civil_para_el_estado_de_nuevo_leon/",
+          "document_url": "https://www.hcnl.gob.mx/trabajo_legislativo/leyes/codigos/codigo_civil_para_el_estado_de_nuevo_leon/",
+          "aliases": [
+            "codigo civil de nuevo leon",
+            "codigo civil del estado de nuevo leon",
+            "codigo civil para el estado de nuevo leon"
+          ],
+          "last_known_reform_note": "La ficha legislativa del Congreso reporta ultima reforma 17 de enero de 2025 y contiene texto integrado del codigo."
+        }
+      ]
+    },
+    {
+      "connector_id": "oaxaca_marco_juridico_gob",
+      "display_name": "Oaxaca - Marco Juridico Gubernamental",
+      "jurisdiction": "state",
+      "state_code": "oax",
+      "connector_status": "verified_state_source",
+      "source_classification": "government_compilation",
+      "official_source_name": "Gobierno del Estado de Oaxaca / Periodico Oficial del Estado",
+      "officiality_notice": "Usar los portales gubernamentales de marco juridico para consulta y el Periodico Oficial del Estado de Oaxaca para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://www.oaxaca.gob.mx/apbp/marco-juridico",
+        "code": "https://www.oaxaca.gob.mx/ifreo/marco-juridico/",
+        "regulation": "https://www.oaxaca.gob.mx/semovi/marco-juridico/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "oaxaca",
+        "estado de oaxaca",
+        "oax"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "legistel_edomex",
+      "display_name": "LEGISTEL Estado de Mexico",
+      "jurisdiction": "state",
+      "state_code": "mex",
+      "connector_status": "verified_state_source",
+      "source_classification": "government_compilation",
+      "official_source_name": "Consejeria Juridica del Estado de Mexico / Gaceta del Gobierno",
+      "officiality_notice": "LEGISTEL indica expresamente que la compilacion es informativa. La validez juridica corresponde al Periodico Oficial Gaceta del Gobierno del Estado de Mexico.",
+      "listing_urls": {
+        "law": "https://legislacion.edomex.gob.mx/",
+        "code": "https://legislacion.edomex.gob.mx/codigos/vigentes",
+        "regulation": "https://legislacion.edomex.gob.mx/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "estado de mexico",
+        "edomex",
+        "mexico estado",
+        "mex"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "congreso_guanajuato_codigos",
+      "display_name": "Congreso de Guanajuato - Codigos",
+      "jurisdiction": "state",
+      "state_code": "gto",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "Congreso del Estado de Guanajuato / Periodico Oficial del Gobierno del Estado",
+      "officiality_notice": "El propio portal legislativo aclara que su contenido deriva de una labor de compaginacion y que la fuente original es el Periodico Oficial del Gobierno del Estado de Guanajuato.",
+      "listing_urls": {
+        "law": "https://portal.congresogto.gob.mx/",
+        "code": "https://portal.congresogto.gob.mx/codigos",
+        "regulation": "https://portal.congresogto.gob.mx/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "guanajuato",
+        "estado de guanajuato",
+        "gto"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "guerrero_leyes_reglamentos",
+      "display_name": "Guerrero - Leyes y Reglamentos",
+      "jurisdiction": "state",
+      "state_code": "gro",
+      "connector_status": "verified_state_source",
+      "source_classification": "executive_compilation",
+      "official_source_name": "Gobierno del Estado de Guerrero / Periodico Oficial del Gobierno del Estado",
+      "officiality_notice": "El portal de Guerrero indica expresamente que la edicion electronica no es oficial y que la validez juridica corresponde al Periodico Oficial del Gobierno del Estado.",
+      "listing_urls": {
+        "law": "https://www.guerrero.gob.mx/leyes-y-reglamentos/",
+        "code": "https://www.guerrero.gob.mx/clasificacion/codigos/",
+        "regulation": "https://www.guerrero.gob.mx/clasificacion/reglamentos/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "guerrero",
+        "estado de guerrero",
+        "gro"
+      ],
+      "seeded_targets": [
+        {
+          "title": "Codigo Civil del Estado Libre y Soberano de Guerrero Numero 358",
+          "document_type": "code",
+          "external_id": "codigo-civil-del-estado-libre-y-soberano-de-guerrero-numero-358",
+          "detail_url": "https://www.guerrero.gob.mx/leyes_y_reglamentos/codigo-civil-del-estado-libre-y-soberano-de-guerrero-numero-358/",
+          "document_url": "https://www.guerrero.gob.mx/wp-content/uploads/2022/06/Codigo-Civiles-del-Estado-Libre-y-Soberano-de-Guerrero-Num.358.pdf",
+          "aliases": [
+            "codigo civil de guerrero",
+            "codigo civil del estado de guerrero",
+            "codigo civil del estado libre y soberano de guerrero"
+          ],
+          "last_known_reform_note": "El portal de codigos lo lista como vigente; el PDF publico indexado visible corresponde a una version historica con ultima reforma 09-mayo-2017, por lo que debe usarse la ficha y el Periodico Oficial para vigencia actual."
+        }
+      ]
+    },
+    {
+      "connector_id": "congreso_hidalgo_biblioteca_legislativa",
+      "display_name": "Congreso de Hidalgo - Biblioteca Legislativa",
+      "jurisdiction": "state",
+      "state_code": "hgo",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "Congreso del Estado de Hidalgo / Periodico Oficial del Estado",
+      "officiality_notice": "Usar la biblioteca legislativa del Congreso para consulta y el Periodico Oficial del Estado de Hidalgo para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://www.congreso-hidalgo.gob.mx/biblioteca_legislativa/leyes.html",
+        "code": "https://www.congreso-hidalgo.gob.mx/biblioteca_legislativa/LEYES_VIGENTES/leyes_vigentes.html",
+        "regulation": "https://www.congreso-hidalgo.gob.mx/biblioteca_legislativa/leyes.html"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "hidalgo",
+        "estado de hidalgo",
+        "hgo"
+      ],
+      "seeded_targets": [
+        {
+          "title": "Codigo Civil para el Estado de Hidalgo",
+          "document_type": "code",
+          "external_id": "Codigo Civil",
+          "detail_url": "https://www.congreso-hidalgo.gob.mx/biblioteca_legislativa/LEYES_VIGENTES/leyes_vigentes.html",
+          "document_url": "https://www.congreso-hidalgo.gob.mx/biblioteca_legislativa/leyes_cintillo/Codigo%20Civil.pdf",
+          "aliases": [
+            "codigo civil de hidalgo",
+            "codigo civil del estado de hidalgo",
+            "codigo civil para el estado de hidalgo"
+          ],
+          "last_known_reform_note": "PDF del Congreso visible con ultima reforma publicada en Alcance Tres del Periodico Oficial, 22 de agosto de 2025."
+        }
+      ]
+    },
+    {
+      "connector_id": "congreso_jalisco_biblioteca_virtual",
+      "display_name": "Congreso de Jalisco - Biblioteca Virtual",
+      "jurisdiction": "state",
+      "state_code": "jal",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "Congreso del Estado de Jalisco / Periodico Oficial El Estado de Jalisco",
+      "officiality_notice": "Usar la Biblioteca Virtual del Congreso para consulta y el Periodico Oficial El Estado de Jalisco para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://www.congresojal.gob.mx/biblioteca-virtual",
+        "code": "https://congresoweb.congresojal.gob.mx/BibliotecaVirtual/busquedasleyes/ListadoMov.cfm",
+        "regulation": "https://www.congresojal.gob.mx/biblioteca-virtual"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "jalisco",
+        "estado de jalisco",
+        "jal"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "gobierno_chihuahua_marco_juridico",
+      "display_name": "Gobierno de Chihuahua - Marco Juridico",
+      "jurisdiction": "state",
+      "state_code": "chih",
+      "connector_status": "verified_state_source",
+      "source_classification": "government_compilation",
+      "official_source_name": "Portal Gubernamental del Estado de Chihuahua / Periódico Oficial del Estado",
+      "officiality_notice": "Usar el portal gubernamental para consulta y el Periódico Oficial del Estado de Chihuahua para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://www.chihuahua.gob.mx/info/marco-juridico-2",
+        "code": "https://www.chihuahua.gob.mx/info/marco-juridico-2",
+        "regulation": "https://www.chihuahua.gob.mx/info/marco-juridico-2"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "chihuahua",
+        "estado de chihuahua",
+        "chih"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "cejur_cdmx_leyes",
+      "display_name": "Consejeria Juridica CDMX - Leyes y Codigos",
+      "jurisdiction": "state",
+      "state_code": "cdmx",
+      "connector_status": "verified_state_source",
+      "source_classification": "government_compilation",
+      "official_source_name": "Consejeria Juridica y de Servicios Legales de la Ciudad de Mexico / Gaceta Oficial de la Ciudad de Mexico",
+      "officiality_notice": "Usar la compilacion de CEJUR para consulta y la Gaceta Oficial de la Ciudad de Mexico para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://data.consejeria.cdmx.gob.mx/index.php/leyes",
+        "code": "https://data.consejeria.cdmx.gob.mx/index.php/leyes",
+        "regulation": "https://data.consejeria.cdmx.gob.mx/index.php/leyes"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "ciudad de mexico",
+        "cdmx",
+        "distrito federal",
+        "capital"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "congreso_coahuila_leyes_vigentes",
+      "display_name": "Congreso de Coahuila - Leyes Estatales Vigentes",
+      "jurisdiction": "state",
+      "state_code": "coa",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "H. Congreso de Coahuila / Periódico Oficial del Gobierno del Estado",
+      "officiality_notice": "Usar el portal legislativo para consulta y el Periódico Oficial del Gobierno del Estado para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://www.congresocoahuila.gob.mx/portal/leyes-estatales-vigentes/",
+        "code": "https://www.congresocoahuila.gob.mx/portal/leyes-estatales-vigentes/",
+        "regulation": "https://www.congresocoahuila.gob.mx/portal/leyes-estatales-vigentes/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "coahuila",
+        "coahuila de zaragoza",
+        "estado de coahuila",
+        "coah"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "congreso_colima_leyes",
+      "display_name": "Congreso de Colima - Legislacion Estatal",
+      "jurisdiction": "state",
+      "state_code": "col",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "H. Congreso del Estado de Colima / Periódico Oficial del Estado",
+      "officiality_notice": "Usar el portal legislativo para consulta y el Periódico Oficial del Estado de Colima para validacion final de vigencia y reformas.",
+      "listing_urls": {
+        "law": "https://www.congresocol.gob.mx/",
+        "code": "https://www.congresocol.gob.mx/",
+        "regulation": "https://www.congresocol.gob.mx/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "colima",
+        "estado de colima"
+      ],
+      "seeded_targets": [
+        {
+          "title": "Codigo Civil para el Estado de Colima",
+          "document_type": "code",
+          "external_id": "codigo_civil_11marzo2023",
+          "detail_url": "https://congresocol.gob.mx/web/www/leyes/index.php",
+          "document_url": "https://www.congresocol.gob.mx/web/Sistema/uploads/LegislacionEstatal/Codigos/codigo_civil_11marzo2023.pdf",
+          "aliases": [
+            "codigo civil de colima",
+            "codigo civil del estado de colima",
+            "codigo civil para el estado de colima"
+          ],
+          "last_known_reform_note": "PDF legislativo visible del Codigo Civil para el Estado de Colima, version de 11-marzo-2023."
+        }
+      ]
+    },
+    {
+      "connector_id": "durango_marco_juridico_gob",
+      "display_name": "Durango - Marco Juridico Gubernamental",
+      "jurisdiction": "state",
+      "state_code": "dgo",
+      "connector_status": "verified_state_source",
+      "source_classification": "government_compilation",
+      "official_source_name": "Portal Gubernamental del Estado de Durango / Periódico Oficial del Estado",
+      "officiality_notice": "Usar los portales gubernamentales para consulta y el Periódico Oficial del Estado de Durango para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://registropublico.durango.gob.mx/marco-juridico/",
+        "code": "https://registropublico.durango.gob.mx/marco-juridico/",
+        "regulation": "https://proteccioncivil.durango.gob.mx/marco-juridico/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "durango",
+        "estado de durango",
+        "dgo"
+      ],
+      "seeded_targets": [
+        {
+          "title": "Codigo Civil para el Estado de Durango",
+          "document_type": "code",
+          "external_id": "codigo_civil_po_103_bis_2021",
+          "detail_url": "https://registropublico.durango.gob.mx/marco-juridico/",
+          "document_url": "https://caed.durango.gob.mx/wp/caed_archivos/Marco%20Jur%C3%ADdico/CODIGO%20CIVIL%2C%20PO%20103%20BIS%20DEL%2026%20DE%20DICIEMBRE%20DE%202021.pdf",
+          "aliases": [
+            "codigo civil de durango",
+            "codigo civil del estado de durango",
+            "codigo civil para el estado de durango"
+          ],
+          "last_known_reform_note": "PDF gubernamental visible con ultima reforma: Decreto 80, P.O. 103 Bis del 26 de diciembre de 2021."
+        }
+      ]
+    },
+    {
+      "connector_id": "congreso_aguascalientes_leyes",
+      "display_name": "Congreso de Aguascalientes - Leyes",
+      "jurisdiction": "state",
+      "state_code": "agu",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "H. Congreso del Estado de Aguascalientes / Periódico Oficial del Estado",
+      "officiality_notice": "Usar el portal legislativo para consulta y el Periódico Oficial del Estado para validacion final de vigencia y texto aplicable.",
+      "listing_urls": {
+        "law": "https://congresoags.gob.mx/agenda_legislativa/leyes",
+        "code": "https://congresoags.gob.mx/agenda_legislativa/leyes",
+        "regulation": "https://www.ordenjuridico.gob.mx/despliegaedo2.php?catTipo=6&edo=1&ordenar="
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "aguascalientes",
+        "estado de aguascalientes",
+        "ags"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "congreso_baja_california_leyes",
+      "display_name": "Congreso de Baja California - Leyes y Codigos",
+      "jurisdiction": "state",
+      "state_code": "bc",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "Congreso del Estado de Baja California / Periódico Oficial del Estado",
+      "officiality_notice": "Usar la compilacion legislativa para consulta y el Periódico Oficial del Estado para validacion final de vigencia y reformas.",
+      "listing_urls": {
+        "law": "https://www.congresobc.gob.mx/Trabajolegislativo/Leyes",
+        "code": "https://www.congresobc.gob.mx/Trabajolegislativo/Leyes",
+        "regulation": "https://www.ordenjuridico.gob.mx/despliegaedo2.php?catTipo=6&edo=2&ordenar="
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "baja california",
+        "estado de baja california",
+        "bc"
+      ],
+      "seeded_targets": [
+        {
+          "title": "Codigo Civil para el Estado de Baja California",
+          "document_type": "code",
+          "external_id": "20250411_CODCIVIL",
+          "detail_url": "https://www.congresobc.gob.mx/Trabajolegislativo/Leyes",
+          "document_url": "https://www.congresobc.gob.mx/Documentos/ProcesoParlamentario/Leyes/TOMO_III/20250411_CODCIVIL.PDF",
+          "aliases": [
+            "codigo civil de baja california",
+            "codigo civil del estado de baja california",
+            "codigo civil para el estado de baja california"
+          ],
+          "last_known_reform_note": "Ultima reforma visible en el PDF legislativo: P.O. No. 22, 11-abr-2025."
+        }
+      ]
+    },
+    {
+      "connector_id": "congreso_bcs_marco_juridico",
+      "display_name": "Congreso de Baja California Sur - Marco Juridico",
+      "jurisdiction": "state",
+      "state_code": "bcs",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "Congreso del Estado de Baja California Sur / Periódico Oficial del Estado",
+      "officiality_notice": "Usar el marco juridico del Congreso para consulta y el Periódico Oficial del Estado para validacion final de vigencia y reformas.",
+      "listing_urls": {
+        "law": "https://www.cbcs.gob.mx/index.php/trabajos-legislativos/leyes",
+        "code": "https://www.cbcs.gob.mx/index.php/trabajos-legislativos/leyes",
+        "regulation": "https://tramites.bcs.gob.mx/marco-normativo/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "baja california sur",
+        "estado de baja california sur",
+        "bcs"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "lexius_campeche",
+      "display_name": "Lexius Campeche - Consejeria Juridica",
+      "jurisdiction": "state",
+      "state_code": "cam",
+      "connector_status": "verified_state_source",
+      "source_classification": "executive_compilation",
+      "official_source_name": "Consejeria Juridica del Poder Ejecutivo del Estado de Campeche / Periódico Oficial del Estado",
+      "officiality_notice": "Lexius Campeche es util para consulta. La propia fuente indica que ninguna norma obliga si no fue publicada previamente en el Periódico Oficial del Estado.",
+      "listing_urls": {
+        "law": "https://consejeria.campeche.gob.mx/pagina/LEXIUSCAMPECHE/",
+        "code": "https://consejeria.campeche.gob.mx/pagina/LEXIUSCAMPECHE/",
+        "regulation": "https://consejeria.campeche.gob.mx/pagina/LEXIUSCAMPECHE/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "campeche",
+        "estado de campeche",
+        "camp"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "congreso_chiapas_legislacion_vigente",
+      "display_name": "Congreso de Chiapas - Legislacion Vigente",
+      "jurisdiction": "state",
+      "state_code": "chis",
+      "connector_status": "verified_state_source",
+      "source_classification": "legislative_compilation",
+      "official_source_name": "H. Congreso del Estado de Chiapas / Periódico Oficial del Estado",
+      "officiality_notice": "Usar la legislacion vigente del Congreso para consulta y el Periódico Oficial del Estado para validacion final de vigencia y reformas.",
+      "listing_urls": {
+        "law": "https://web.congresochiapas.gob.mx/trabajo-legislativo/legislacion-vigente",
+        "code": "https://web.congresochiapas.gob.mx/trabajo-legislativo/legislacion-vigente",
+        "regulation": "https://consejeriajuridica.chiapas.gob.mx/MarcoJuridico/AdministracionEstatal/Reglamentos/"
+      },
+      "detail_url_templates": {},
+      "match_aliases": [
+        "chiapas",
+        "estado de chiapas",
+        "chis"
+      ],
+      "seeded_targets": []
+    },
+    {
+      "connector_id": "congreso_tamaulipas_vigente",
+      "display_name": "Congreso de Tamaulipas - Legislacion Vigente",
+      "jurisdiction": "state",
+      "state_code": "tam",
+      "connector_status": "verified_seeded_target",
+      "source_classification": "informative_compilation",
+      "official_source_name": "Periodico Oficial del Estado de Tamaulipas",
+      "officiality_notice": "La edicion electronica de la legislacion no representa una version oficial; el unico medio con validez juridica es el Periodico Oficial del Estado.",
+      "listing_urls": {
+        "law": "https://www.congresotamaulipas.gob.mx/LegislacionEstatal/LegislacionVigente/Vigente.asp?idtipoArchivo=1",
+        "code": "https://www.congresotamaulipas.gob.mx/LegislacionEstatal/LegislacionVigente/Vigente.asp?IdTipoArchivo=2",
+        "regulation": "https://www.congresotamaulipas.gob.mx/legislacionestatal/legislacionvigente/Vigente.asp?idtipoArchivo=3"
+      },
+      "detail_url_templates": {
+        "law": "https://www.congresotamaulipas.gob.mx/LegislacionEstatal/LegislacionVigente/VerLey.asp?IdLey={external_id}",
+        "code": "https://www.congresotamaulipas.gob.mx/LegislacionEstatal/LegislacionVigente/VerCodigo.asp?IdCodigo={external_id}",
+        "regulation": "https://www.congresotamaulipas.gob.mx/LegislacionEstatal/LegislacionVigente/VerReglamento.asp?IdReglamento={external_id}"
+      },
+      "match_aliases": [
+        "tamaulipas",
+        "estado de tamaulipas",
+        "tam"
+      ],
+      "seeded_targets": [
+        {
+          "title": "Codigo Civil para el Estado de Tamaulipas",
+          "document_type": "code",
+          "external_id": "98",
+          "detail_url": "https://www.congresotamaulipas.gob.mx/legislacionestatal/legislacionvigente/VerCodigo.asp?IdCodigo=98",
+          "document_url": "https://www.tamaulipas.gob.mx/defensoriapublica/wp-content/uploads/sites/29/2025/10/codigo_civil.pdf",
+          "aliases": [
+            "codigo civil de tamaulipas",
+            "codigo civil del estado de tamaulipas",
+            "codigo civil para el estado de tamaulipas"
+          ],
+          "last_known_reform_note": "Documento de consulta con ultima reforma aplicada P.O. No. 66, del 3 de junio de 2025."
+        }
+      ]
+    }
+  ]
+}

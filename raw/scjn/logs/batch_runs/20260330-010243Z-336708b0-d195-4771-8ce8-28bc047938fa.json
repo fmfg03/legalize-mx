@@ -1,0 +1,612 @@
+{
+  "cycle_id": "336708b0-d195-4771-8ce8-28bc047938fa",
+  "started_at": "2026-03-30T01:02:43Z",
+  "finished_at": "2026-03-30T01:03:24Z",
+  "duration_ms": 41138,
+  "batch_exit_code": 0,
+  "command": [
+    "/root/legalize-mx/.venv/bin/python",
+    "/root/legalize-mx/scripts/run_scjn_jurisprudence_batch.py",
+    "--all-kinds",
+    "--page-size",
+    "10",
+    "--pages-per-run",
+    "1",
+    "--state-dir",
+    "/root/legalize-mx/raw/scjn/state"
+  ],
+  "batch_summary": {
+    "started_at": "2026-03-30T01:02:43.450465Z",
+    "page_size": 10,
+    "pages_per_run": 1,
+    "kinds": [
+      {
+        "document_kind": "tesis",
+        "start_page": 2,
+        "catalog": {
+          "ok": true,
+          "status": "ok",
+          "output": "/root/legalize-mx/raw/scjn/catalog/tesis_catalog.json",
+          "document_kind": "tesis",
+          "source_index": "tesis",
+          "count_total": 311319,
+          "items": 10,
+          "pages_fetched": 1,
+          "_exit_code": 0
+        },
+        "items": 10,
+        "count_total": 311319,
+        "source_index": "tesis",
+        "documents": {
+          "generated_at": "2026-03-30T01:02:49.698230Z",
+          "status": "ok",
+          "catalog": "/root/legalize-mx/raw/scjn/catalog/tesis_catalog.json",
+          "document_kind": "tesis",
+          "source_index": "tesis",
+          "planned_downloads": 10,
+          "written_payloads": 10,
+          "written_files": [
+            "/root/legalize-mx/raw/scjn/payloads/tesis/2031967.json",
+            "/root/legalize-mx/raw/scjn/payloads/tesis/2031966.json",
+            "/root/legalize-mx/raw/scjn/payloads/tesis/2031965.json",
+            "/root/legalize-mx/raw/scjn/payloads/tesis/2031964.json",
+            "/root/legalize-mx/raw/scjn/payloads/tesis/2031963.json",
+            "/root/legalize-mx/raw/scjn/payloads/tesis/2031962.json",
+            "/root/legalize-mx/raw/scjn/payloads/tesis/2031961.json",
+            "/root/legalize-mx/raw/scjn/payloads/tesis/2031960.json",
+            "/root/legalize-mx/raw/scjn/payloads/tesis/2031959.json",
+            "/root/legalize-mx/raw/scjn/payloads/tesis/2031958.json"
+          ],
+          "written_snapshots": 10,
+          "snapshot_index": "/root/legalize-mx/raw/scjn/snapshots/tesis_snapshots.jsonl",
+          "failures": [],
+          "_exit_code": 0
+        },
+        "normalized": [
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-tesis-2031967",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031967.json",
+            "_exit_code": 0,
+            "registry_id": "2031967",
+            "input": "/root/legalize-mx/raw/scjn/payloads/tesis/2031967.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031967.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-tesis-2031966",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031966.json",
+            "_exit_code": 0,
+            "registry_id": "2031966",
+            "input": "/root/legalize-mx/raw/scjn/payloads/tesis/2031966.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031966.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-tesis-2031965",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031965.json",
+            "_exit_code": 0,
+            "registry_id": "2031965",
+            "input": "/root/legalize-mx/raw/scjn/payloads/tesis/2031965.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031965.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-tesis-2031964",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031964.json",
+            "_exit_code": 0,
+            "registry_id": "2031964",
+            "input": "/root/legalize-mx/raw/scjn/payloads/tesis/2031964.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031964.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-tesis-2031963",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031963.json",
+            "_exit_code": 0,
+            "registry_id": "2031963",
+            "input": "/root/legalize-mx/raw/scjn/payloads/tesis/2031963.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031963.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-tesis-2031962",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031962.json",
+            "_exit_code": 0,
+            "registry_id": "2031962",
+            "input": "/root/legalize-mx/raw/scjn/payloads/tesis/2031962.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031962.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-tesis-2031961",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031961.json",
+            "_exit_code": 0,
+            "registry_id": "2031961",
+            "input": "/root/legalize-mx/raw/scjn/payloads/tesis/2031961.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031961.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-tesis-2031960",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031960.json",
+            "_exit_code": 0,
+            "registry_id": "2031960",
+            "input": "/root/legalize-mx/raw/scjn/payloads/tesis/2031960.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031960.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-tesis-2031959",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031959.json",
+            "_exit_code": 0,
+            "registry_id": "2031959",
+            "input": "/root/legalize-mx/raw/scjn/payloads/tesis/2031959.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031959.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-tesis-2031958",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031958.json",
+            "_exit_code": 0,
+            "registry_id": "2031958",
+            "input": "/root/legalize-mx/raw/scjn/payloads/tesis/2031958.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/tesis/mx-sjf-tesis-2031958.json"
+          }
+        ],
+        "status": "ok",
+        "state_path": "/root/legalize-mx/raw/scjn/state/tesis_batch_state.json",
+        "next_page": 3,
+        "completed": false
+      },
+      {
+        "document_kind": "precedente",
+        "start_page": 1,
+        "catalog": {
+          "ok": true,
+          "status": "ok",
+          "output": "/root/legalize-mx/raw/scjn/catalog/precedente_catalog.json",
+          "document_kind": "precedente",
+          "source_index": "ejecutoria",
+          "count_total": 22708,
+          "items": 10,
+          "pages_fetched": 1,
+          "_exit_code": 0
+        },
+        "items": 10,
+        "count_total": 22708,
+        "source_index": "ejecutoria",
+        "documents": {
+          "generated_at": "2026-03-30T01:03:04.592167Z",
+          "status": "ok",
+          "catalog": "/root/legalize-mx/raw/scjn/catalog/precedente_catalog.json",
+          "document_kind": "precedente",
+          "source_index": "ejecutoria",
+          "planned_downloads": 10,
+          "written_payloads": 10,
+          "written_files": [
+            "/root/legalize-mx/raw/scjn/payloads/precedente/33929.json",
+            "/root/legalize-mx/raw/scjn/payloads/precedente/33928.json",
+            "/root/legalize-mx/raw/scjn/payloads/precedente/33927.json",
+            "/root/legalize-mx/raw/scjn/payloads/precedente/33926.json",
+            "/root/legalize-mx/raw/scjn/payloads/precedente/33925.json",
+            "/root/legalize-mx/raw/scjn/payloads/precedente/33924.json",
+            "/root/legalize-mx/raw/scjn/payloads/precedente/33923.json",
+            "/root/legalize-mx/raw/scjn/payloads/precedente/33922.json",
+            "/root/legalize-mx/raw/scjn/payloads/precedente/33921.json",
+            "/root/legalize-mx/raw/scjn/payloads/precedente/33920.json"
+          ],
+          "written_snapshots": 10,
+          "snapshot_index": "/root/legalize-mx/raw/scjn/snapshots/precedente_snapshots.jsonl",
+          "failures": [],
+          "_exit_code": 0
+        },
+        "normalized": [
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-precedente-33929",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33929.json",
+            "_exit_code": 0,
+            "registry_id": "33929",
+            "input": "/root/legalize-mx/raw/scjn/payloads/precedente/33929.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33929.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-precedente-33928",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33928.json",
+            "_exit_code": 0,
+            "registry_id": "33928",
+            "input": "/root/legalize-mx/raw/scjn/payloads/precedente/33928.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33928.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-precedente-33927",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33927.json",
+            "_exit_code": 0,
+            "registry_id": "33927",
+            "input": "/root/legalize-mx/raw/scjn/payloads/precedente/33927.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33927.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-precedente-33926",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33926.json",
+            "_exit_code": 0,
+            "registry_id": "33926",
+            "input": "/root/legalize-mx/raw/scjn/payloads/precedente/33926.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33926.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-precedente-33925",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33925.json",
+            "_exit_code": 0,
+            "registry_id": "33925",
+            "input": "/root/legalize-mx/raw/scjn/payloads/precedente/33925.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33925.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-precedente-33924",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33924.json",
+            "_exit_code": 0,
+            "registry_id": "33924",
+            "input": "/root/legalize-mx/raw/scjn/payloads/precedente/33924.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33924.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-precedente-33923",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33923.json",
+            "_exit_code": 0,
+            "registry_id": "33923",
+            "input": "/root/legalize-mx/raw/scjn/payloads/precedente/33923.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33923.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-precedente-33922",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33922.json",
+            "_exit_code": 0,
+            "registry_id": "33922",
+            "input": "/root/legalize-mx/raw/scjn/payloads/precedente/33922.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33922.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-precedente-33921",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33921.json",
+            "_exit_code": 0,
+            "registry_id": "33921",
+            "input": "/root/legalize-mx/raw/scjn/payloads/precedente/33921.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33921.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-precedente-33920",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33920.json",
+            "_exit_code": 0,
+            "registry_id": "33920",
+            "input": "/root/legalize-mx/raw/scjn/payloads/precedente/33920.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/precedentes/mx-sjf-precedente-33920.json"
+          }
+        ],
+        "status": "ok",
+        "state_path": "/root/legalize-mx/raw/scjn/state/precedente_batch_state.json",
+        "next_page": 2,
+        "completed": false
+      },
+      {
+        "document_kind": "voto",
+        "start_page": 1,
+        "catalog": {
+          "ok": true,
+          "status": "ok",
+          "output": "/root/legalize-mx/raw/scjn/catalog/voto_catalog.json",
+          "document_kind": "voto",
+          "source_index": "votos",
+          "count_total": 9931,
+          "items": 10,
+          "pages_fetched": 1,
+          "_exit_code": 0
+        },
+        "items": 10,
+        "count_total": 9931,
+        "source_index": "votos",
+        "documents": {
+          "generated_at": "2026-03-30T01:03:11.452652Z",
+          "status": "ok",
+          "catalog": "/root/legalize-mx/raw/scjn/catalog/voto_catalog.json",
+          "document_kind": "voto",
+          "source_index": "votos",
+          "planned_downloads": 10,
+          "written_payloads": 10,
+          "written_files": [
+            "/root/legalize-mx/raw/scjn/payloads/voto/300172.json",
+            "/root/legalize-mx/raw/scjn/payloads/voto/47490.json",
+            "/root/legalize-mx/raw/scjn/payloads/voto/47489.json",
+            "/root/legalize-mx/raw/scjn/payloads/voto/47488.json",
+            "/root/legalize-mx/raw/scjn/payloads/voto/47487.json",
+            "/root/legalize-mx/raw/scjn/payloads/voto/47486.json",
+            "/root/legalize-mx/raw/scjn/payloads/voto/47485.json",
+            "/root/legalize-mx/raw/scjn/payloads/voto/47484.json",
+            "/root/legalize-mx/raw/scjn/payloads/voto/47483.json",
+            "/root/legalize-mx/raw/scjn/payloads/voto/47482.json"
+          ],
+          "written_snapshots": 10,
+          "snapshot_index": "/root/legalize-mx/raw/scjn/snapshots/voto_snapshots.jsonl",
+          "failures": [],
+          "_exit_code": 0
+        },
+        "normalized": [
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-voto-300172",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-300172.json",
+            "_exit_code": 0,
+            "registry_id": "300172",
+            "input": "/root/legalize-mx/raw/scjn/payloads/voto/300172.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-300172.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-voto-47490",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47490.json",
+            "_exit_code": 0,
+            "registry_id": "47490",
+            "input": "/root/legalize-mx/raw/scjn/payloads/voto/47490.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47490.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-voto-47489",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47489.json",
+            "_exit_code": 0,
+            "registry_id": "47489",
+            "input": "/root/legalize-mx/raw/scjn/payloads/voto/47489.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47489.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-voto-47488",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47488.json",
+            "_exit_code": 0,
+            "registry_id": "47488",
+            "input": "/root/legalize-mx/raw/scjn/payloads/voto/47488.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47488.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-voto-47487",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47487.json",
+            "_exit_code": 0,
+            "registry_id": "47487",
+            "input": "/root/legalize-mx/raw/scjn/payloads/voto/47487.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47487.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-voto-47486",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47486.json",
+            "_exit_code": 0,
+            "registry_id": "47486",
+            "input": "/root/legalize-mx/raw/scjn/payloads/voto/47486.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47486.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-voto-47485",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47485.json",
+            "_exit_code": 0,
+            "registry_id": "47485",
+            "input": "/root/legalize-mx/raw/scjn/payloads/voto/47485.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47485.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-voto-47484",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47484.json",
+            "_exit_code": 0,
+            "registry_id": "47484",
+            "input": "/root/legalize-mx/raw/scjn/payloads/voto/47484.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47484.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-voto-47483",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47483.json",
+            "_exit_code": 0,
+            "registry_id": "47483",
+            "input": "/root/legalize-mx/raw/scjn/payloads/voto/47483.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47483.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-voto-47482",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47482.json",
+            "_exit_code": 0,
+            "registry_id": "47482",
+            "input": "/root/legalize-mx/raw/scjn/payloads/voto/47482.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/votos/mx-sjf-voto-47482.json"
+          }
+        ],
+        "status": "ok",
+        "state_path": "/root/legalize-mx/raw/scjn/state/voto_batch_state.json",
+        "next_page": 2,
+        "completed": false
+      },
+      {
+        "document_kind": "acuerdo",
+        "start_page": 1,
+        "catalog": {
+          "ok": true,
+          "status": "ok",
+          "output": "/root/legalize-mx/raw/scjn/catalog/acuerdo_catalog.json",
+          "document_kind": "acuerdo",
+          "source_index": "acuerdos",
+          "count_total": 4035,
+          "items": 10,
+          "pages_fetched": 1,
+          "_exit_code": 0
+        },
+        "items": 10,
+        "count_total": 4035,
+        "source_index": "acuerdos",
+        "documents": {
+          "generated_at": "2026-03-30T01:03:23.993391Z",
+          "status": "ok",
+          "catalog": "/root/legalize-mx/raw/scjn/catalog/acuerdo_catalog.json",
+          "document_kind": "acuerdo",
+          "source_index": "acuerdos",
+          "planned_downloads": 10,
+          "written_payloads": 10,
+          "written_files": [
+            "/root/legalize-mx/raw/scjn/payloads/acuerdo/6116.json",
+            "/root/legalize-mx/raw/scjn/payloads/acuerdo/6115.json",
+            "/root/legalize-mx/raw/scjn/payloads/acuerdo/6114.json",
+            "/root/legalize-mx/raw/scjn/payloads/acuerdo/6113.json",
+            "/root/legalize-mx/raw/scjn/payloads/acuerdo/6112.json",
+            "/root/legalize-mx/raw/scjn/payloads/acuerdo/6111.json",
+            "/root/legalize-mx/raw/scjn/payloads/acuerdo/6110.json",
+            "/root/legalize-mx/raw/scjn/payloads/acuerdo/6109.json",
+            "/root/legalize-mx/raw/scjn/payloads/acuerdo/6108.json",
+            "/root/legalize-mx/raw/scjn/payloads/acuerdo/6107.json"
+          ],
+          "written_snapshots": 10,
+          "snapshot_index": "/root/legalize-mx/raw/scjn/snapshots/acuerdo_snapshots.jsonl",
+          "failures": [],
+          "_exit_code": 0
+        },
+        "normalized": [
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-acuerdo-6116",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6116.json",
+            "_exit_code": 0,
+            "registry_id": "6116",
+            "input": "/root/legalize-mx/raw/scjn/payloads/acuerdo/6116.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6116.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-acuerdo-6115",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6115.json",
+            "_exit_code": 0,
+            "registry_id": "6115",
+            "input": "/root/legalize-mx/raw/scjn/payloads/acuerdo/6115.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6115.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-acuerdo-6114",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6114.json",
+            "_exit_code": 0,
+            "registry_id": "6114",
+            "input": "/root/legalize-mx/raw/scjn/payloads/acuerdo/6114.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6114.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-acuerdo-6113",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6113.json",
+            "_exit_code": 0,
+            "registry_id": "6113",
+            "input": "/root/legalize-mx/raw/scjn/payloads/acuerdo/6113.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6113.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-acuerdo-6112",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6112.json",
+            "_exit_code": 0,
+            "registry_id": "6112",
+            "input": "/root/legalize-mx/raw/scjn/payloads/acuerdo/6112.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6112.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-acuerdo-6111",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6111.json",
+            "_exit_code": 0,
+            "registry_id": "6111",
+            "input": "/root/legalize-mx/raw/scjn/payloads/acuerdo/6111.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6111.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-acuerdo-6110",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6110.json",
+            "_exit_code": 0,
+            "registry_id": "6110",
+            "input": "/root/legalize-mx/raw/scjn/payloads/acuerdo/6110.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6110.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-acuerdo-6109",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6109.json",
+            "_exit_code": 0,
+            "registry_id": "6109",
+            "input": "/root/legalize-mx/raw/scjn/payloads/acuerdo/6109.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6109.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-acuerdo-6108",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6108.json",
+            "_exit_code": 0,
+            "registry_id": "6108",
+            "input": "/root/legalize-mx/raw/scjn/payloads/acuerdo/6108.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6108.json"
+          },
+          {
+            "ok": true,
+            "doc_id": "mx-sjf-acuerdo-6107",
+            "output": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6107.json",
+            "_exit_code": 0,
+            "registry_id": "6107",
+            "input": "/root/legalize-mx/raw/scjn/payloads/acuerdo/6107.json",
+            "output_path": "/root/legalize-mx/mexico/jurisprudence/sjf/acuerdos/mx-sjf-acuerdo-6107.json"
+          }
+        ],
+        "status": "ok",
+        "state_path": "/root/legalize-mx/raw/scjn/state/acuerdo_batch_state.json",
+        "next_page": 2,
+        "completed": false
+      }
+    ],
+    "rebuild_manifest": {
+      "ok": true,
+      "output": "/root/legalize-mx/indexes/jurisprudence_manifest.jsonl",
+      "rows": 67,
+      "_exit_code": 0
+    },
+    "rebuild_chunks": {
+      "ok": true,
+      "output": "/root/legalize-mx/indexes/jurisprudence_chunks.jsonl",
+      "rows": 134,
+      "_exit_code": 0
+    },
+    "receipt": {
+      "ok": true,
+      "receipt_log": "/root/legalize-mx/raw/scjn/receipts/jurisprudence_ingestion_receipts.jsonl",
+      "receipt": {
+        "receipt_type": "jurisprudence_ingestion_receipt",
+        "created_at": "2026-03-30T01:03:24.531198Z",
+        "document_kind": "mixed:acuerdo,precedente,tesis,voto",
+        "source_system": "mixed:scjn_bicentenario_repository,scjn_sjf",
+        "manifest_path": "/root/legalize-mx/indexes/jurisprudence_manifest.jsonl",
+        "chunks_path": "/root/legalize-mx/indexes/jurisprudence_chunks.jsonl",
+        "manifest_rows": 67,
+        "chunk_rows": 134,
+        "manifest_sha256": "b1c0a7c11fba8d66f1e69cd8a6f483b8f24732ec7c6579755db6c215ecbc3866",
+        "chunks_sha256": "f4ce6b47d1c82ce594a15ff1d99f99c07cbb4b5c5058e0b1276b924d39e9da4b"
+      },
+      "_exit_code": 0
+    },
+    "finished_at": "2026-03-30T01:03:24.549538Z",
+    "exit_code": 0
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "request": {
+    "task_id": "legal-panel-amparo-susp-escalate-001",
+    "task_kind": "demand_drafting",
+    "objective": "Emitir una recomendacion cautelar cuando la apariencia del derecho y el interes social requieren cautela adicional.",
+    "query": "¿Debe liberarse una recomendacion de suspension si la apariencia del derecho es debil y el interes social es sensible?",
+    "jurisdiction": "federal",
+    "matter_profile": "amparo_suspension",
+    "query_date": "2026-03-30",
+    "complexity": "high",
+    "consequence_level": "critical",
+    "requires_jurisprudence": false,
+    "writes_for_user": true
+  },
+  "draft_bundle": {
+    "request_id": "req-amparo-susp-escalate-001",
+    "response_type": "recommendation",
+    "jurisdiction": "federal",
+    "query_date": "2026-03-30",
+    "response_text": "La suspension podria explorarse, pero la apariencia del derecho todavia es debil y la medida roza una zona sensible de interes social.",
+    "citations": [
+      {
+        "citation_id": "cit-cpeum-1-amparo-susp-escalate",
+        "doc_type": "legislation",
+        "doc_id": "mx-federal-cpeum",
+        "title": "Constitucion Politica de los Estados Unidos Mexicanos",
+        "locator": "articulo 1o.",
+        "jurisdiction": "federal",
+        "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm",
+        "official_publication": "DOF",
+        "quote": "Todas las autoridades, en el ambito de sus competencias, tienen la obligacion de promover, respetar, proteger y garantizar los derechos humanos",
+        "quote_sha256": "a1b84d8b3aa42312c92174c049819ed8f77a0c7292f119ad335d6d0bc4847ad3"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "clm-amparo-susp-escalate-1",
+        "text": "La estrategia cautelar aun exige mayor depuracion antes de ser liberada.",
+        "kind": "legislation",
+        "citation_ids": [
+          "cit-cpeum-1-amparo-susp-escalate"
+        ]
+      }
+    ]
+  },
+  "initial_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "approve",
+      "confidence": 0.81,
+      "justification": "La suspension aun puede explorarse."
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "conditional",
+      "confidence": 0.72,
+      "justification": "La medida necesita acotarse mucho mejor."
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "conditional",
+      "confidence": 0.77,
+      "justification": "El proyecto cautelar aun esta inmaduro.",
+      "metadata": {
+        "amparo_suspension": {
+          "proyecto_cautelar_madurez": "inmaduro"
+        }
+      }
+    },
+    {
+      "persona": "revisor_suspension_amparo",
+      "decision": "conditional",
+      "confidence": 0.86,
+      "justification": "La apariencia del derecho es debil y el peligro necesita mejor soporte.",
+      "metadata": {
+        "amparo_suspension": {
+          "apariencia_status": "debil",
+          "peligro_demora_status": "dudoso",
+          "medida_status": "estrecha"
+        }
+      }
+    },
+    {
+      "persona": "revisor_interes_social_orden_publico",
+      "decision": "conditional",
+      "confidence": 0.84,
+      "justification": "La medida entra en una zona sensible de interes social y orden publico.",
+      "metadata": {
+        "amparo_suspension": {
+          "interes_social_status": "sensitivo",
+          "orden_publico_status": "sensitivo"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.78,
+      "justification": "No hay problema citacional central."
+    }
+  ],
+  "final_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "conditional",
+      "confidence": 0.79,
+      "justification": "La recomendacion no debe salir todavia como cautelar fuerte.",
+      "structured_change_justification": {
+        "trigger": "La deliberacion confirmo fragilidad cautelar.",
+        "evidence_delta": "Persisten dudas en apariencia e interes social.",
+        "reasoning_delta": "La estrategia debe mantenerse en nivel exploratorio."
+      }
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "conditional",
+      "confidence": 0.73,
+      "justification": "La medida sigue siendo demasiado amplia."
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "conditional",
+      "confidence": 0.78,
+      "justification": "El proyecto cautelar sigue inmaduro.",
+      "metadata": {
+        "amparo_suspension": {
+          "proyecto_cautelar_madurez": "inmaduro"
+        }
+      }
+    },
+    {
+      "persona": "revisor_suspension_amparo",
+      "decision": "conditional",
+      "confidence": 0.87,
+      "justification": "La apariencia del derecho sigue debil y la medida es estrecha.",
+      "metadata": {
+        "amparo_suspension": {
+          "apariencia_status": "debil",
+          "peligro_demora_status": "dudoso",
+          "medida_status": "estrecha"
+        }
+      }
+    },
+    {
+      "persona": "revisor_interes_social_orden_publico",
+      "decision": "conditional",
+      "confidence": 0.85,
+      "justification": "Sigue habiendo sensibilidad en interes social y orden publico.",
+      "metadata": {
+        "amparo_suspension": {
+          "interes_social_status": "sensitivo",
+          "orden_publico_status": "sensitivo"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.79,
+      "justification": "No observo objecion citacional adicional."
+    }
+  ]
+}

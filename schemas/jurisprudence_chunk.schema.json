@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legalize-mx.local/schemas/jurisprudence_chunk.schema.json",
+  "title": "JurisprudenceChunk",
+  "type": "object",
+  "required": [
+    "chunk_id",
+    "doc_id",
+    "doc_type",
+    "document_kind",
+    "title",
+    "text",
+    "source_url",
+    "citation_label"
+  ],
+  "properties": {
+    "chunk_id": { "type": "string" },
+    "doc_id": { "type": "string" },
+    "doc_type": { "const": "jurisprudence" },
+    "document_kind": { "type": "string" },
+    "registry_id": { "type": ["string", "null"] },
+    "title": { "type": "string" },
+    "type": { "type": ["string", "null"] },
+    "epoch": { "type": ["string", "null"] },
+    "instance": { "type": ["string", "null"] },
+    "organ": { "type": ["string", "null"] },
+    "matter": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "section": { "type": ["string", "null"] },
+    "text": { "type": "string" },
+    "publication_date": { "type": ["string", "null"] },
+    "binding_note_date": { "type": ["string", "null"] },
+    "source_url": { "type": "string" },
+    "citation_label": { "type": "string" },
+    "binding_weight": { "type": ["number", "null"] },
+    "mandatory_effect": { "type": ["boolean", "null"] },
+    "interpreted_norms": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "case_numbers": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "retrieval_priority": { "type": ["number", "null"] },
+    "checksum_sha256": { "type": ["string", "null"] }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,527 @@
+{
+  "request_id": "req-pass-juris-001",
+  "response_type": "recommendation",
+  "jurisdiction": "federal",
+  "query_date": "2026-03-30",
+  "response_text": "La linea argumental puede apoyarse en la tesis con registro digital 2006737 y en el articulo 1916 del Codigo Civil Federal, pero conviene delimitar con precision el alcance del criterio.",
+  "citations": [
+    {
+      "citation_id": "cit-juris-2006737",
+      "doc_type": "jurisprudence",
+      "doc_id": "mx-sjf-tesis-2006737",
+      "registry_id": "2006737",
+      "title": "DAÑO MORAL. SU CLASIFICACIÓN EN CUANTO AL CARÁCTER DEL INTERÉS AFECTADO.",
+      "locator": "registro digital 2006737",
+      "jurisdiction": "federal",
+      "source_url": "https://www.scjn.gob.mx/sites/default/files/pagina_transparencia/documento/2016-11/Criterios_PJF_Proteccion_datos_2a_Ed_Feb_2016.pdf",
+      "quote": "En nuestro ordenamiento jurídico se plantea una distinción en el tratamiento de la responsabilidad por daño al patrimonio moral, dependiendo de su carácter.",
+      "quote_sha256": "6415549d34a75a4ed438d7d1a8207223ddf5badd3e683ef5d05796f30f5a41f0"
+    },
+    {
+      "citation_id": "cit-ccf-1916-j",
+      "doc_type": "legislation",
+      "doc_id": "mx-federal-ccf",
+      "title": "Codigo Civil Federal",
+      "locator": "articulo 1916",
+      "jurisdiction": "federal",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/ccf.htm",
+      "official_publication": "DOF",
+      "quote": "Cuando un hecho u omision ilicitos produzcan un dano moral, el responsable del mismo tendra la obligacion de repararlo mediante una indemnizacion en dinero",
+      "quote_sha256": "53c4add5494708a088a2606c4bff7a12553e5d4e128fc3871ff57ea3dcf4b2f5"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "clm-juris-1",
+      "text": "La tesis 2006737 puede servir como apoyo interpretativo para clasificar especies de daño moral.",
+      "kind": "jurisprudence",
+      "citation_ids": [
+        "cit-juris-2006737"
+      ]
+    }
+  ],
+  "panel_metadata": {
+    "panel_protocol": {
+      "initial_round": "independent_sealed",
+      "final_round": "post_deliberation",
+      "change_guardrail": "structured_justification_required",
+      "majority_rule": "final_round_majority"
+    },
+    "route_decision": {
+      "route": "hybrid",
+      "reason": "Escrito juridico con impacto alto; requiere razonamiento fuerte, ejecucion local y gate de liberacion.",
+      "handoffs": [
+        {
+          "stage": "reason",
+          "provider": "anthropic_api",
+          "requires": [
+            "structured_task_request",
+            "retrieval_context",
+            "explicit_jurisdiction",
+            "query_date",
+            "citation_bundle_target"
+          ]
+        },
+        {
+          "stage": "execute",
+          "provider": "local_ollama",
+          "requires": [
+            "structured_execution_plan",
+            "retrieval_context",
+            "citation_ids",
+            "style_constraints"
+          ]
+        },
+        {
+          "stage": "panel",
+          "provider": "legalize_mx_legal_panel",
+          "requires": [
+            "legal_panel_session",
+            "sealed_first_round",
+            "vote_reveal_evidence"
+          ]
+        },
+        {
+          "stage": "release",
+          "provider": "legalize_mx_guardrails",
+          "requires": [
+            "assistant_response_bundle",
+            "grounding_gate_pass"
+          ]
+        }
+      ],
+      "must_pass_release_gate": true,
+      "legal_panel_script": "/root/legalize-mx/scripts/legal_panel_orchestrator.py",
+      "release_gate_script": "/root/legalize-mx/scripts/release_legal_response.py"
+    },
+    "panel_metrics": {
+      "majority_decision": "conditional",
+      "vote_distribution": {
+        "approve": 2,
+        "conditional": 3
+      },
+      "agreement_ratio": 0.6,
+      "mean_confidence": 0.832,
+      "confidence_variance": 0.002776,
+      "consensus_confidence": 0.4992
+    },
+    "vote_changes": [],
+    "initial_vote_round": [
+      {
+        "persona": "litigante_actor",
+        "decision": "approve",
+        "confidence": 0.89,
+        "justification": "La tesis puede fortalecer la narrativa.",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "metadata": {}
+      },
+      {
+        "persona": "abogado_contraparte",
+        "decision": "conditional",
+        "confidence": 0.77,
+        "justification": "La contraparte cuestionaria la extrapolacion del criterio.",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "metadata": {}
+      },
+      {
+        "persona": "juzgador_revisor",
+        "decision": "conditional",
+        "confidence": 0.74,
+        "justification": "La tesis parece util, pero su alcance debe acotarse.",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "metadata": {}
+      },
+      {
+        "persona": "revisor_probatorio",
+        "decision": "approve",
+        "confidence": 0.82,
+        "justification": "La base factica no muestra vacio inmediato.",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "metadata": {}
+      },
+      {
+        "persona": "revisor_jurisprudencial",
+        "decision": "conditional",
+        "confidence": 0.84,
+        "justification": "La tesis existe, pero su aplicacion al caso exige delimitacion estricta.",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "metadata": {}
+      }
+    ],
+    "final_vote_round": [
+      {
+        "persona": "litigante_actor",
+        "decision": "approve",
+        "confidence": 0.9,
+        "justification": "La recomendacion sigue siendo defendible.",
+        "round_id": "round_2_post_deliberation",
+        "sealed": false,
+        "metadata": {}
+      },
+      {
+        "persona": "abogado_contraparte",
+        "decision": "conditional",
+        "confidence": 0.79,
+        "justification": "Persisten flancos de ataque si se formula como regla fuerte.",
+        "round_id": "round_2_post_deliberation",
+        "sealed": false,
+        "metadata": {}
+      },
+      {
+        "persona": "juzgador_revisor",
+        "decision": "conditional",
+        "confidence": 0.76,
+        "justification": "La redaccion debe mantener la tesis como apoyo interpretativo, no como automatismo.",
+        "round_id": "round_2_post_deliberation",
+        "sealed": false,
+        "metadata": {}
+      },
+      {
+        "persona": "revisor_probatorio",
+        "decision": "approve",
+        "confidence": 0.83,
+        "justification": "No hay hueco probatorio nuevo.",
+        "round_id": "round_2_post_deliberation",
+        "sealed": false,
+        "metadata": {}
+      },
+      {
+        "persona": "revisor_jurisprudencial",
+        "decision": "conditional",
+        "confidence": 0.88,
+        "justification": "La aplicacion de la tesis sigue siendo delicada y exige supervision humana.",
+        "round_id": "round_2_post_deliberation",
+        "sealed": false,
+        "metadata": {}
+      }
+    ],
+    "initial_vote_commitments": [
+      {
+        "persona": "litigante_actor",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "cc19085c14b4b42a58455ea3d04938314b2d64c8844588755a0cb95e726656d6",
+        "reveal_hash": "e499d9de182513a974b7cdda205b7146a8dcdc9de1ebbca9a251254bcab64706"
+      },
+      {
+        "persona": "abogado_contraparte",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "eb9ebd1b83bc9b4e75525255191d81b81047ab35280eddac0e9e0f5062db9679",
+        "reveal_hash": "ff1944e2aaf1aa6b684714abf202c3c18d0bd4bc690ebcba8ad5e41494e523ff"
+      },
+      {
+        "persona": "juzgador_revisor",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "1ddd0c6084dc1a33b1b0c46c6a8340a11b71e312ff4c36b784adcf592b03028e",
+        "reveal_hash": "144247ff1a870af46e004a89ebaba6e053a01df6854b5da8ea3e85170ce75700"
+      },
+      {
+        "persona": "revisor_probatorio",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "600990723f5022d7911ec59476b868b41b7a50ebd3754f026539cc84be79d353",
+        "reveal_hash": "3d1d63ce0b5f4dd09355a1613b5900334f24e2218b36668c8ecc54968d0ee62e"
+      },
+      {
+        "persona": "revisor_jurisprudencial",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "eeed1bee9e31557ebae54e4b6e11f30f2a4789495306321891eb5e3c860d92ca",
+        "reveal_hash": "ab4d01601f6728a8edb6b9b14b5d8f0d499e2d03fc456cdce4c1406e9d5c991b"
+      }
+    ],
+    "vote_evidence": {
+      "event_type": "legal_panel_vote_protocol_evidence_v1",
+      "evidence_chain_id": "98566784e5004ddec8fddd28b058428bb77463816d82723868883bfa8e2a8601",
+      "merkle_root": "4788a4f4c8c1bdc8596450a199f6b4caab8eb613c9846999af5f2ac70f1833c9",
+      "events": [
+        {
+          "event_type": "legal_panel_vote_round_sealed_v1",
+          "round_id": "round_1_initial_sealed",
+          "ts": "2026-03-30T01:55:28.518258Z",
+          "event_id": "c56a5b474ab0556f8f951bb9fcdf2d2804a48ebc846b9f033fa8456d0420e744",
+          "parent_event_id": null,
+          "payload_hash": "5d7deb8d90e0081ee05a713467a2512dab75d80705c50b58ec69a28a290a3f61",
+          "payload": {
+            "query_hash": "81fb4702190bb2495755f1344fbb5ccaae10954363abb4dbd31b860484e2806b",
+            "jurisdiction": "federal",
+            "sealed_commitments": [
+              {
+                "persona": "litigante_actor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "cc19085c14b4b42a58455ea3d04938314b2d64c8844588755a0cb95e726656d6",
+                "reveal_hash": "e499d9de182513a974b7cdda205b7146a8dcdc9de1ebbca9a251254bcab64706"
+              },
+              {
+                "persona": "abogado_contraparte",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "eb9ebd1b83bc9b4e75525255191d81b81047ab35280eddac0e9e0f5062db9679",
+                "reveal_hash": "ff1944e2aaf1aa6b684714abf202c3c18d0bd4bc690ebcba8ad5e41494e523ff"
+              },
+              {
+                "persona": "juzgador_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "1ddd0c6084dc1a33b1b0c46c6a8340a11b71e312ff4c36b784adcf592b03028e",
+                "reveal_hash": "144247ff1a870af46e004a89ebaba6e053a01df6854b5da8ea3e85170ce75700"
+              },
+              {
+                "persona": "revisor_probatorio",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "600990723f5022d7911ec59476b868b41b7a50ebd3754f026539cc84be79d353",
+                "reveal_hash": "3d1d63ce0b5f4dd09355a1613b5900334f24e2218b36668c8ecc54968d0ee62e"
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "eeed1bee9e31557ebae54e4b6e11f30f2a4789495306321891eb5e3c860d92ca",
+                "reveal_hash": "ab4d01601f6728a8edb6b9b14b5d8f0d499e2d03fc456cdce4c1406e9d5c991b"
+              }
+            ]
+          }
+        },
+        {
+          "event_type": "legal_panel_deliberation_completed_v1",
+          "round_id": "deliberation",
+          "ts": "2026-03-30T01:55:28.518302Z",
+          "event_id": "924ee30500cfca2bc0c8959aae137c6152b29b79d7085f6a158a52cb4d5e7c29",
+          "parent_event_id": "c56a5b474ab0556f8f951bb9fcdf2d2804a48ebc846b9f033fa8456d0420e744",
+          "payload_hash": "1fed09366e706a9ee70be9cc194357e438b68c0d1572a3f8ecaa8c083bc32516",
+          "payload": {
+            "query_hash": "81fb4702190bb2495755f1344fbb5ccaae10954363abb4dbd31b860484e2806b",
+            "jurisdiction": "federal",
+            "initial_commitment_count": 5
+          }
+        },
+        {
+          "event_type": "legal_panel_vote_round_revealed_v1",
+          "round_id": "round_2_post_deliberation",
+          "ts": "2026-03-30T01:55:28.518326Z",
+          "event_id": "14fd7589959dd95159adf910b558f29ba9a4802b445f9579660c596fe768b66f",
+          "parent_event_id": "924ee30500cfca2bc0c8959aae137c6152b29b79d7085f6a158a52cb4d5e7c29",
+          "payload_hash": "1480e3d938413bd5312752fea517d65f1ba5b9f89865d1f768e0da391e78749a",
+          "payload": {
+            "query_hash": "81fb4702190bb2495755f1344fbb5ccaae10954363abb4dbd31b860484e2806b",
+            "jurisdiction": "federal",
+            "initial_vote_round": [
+              {
+                "persona": "litigante_actor",
+                "decision": "approve",
+                "confidence": 0.89,
+                "justification": "La tesis puede fortalecer la narrativa.",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "metadata": {}
+              },
+              {
+                "persona": "abogado_contraparte",
+                "decision": "conditional",
+                "confidence": 0.77,
+                "justification": "La contraparte cuestionaria la extrapolacion del criterio.",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "metadata": {}
+              },
+              {
+                "persona": "juzgador_revisor",
+                "decision": "conditional",
+                "confidence": 0.74,
+                "justification": "La tesis parece util, pero su alcance debe acotarse.",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "metadata": {}
+              },
+              {
+                "persona": "revisor_probatorio",
+                "decision": "approve",
+                "confidence": 0.82,
+                "justification": "La base factica no muestra vacio inmediato.",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "metadata": {}
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "decision": "conditional",
+                "confidence": 0.84,
+                "justification": "La tesis existe, pero su aplicacion al caso exige delimitacion estricta.",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "metadata": {}
+              }
+            ],
+            "final_vote_round": [
+              {
+                "persona": "litigante_actor",
+                "decision": "approve",
+                "confidence": 0.9,
+                "justification": "La recomendacion sigue siendo defendible.",
+                "round_id": "round_2_post_deliberation",
+                "sealed": false,
+                "metadata": {}
+              },
+              {
+                "persona": "abogado_contraparte",
+                "decision": "conditional",
+                "confidence": 0.79,
+                "justification": "Persisten flancos de ataque si se formula como regla fuerte.",
+                "round_id": "round_2_post_deliberation",
+                "sealed": false,
+                "metadata": {}
+              },
+              {
+                "persona": "juzgador_revisor",
+                "decision": "conditional",
+                "confidence": 0.76,
+                "justification": "La redaccion debe mantener la tesis como apoyo interpretativo, no como automatismo.",
+                "round_id": "round_2_post_deliberation",
+                "sealed": false,
+                "metadata": {}
+              },
+              {
+                "persona": "revisor_probatorio",
+                "decision": "approve",
+                "confidence": 0.83,
+                "justification": "No hay hueco probatorio nuevo.",
+                "round_id": "round_2_post_deliberation",
+                "sealed": false,
+                "metadata": {}
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "decision": "conditional",
+                "confidence": 0.88,
+                "justification": "La aplicacion de la tesis sigue siendo delicada y exige supervision humana.",
+                "round_id": "round_2_post_deliberation",
+                "sealed": false,
+                "metadata": {}
+              }
+            ],
+            "sealed_commitments": [
+              {
+                "persona": "litigante_actor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "cc19085c14b4b42a58455ea3d04938314b2d64c8844588755a0cb95e726656d6",
+                "reveal_hash": "e499d9de182513a974b7cdda205b7146a8dcdc9de1ebbca9a251254bcab64706"
+              },
+              {
+                "persona": "abogado_contraparte",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "eb9ebd1b83bc9b4e75525255191d81b81047ab35280eddac0e9e0f5062db9679",
+                "reveal_hash": "ff1944e2aaf1aa6b684714abf202c3c18d0bd4bc690ebcba8ad5e41494e523ff"
+              },
+              {
+                "persona": "juzgador_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "1ddd0c6084dc1a33b1b0c46c6a8340a11b71e312ff4c36b784adcf592b03028e",
+                "reveal_hash": "144247ff1a870af46e004a89ebaba6e053a01df6854b5da8ea3e85170ce75700"
+              },
+              {
+                "persona": "revisor_probatorio",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "600990723f5022d7911ec59476b868b41b7a50ebd3754f026539cc84be79d353",
+                "reveal_hash": "3d1d63ce0b5f4dd09355a1613b5900334f24e2218b36668c8ecc54968d0ee62e"
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "eeed1bee9e31557ebae54e4b6e11f30f2a4789495306321891eb5e3c860d92ca",
+                "reveal_hash": "ab4d01601f6728a8edb6b9b14b5d8f0d499e2d03fc456cdce4c1406e9d5c991b"
+              }
+            ],
+            "reveal_material": [
+              {
+                "persona": "litigante_actor",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "9a0b01ebcdc10a4df6c18906ed797e4b",
+                "reveal_hash": "e499d9de182513a974b7cdda205b7146a8dcdc9de1ebbca9a251254bcab64706",
+                "commitment_hash": "cc19085c14b4b42a58455ea3d04938314b2d64c8844588755a0cb95e726656d6"
+              },
+              {
+                "persona": "abogado_contraparte",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "fd20fde6be3866ced6510c2a724d8325",
+                "reveal_hash": "ff1944e2aaf1aa6b684714abf202c3c18d0bd4bc690ebcba8ad5e41494e523ff",
+                "commitment_hash": "eb9ebd1b83bc9b4e75525255191d81b81047ab35280eddac0e9e0f5062db9679"
+              },
+              {
+                "persona": "juzgador_revisor",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "7dc35bb699aee076346787a57e0b2b18",
+                "reveal_hash": "144247ff1a870af46e004a89ebaba6e053a01df6854b5da8ea3e85170ce75700",
+                "commitment_hash": "1ddd0c6084dc1a33b1b0c46c6a8340a11b71e312ff4c36b784adcf592b03028e"
+              },
+              {
+                "persona": "revisor_probatorio",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "285a1d4bdfbc49068b2a6731063495da",
+                "reveal_hash": "3d1d63ce0b5f4dd09355a1613b5900334f24e2218b36668c8ecc54968d0ee62e",
+                "commitment_hash": "600990723f5022d7911ec59476b868b41b7a50ebd3754f026539cc84be79d353"
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "b9d2b968a14efe1a9bb3fe58a9cfcc82",
+                "reveal_hash": "ab4d01601f6728a8edb6b9b14b5d8f0d499e2d03fc456cdce4c1406e9d5c991b",
+                "commitment_hash": "eeed1bee9e31557ebae54e4b6e11f30f2a4789495306321891eb5e3c860d92ca"
+              }
+            ]
+          }
+        }
+      ],
+      "initial_vote_commitments": [
+        {
+          "persona": "litigante_actor",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "cc19085c14b4b42a58455ea3d04938314b2d64c8844588755a0cb95e726656d6",
+          "reveal_hash": "e499d9de182513a974b7cdda205b7146a8dcdc9de1ebbca9a251254bcab64706"
+        },
+        {
+          "persona": "abogado_contraparte",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "eb9ebd1b83bc9b4e75525255191d81b81047ab35280eddac0e9e0f5062db9679",
+          "reveal_hash": "ff1944e2aaf1aa6b684714abf202c3c18d0bd4bc690ebcba8ad5e41494e523ff"
+        },
+        {
+          "persona": "juzgador_revisor",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "1ddd0c6084dc1a33b1b0c46c6a8340a11b71e312ff4c36b784adcf592b03028e",
+          "reveal_hash": "144247ff1a870af46e004a89ebaba6e053a01df6854b5da8ea3e85170ce75700"
+        },
+        {
+          "persona": "revisor_probatorio",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "600990723f5022d7911ec59476b868b41b7a50ebd3754f026539cc84be79d353",
+          "reveal_hash": "3d1d63ce0b5f4dd09355a1613b5900334f24e2218b36668c8ecc54968d0ee62e"
+        },
+        {
+          "persona": "revisor_jurisprudencial",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "eeed1bee9e31557ebae54e4b6e11f30f2a4789495306321891eb5e3c860d92ca",
+          "reveal_hash": "ab4d01601f6728a8edb6b9b14b5d8f0d499e2d03fc456cdce4c1406e9d5c991b"
+        }
+      ]
+    }
+  }
+}

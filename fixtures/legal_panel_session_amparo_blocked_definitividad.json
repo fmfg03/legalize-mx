@@ -1,0 +1,153 @@
+{
+  "request": {
+    "task_id": "legal-panel-amparo-block-001",
+    "task_kind": "demand_drafting",
+    "objective": "Emitir una recomendacion de amparo cuando la definitividad esta incumplida.",
+    "query": "¿Debe liberarse una recomendacion de amparo si existe medio ordinario de defensa no agotado?",
+    "jurisdiction": "federal",
+    "matter_profile": "amparo",
+    "query_date": "2026-03-30",
+    "complexity": "high",
+    "consequence_level": "critical",
+    "requires_jurisprudence": false,
+    "writes_for_user": true
+  },
+  "draft_bundle": {
+    "request_id": "req-amparo-block-001",
+    "response_type": "recommendation",
+    "jurisdiction": "federal",
+    "query_date": "2026-03-30",
+    "response_text": "Se sugiere promover amparo de inmediato, aunque todavia existe un medio ordinario de defensa pendiente.",
+    "citations": [
+      {
+        "citation_id": "cit-cpeum-1-amparo-block",
+        "doc_type": "legislation",
+        "doc_id": "mx-federal-cpeum",
+        "title": "Constitucion Politica de los Estados Unidos Mexicanos",
+        "locator": "articulo 1o.",
+        "jurisdiction": "federal",
+        "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm",
+        "official_publication": "DOF",
+        "quote": "Todas las autoridades, en el ambito de sus competencias, tienen la obligacion de promover, respetar, proteger y garantizar los derechos humanos",
+        "quote_sha256": "a1b84d8b3aa42312c92174c049819ed8f77a0c7292f119ad335d6d0bc4847ad3"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "clm-amparo-block-1",
+        "text": "La recomendacion plantea acudir directamente al amparo.",
+        "kind": "legislation",
+        "citation_ids": [
+          "cit-cpeum-1-amparo-block"
+        ]
+      }
+    ]
+  },
+  "initial_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "approve",
+      "confidence": 0.82,
+      "justification": "La urgencia podria empujar a amparo."
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "reject",
+      "confidence": 0.79,
+      "justification": "La recomendacion salta un medio ordinario de defensa."
+    },
+    {
+      "persona": "tercero_interesado_revisor",
+      "decision": "conditional",
+      "confidence": 0.70,
+      "justification": "Debe revisarse el efecto sobre terceros."
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "reject",
+      "confidence": 0.88,
+      "justification": "El proyecto es inviable si la definitividad no se cumple.",
+      "metadata": {
+        "amparo": {
+          "proyecto_madurez": "inviable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_procedencia_amparo",
+      "decision": "reject",
+      "confidence": 0.93,
+      "justification": "La definitividad esta incumplida por no haberse agotado el medio ordinario.",
+      "metadata": {
+        "amparo": {
+          "acto_reclamado_status": "identificado",
+          "interes_status": "acreditado",
+          "definitividad_status": "incumplida",
+          "suspension_status": "inviable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.76,
+      "justification": "No observo un problema citacional central; el problema es procesal."
+    }
+  ],
+  "final_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "conditional",
+      "confidence": 0.78,
+      "justification": "La via solo seria revisable si cambia el panorama de definitividad.",
+      "structured_change_justification": {
+        "trigger": "La deliberacion confirmo la existencia de un medio ordinario pendiente.",
+        "evidence_delta": "Se consolido la objecion de definitividad.",
+        "reasoning_delta": "La recomendacion ya no puede liberarse como accion inmediata."
+      }
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "reject",
+      "confidence": 0.81,
+      "justification": "Sigue existiendo el medio ordinario no agotado."
+    },
+    {
+      "persona": "tercero_interesado_revisor",
+      "decision": "conditional",
+      "confidence": 0.71,
+      "justification": "Persisten reservas procesales."
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "reject",
+      "confidence": 0.89,
+      "justification": "El proyecto sigue siendo inviable.",
+      "metadata": {
+        "amparo": {
+          "proyecto_madurez": "inviable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_procedencia_amparo",
+      "decision": "reject",
+      "confidence": 0.94,
+      "justification": "La falta de definitividad bloquea la liberacion.",
+      "metadata": {
+        "amparo": {
+          "acto_reclamado_status": "identificado",
+          "interes_status": "acreditado",
+          "definitividad_status": "incumplida",
+          "suspension_status": "inviable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.77,
+      "justification": "El problema no es jurisprudencial, sino de procedencia."
+    }
+  ]
+}

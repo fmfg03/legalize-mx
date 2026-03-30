@@ -1,0 +1,163 @@
+{
+  "request": {
+    "task_id": "legal-panel-amparo-pass-001",
+    "task_kind": "demand_drafting",
+    "objective": "Emitir una recomendacion preliminar para una demanda de amparo indirecto contra un acto de autoridad con enfoque constitucional.",
+    "query": "¿Como estructurar una recomendacion preliminar para promover amparo indirecto por un acto de autoridad que afecta derechos humanos?",
+    "jurisdiction": "federal",
+    "matter_profile": "amparo",
+    "query_date": "2026-03-30",
+    "complexity": "high",
+    "consequence_level": "critical",
+    "requires_jurisprudence": false,
+    "writes_for_user": true
+  },
+  "draft_bundle": {
+    "request_id": "req-amparo-pass-001",
+    "response_type": "recommendation",
+    "jurisdiction": "federal",
+    "query_date": "2026-03-30",
+    "response_text": "La recomendacion preliminar puede centrarse en que el acto de autoridad debe examinarse a la luz del articulo 1o. constitucional, subrayando la obligacion de promover, respetar, proteger y garantizar los derechos humanos. La estructura debe separar con claridad acto reclamado, autoridad responsable, concepto de violacion y efectos constitucionales buscados.",
+    "citations": [
+      {
+        "citation_id": "cit-cpeum-1-amparo",
+        "doc_type": "legislation",
+        "doc_id": "mx-federal-cpeum",
+        "title": "Constitucion Politica de los Estados Unidos Mexicanos",
+        "locator": "articulo 1o.",
+        "jurisdiction": "federal",
+        "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm",
+        "official_publication": "DOF",
+        "quote": "Todas las autoridades, en el ambito de sus competencias, tienen la obligacion de promover, respetar, proteger y garantizar los derechos humanos",
+        "quote_sha256": "a1b84d8b3aa42312c92174c049819ed8f77a0c7292f119ad335d6d0bc4847ad3"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "clm-amparo-1",
+        "text": "El articulo 1o. constitucional obliga a todas las autoridades a promover, respetar, proteger y garantizar los derechos humanos.",
+        "kind": "legislation",
+        "citation_ids": [
+          "cit-cpeum-1-amparo"
+        ]
+      }
+    ]
+  },
+  "initial_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "approve",
+      "confidence": 0.90,
+      "justification": "La recomendacion identifica el eje constitucional y la arquitectura minima del escrito."
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "conditional",
+      "confidence": 0.74,
+      "justification": "La narrativa debe cuidar que el acto reclamado quede mejor delimitado.",
+      "metadata": {
+        "amparo": {
+          "acto_reclamado_status": "dudoso"
+        }
+      }
+    },
+    {
+      "persona": "tercero_interesado_revisor",
+      "decision": "conditional",
+      "confidence": 0.73,
+      "justification": "Debe preverse el interes afectado de terceros si existe."
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "approve",
+      "confidence": 0.83,
+      "justification": "La salida es estructurable en clave judicial sin exagerar sus conclusiones.",
+      "metadata": {
+        "amparo": {
+          "proyecto_madurez": "apto"
+        }
+      }
+    },
+    {
+      "persona": "revisor_procedencia_amparo",
+      "decision": "approve",
+      "confidence": 0.81,
+      "justification": "No observo, en esta fase preliminar, una objecion frontal de procedencia.",
+      "metadata": {
+        "amparo": {
+          "acto_reclamado_status": "identificado",
+          "interes_status": "acreditado",
+          "definitividad_status": "cumplida",
+          "suspension_status": "viable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.80,
+      "justification": "La salida no sobregeneraliza criterios jurisprudenciales y se apoya en base constitucional valida."
+    }
+  ],
+  "final_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "approve",
+      "confidence": 0.91,
+      "justification": "La recomendacion mantiene el enfoque correcto para formular conceptos de violacion."
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "approve",
+      "confidence": 0.79,
+      "justification": "La deliberacion acoto mejor el acto reclamado y la autoridad responsable.",
+      "structured_change_justification": {
+        "trigger": "Se delimito expresamente el acto reclamado y la estructura del escrito.",
+        "evidence_delta": "La version final distingue acto, autoridad responsable y efectos buscados.",
+        "reasoning_delta": "Desaparecio la objecion inicial sobre indeterminacion del acto."
+      },
+      "metadata": {
+        "amparo": {
+          "acto_reclamado_status": "identificado"
+        }
+      }
+    },
+    {
+      "persona": "tercero_interesado_revisor",
+      "decision": "conditional",
+      "confidence": 0.75,
+      "justification": "Sigue siendo prudente verificar si existe tercero interesado concreto."
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "approve",
+      "confidence": 0.85,
+      "justification": "La recomendacion es proyectable como borrador preliminar.",
+      "metadata": {
+        "amparo": {
+          "proyecto_madurez": "apto"
+        }
+      }
+    },
+    {
+      "persona": "revisor_procedencia_amparo",
+      "decision": "approve",
+      "confidence": 0.82,
+      "justification": "No hay objecion de procedencia material en esta formulacion preliminar.",
+      "metadata": {
+        "amparo": {
+          "acto_reclamado_status": "identificado",
+          "interes_status": "acreditado",
+          "definitividad_status": "cumplida",
+          "suspension_status": "viable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.81,
+      "justification": "No hay uso abusivo de jurisprudencia ni invencion de criterios."
+    }
+  ]
+}

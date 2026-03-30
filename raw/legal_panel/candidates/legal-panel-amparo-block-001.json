@@ -1,0 +1,647 @@
+{
+  "request_id": "req-amparo-block-001",
+  "response_type": "recommendation",
+  "jurisdiction": "federal",
+  "query_date": "2026-03-30",
+  "response_text": "Se sugiere promover amparo de inmediato, aunque todavia existe un medio ordinario de defensa pendiente.",
+  "citations": [
+    {
+      "citation_id": "cit-cpeum-1-amparo-block",
+      "doc_type": "legislation",
+      "doc_id": "mx-federal-cpeum",
+      "title": "Constitucion Politica de los Estados Unidos Mexicanos",
+      "locator": "articulo 1o.",
+      "jurisdiction": "federal",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm",
+      "official_publication": "DOF",
+      "quote": "Todas las autoridades, en el ambito de sus competencias, tienen la obligacion de promover, respetar, proteger y garantizar los derechos humanos",
+      "quote_sha256": "a1b84d8b3aa42312c92174c049819ed8f77a0c7292f119ad335d6d0bc4847ad3"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "clm-amparo-block-1",
+      "text": "La recomendacion plantea acudir directamente al amparo.",
+      "kind": "legislation",
+      "citation_ids": [
+        "cit-cpeum-1-amparo-block"
+      ]
+    }
+  ],
+  "panel_metadata": {
+    "panel_protocol": {
+      "initial_round": "independent_sealed",
+      "final_round": "post_deliberation",
+      "change_guardrail": "structured_justification_required",
+      "majority_rule": "final_round_majority"
+    },
+    "route_decision": {
+      "route": "hybrid",
+      "reason": "Escrito juridico con impacto alto; requiere razonamiento fuerte, ejecucion local y gate de liberacion.",
+      "handoffs": [
+        {
+          "stage": "reason",
+          "provider": "anthropic_api",
+          "requires": [
+            "structured_task_request",
+            "retrieval_context",
+            "explicit_jurisdiction",
+            "query_date",
+            "citation_bundle_target"
+          ]
+        },
+        {
+          "stage": "execute",
+          "provider": "local_ollama",
+          "requires": [
+            "structured_execution_plan",
+            "retrieval_context",
+            "citation_ids",
+            "style_constraints"
+          ]
+        },
+        {
+          "stage": "panel",
+          "provider": "legalize_mx_legal_panel",
+          "requires": [
+            "legal_panel_session",
+            "sealed_first_round",
+            "vote_reveal_evidence"
+          ]
+        },
+        {
+          "stage": "release",
+          "provider": "legalize_mx_guardrails",
+          "requires": [
+            "assistant_response_bundle",
+            "grounding_gate_pass"
+          ]
+        }
+      ],
+      "must_pass_release_gate": true,
+      "legal_panel_script": "/root/legalize-mx/scripts/legal_panel_orchestrator.py",
+      "release_gate_script": "/root/legalize-mx/scripts/release_legal_response.py"
+    },
+    "panel_metrics": {
+      "majority_decision": "reject",
+      "vote_distribution": {
+        "conditional": 2,
+        "reject": 3,
+        "approve": 1
+      },
+      "agreement_ratio": 0.5,
+      "mean_confidence": 0.8166666666666667,
+      "confidence_variance": 0.005922222222222222,
+      "consensus_confidence": 0.4083333333333333
+    },
+    "vote_changes": [
+      {
+        "persona": "abogado_quejoso",
+        "initial_decision": "approve",
+        "final_decision": "conditional"
+      }
+    ],
+    "initial_vote_round": [
+      {
+        "persona": "abogado_quejoso",
+        "decision": "approve",
+        "confidence": 0.82,
+        "justification": "La urgencia podria empujar a amparo.",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "metadata": {}
+      },
+      {
+        "persona": "autoridad_responsable_revisor",
+        "decision": "reject",
+        "confidence": 0.79,
+        "justification": "La recomendacion salta un medio ordinario de defensa.",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "metadata": {}
+      },
+      {
+        "persona": "tercero_interesado_revisor",
+        "decision": "conditional",
+        "confidence": 0.7,
+        "justification": "Debe revisarse el efecto sobre terceros.",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "metadata": {}
+      },
+      {
+        "persona": "secretario_proyectista_revisor",
+        "decision": "reject",
+        "confidence": 0.88,
+        "justification": "El proyecto es inviable si la definitividad no se cumple.",
+        "metadata": {
+          "amparo": {
+            "proyecto_madurez": "inviable"
+          }
+        },
+        "round_id": "round_1_initial_sealed",
+        "sealed": true
+      },
+      {
+        "persona": "revisor_procedencia_amparo",
+        "decision": "reject",
+        "confidence": 0.93,
+        "justification": "La definitividad esta incumplida por no haberse agotado el medio ordinario.",
+        "metadata": {
+          "amparo": {
+            "acto_reclamado_status": "identificado",
+            "interes_status": "acreditado",
+            "definitividad_status": "incumplida",
+            "suspension_status": "inviable"
+          }
+        },
+        "round_id": "round_1_initial_sealed",
+        "sealed": true
+      },
+      {
+        "persona": "revisor_jurisprudencial",
+        "decision": "approve",
+        "confidence": 0.76,
+        "justification": "No observo un problema citacional central; el problema es procesal.",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "metadata": {}
+      }
+    ],
+    "final_vote_round": [
+      {
+        "persona": "abogado_quejoso",
+        "decision": "conditional",
+        "confidence": 0.78,
+        "justification": "La via solo seria revisable si cambia el panorama de definitividad.",
+        "structured_change_justification": {
+          "trigger": "La deliberacion confirmo la existencia de un medio ordinario pendiente.",
+          "evidence_delta": "Se consolido la objecion de definitividad.",
+          "reasoning_delta": "La recomendacion ya no puede liberarse como accion inmediata."
+        },
+        "round_id": "round_2_post_deliberation",
+        "sealed": false,
+        "metadata": {}
+      },
+      {
+        "persona": "autoridad_responsable_revisor",
+        "decision": "reject",
+        "confidence": 0.81,
+        "justification": "Sigue existiendo el medio ordinario no agotado.",
+        "round_id": "round_2_post_deliberation",
+        "sealed": false,
+        "metadata": {}
+      },
+      {
+        "persona": "tercero_interesado_revisor",
+        "decision": "conditional",
+        "confidence": 0.71,
+        "justification": "Persisten reservas procesales.",
+        "round_id": "round_2_post_deliberation",
+        "sealed": false,
+        "metadata": {}
+      },
+      {
+        "persona": "secretario_proyectista_revisor",
+        "decision": "reject",
+        "confidence": 0.89,
+        "justification": "El proyecto sigue siendo inviable.",
+        "metadata": {
+          "amparo": {
+            "proyecto_madurez": "inviable"
+          }
+        },
+        "round_id": "round_2_post_deliberation",
+        "sealed": false
+      },
+      {
+        "persona": "revisor_procedencia_amparo",
+        "decision": "reject",
+        "confidence": 0.94,
+        "justification": "La falta de definitividad bloquea la liberacion.",
+        "metadata": {
+          "amparo": {
+            "acto_reclamado_status": "identificado",
+            "interes_status": "acreditado",
+            "definitividad_status": "incumplida",
+            "suspension_status": "inviable"
+          }
+        },
+        "round_id": "round_2_post_deliberation",
+        "sealed": false
+      },
+      {
+        "persona": "revisor_jurisprudencial",
+        "decision": "approve",
+        "confidence": 0.77,
+        "justification": "El problema no es jurisprudencial, sino de procedencia.",
+        "round_id": "round_2_post_deliberation",
+        "sealed": false,
+        "metadata": {}
+      }
+    ],
+    "initial_vote_commitments": [
+      {
+        "persona": "abogado_quejoso",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "067db8484f6f43121734b2d2116ca4c8929fe843a99e864599004909ffcaedf3",
+        "reveal_hash": "90ac92faf9b3a2cbf1c330f70e1eb05b6d06bce4a767956d9efe0e88cfe65f47"
+      },
+      {
+        "persona": "autoridad_responsable_revisor",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "94e8f50aa86dbfabcad4d9ae853ba71e6c4a3e2edc2243885011a7e9675d1371",
+        "reveal_hash": "a32da61255c41e7b61641009aa76c3cb8190f69763d4795348ab2fae55468b49"
+      },
+      {
+        "persona": "tercero_interesado_revisor",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "af35eec9c65e5c9cbfd39113f10655ae29c156826cb418df7b5ac686c495f28b",
+        "reveal_hash": "2bc57ce7e0d785c048e09b8f1f8b9cd6b1d8da62f869fba0a4c5ae6606c3ee9f"
+      },
+      {
+        "persona": "secretario_proyectista_revisor",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "a3656e95cbec23701baca1eb01a8a2da220159e391751ceefe64eed39b9de86d",
+        "reveal_hash": "21bd167cf6e141058dd12524cad0d99c7e16084d41d1501ced4657c49c7c4807"
+      },
+      {
+        "persona": "revisor_procedencia_amparo",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "ee64236767b6acdfbc0dbcfecddf59c7c15511e4d86817539305fb494635faaf",
+        "reveal_hash": "0a47394a60ee3d1b1bc9765a59c46c4eb83c780f02ff350b4cdedb41e0a1262f"
+      },
+      {
+        "persona": "revisor_jurisprudencial",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "8f58cb9962d1ae401814e3eaa2843888630ddcd10a61a5d0504f762b197c4707",
+        "reveal_hash": "3242570d2c9884fdb92c796490c69be8c9c1be2bde0c21c97402f36003f1a927"
+      }
+    ],
+    "vote_evidence": {
+      "event_type": "legal_panel_vote_protocol_evidence_v1",
+      "evidence_chain_id": "c27ceb1fdc6f799f9a08c84ba46720a6c066a33c72515d526ba71336ae477d07",
+      "merkle_root": "e4249d7b8f1c1ca605278cfca0c6ac29c1a2337b1a8ff795845da050130c24c5",
+      "events": [
+        {
+          "event_type": "legal_panel_vote_round_sealed_v1",
+          "round_id": "round_1_initial_sealed",
+          "ts": "2026-03-30T02:03:09.217642Z",
+          "event_id": "b94bbb704c900bb7f8ac26744e45b21c3faf33140362c3033d53efba0871dc97",
+          "parent_event_id": null,
+          "payload_hash": "c82ec2bbf56708dcc84f51ec995b1d3a794571c4f97598196cb378a6c079825a",
+          "payload": {
+            "query_hash": "48d7b9dc0ae77daa320b0cf460e699b5bfd0e97b9aae8c8143aa3086d27170f7",
+            "jurisdiction": "federal",
+            "sealed_commitments": [
+              {
+                "persona": "abogado_quejoso",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "067db8484f6f43121734b2d2116ca4c8929fe843a99e864599004909ffcaedf3",
+                "reveal_hash": "90ac92faf9b3a2cbf1c330f70e1eb05b6d06bce4a767956d9efe0e88cfe65f47"
+              },
+              {
+                "persona": "autoridad_responsable_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "94e8f50aa86dbfabcad4d9ae853ba71e6c4a3e2edc2243885011a7e9675d1371",
+                "reveal_hash": "a32da61255c41e7b61641009aa76c3cb8190f69763d4795348ab2fae55468b49"
+              },
+              {
+                "persona": "tercero_interesado_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "af35eec9c65e5c9cbfd39113f10655ae29c156826cb418df7b5ac686c495f28b",
+                "reveal_hash": "2bc57ce7e0d785c048e09b8f1f8b9cd6b1d8da62f869fba0a4c5ae6606c3ee9f"
+              },
+              {
+                "persona": "secretario_proyectista_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "a3656e95cbec23701baca1eb01a8a2da220159e391751ceefe64eed39b9de86d",
+                "reveal_hash": "21bd167cf6e141058dd12524cad0d99c7e16084d41d1501ced4657c49c7c4807"
+              },
+              {
+                "persona": "revisor_procedencia_amparo",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "ee64236767b6acdfbc0dbcfecddf59c7c15511e4d86817539305fb494635faaf",
+                "reveal_hash": "0a47394a60ee3d1b1bc9765a59c46c4eb83c780f02ff350b4cdedb41e0a1262f"
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "8f58cb9962d1ae401814e3eaa2843888630ddcd10a61a5d0504f762b197c4707",
+                "reveal_hash": "3242570d2c9884fdb92c796490c69be8c9c1be2bde0c21c97402f36003f1a927"
+              }
+            ]
+          }
+        },
+        {
+          "event_type": "legal_panel_deliberation_completed_v1",
+          "round_id": "deliberation",
+          "ts": "2026-03-30T02:03:09.217689Z",
+          "event_id": "0c5b42a448ec13c9afd483e923901a81d42ee2238825841e122a33c1c8e4b037",
+          "parent_event_id": "b94bbb704c900bb7f8ac26744e45b21c3faf33140362c3033d53efba0871dc97",
+          "payload_hash": "1af02d1cdc9f02f8840180d95e58a7129d9b2e72e73a6b003aadad605559f961",
+          "payload": {
+            "query_hash": "48d7b9dc0ae77daa320b0cf460e699b5bfd0e97b9aae8c8143aa3086d27170f7",
+            "jurisdiction": "federal",
+            "initial_commitment_count": 6
+          }
+        },
+        {
+          "event_type": "legal_panel_vote_round_revealed_v1",
+          "round_id": "round_2_post_deliberation",
+          "ts": "2026-03-30T02:03:09.217715Z",
+          "event_id": "592b6b0f3d6d40f13efde88b811e1a7e62c0301d38f9667b0878a3cde3524bfc",
+          "parent_event_id": "0c5b42a448ec13c9afd483e923901a81d42ee2238825841e122a33c1c8e4b037",
+          "payload_hash": "b9f1e430cfacd2b5e4da85403def0f86e71f6925e66bb95360a09ab9349ed9dc",
+          "payload": {
+            "query_hash": "48d7b9dc0ae77daa320b0cf460e699b5bfd0e97b9aae8c8143aa3086d27170f7",
+            "jurisdiction": "federal",
+            "initial_vote_round": [
+              {
+                "persona": "abogado_quejoso",
+                "decision": "approve",
+                "confidence": 0.82,
+                "justification": "La urgencia podria empujar a amparo.",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "metadata": {}
+              },
+              {
+                "persona": "autoridad_responsable_revisor",
+                "decision": "reject",
+                "confidence": 0.79,
+                "justification": "La recomendacion salta un medio ordinario de defensa.",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "metadata": {}
+              },
+              {
+                "persona": "tercero_interesado_revisor",
+                "decision": "conditional",
+                "confidence": 0.7,
+                "justification": "Debe revisarse el efecto sobre terceros.",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "metadata": {}
+              },
+              {
+                "persona": "secretario_proyectista_revisor",
+                "decision": "reject",
+                "confidence": 0.88,
+                "justification": "El proyecto es inviable si la definitividad no se cumple.",
+                "metadata": {
+                  "amparo": {
+                    "proyecto_madurez": "inviable"
+                  }
+                },
+                "round_id": "round_1_initial_sealed",
+                "sealed": true
+              },
+              {
+                "persona": "revisor_procedencia_amparo",
+                "decision": "reject",
+                "confidence": 0.93,
+                "justification": "La definitividad esta incumplida por no haberse agotado el medio ordinario.",
+                "metadata": {
+                  "amparo": {
+                    "acto_reclamado_status": "identificado",
+                    "interes_status": "acreditado",
+                    "definitividad_status": "incumplida",
+                    "suspension_status": "inviable"
+                  }
+                },
+                "round_id": "round_1_initial_sealed",
+                "sealed": true
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "decision": "approve",
+                "confidence": 0.76,
+                "justification": "No observo un problema citacional central; el problema es procesal.",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "metadata": {}
+              }
+            ],
+            "final_vote_round": [
+              {
+                "persona": "abogado_quejoso",
+                "decision": "conditional",
+                "confidence": 0.78,
+                "justification": "La via solo seria revisable si cambia el panorama de definitividad.",
+                "structured_change_justification": {
+                  "trigger": "La deliberacion confirmo la existencia de un medio ordinario pendiente.",
+                  "evidence_delta": "Se consolido la objecion de definitividad.",
+                  "reasoning_delta": "La recomendacion ya no puede liberarse como accion inmediata."
+                },
+                "round_id": "round_2_post_deliberation",
+                "sealed": false,
+                "metadata": {}
+              },
+              {
+                "persona": "autoridad_responsable_revisor",
+                "decision": "reject",
+                "confidence": 0.81,
+                "justification": "Sigue existiendo el medio ordinario no agotado.",
+                "round_id": "round_2_post_deliberation",
+                "sealed": false,
+                "metadata": {}
+              },
+              {
+                "persona": "tercero_interesado_revisor",
+                "decision": "conditional",
+                "confidence": 0.71,
+                "justification": "Persisten reservas procesales.",
+                "round_id": "round_2_post_deliberation",
+                "sealed": false,
+                "metadata": {}
+              },
+              {
+                "persona": "secretario_proyectista_revisor",
+                "decision": "reject",
+                "confidence": 0.89,
+                "justification": "El proyecto sigue siendo inviable.",
+                "metadata": {
+                  "amparo": {
+                    "proyecto_madurez": "inviable"
+                  }
+                },
+                "round_id": "round_2_post_deliberation",
+                "sealed": false
+              },
+              {
+                "persona": "revisor_procedencia_amparo",
+                "decision": "reject",
+                "confidence": 0.94,
+                "justification": "La falta de definitividad bloquea la liberacion.",
+                "metadata": {
+                  "amparo": {
+                    "acto_reclamado_status": "identificado",
+                    "interes_status": "acreditado",
+                    "definitividad_status": "incumplida",
+                    "suspension_status": "inviable"
+                  }
+                },
+                "round_id": "round_2_post_deliberation",
+                "sealed": false
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "decision": "approve",
+                "confidence": 0.77,
+                "justification": "El problema no es jurisprudencial, sino de procedencia.",
+                "round_id": "round_2_post_deliberation",
+                "sealed": false,
+                "metadata": {}
+              }
+            ],
+            "sealed_commitments": [
+              {
+                "persona": "abogado_quejoso",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "067db8484f6f43121734b2d2116ca4c8929fe843a99e864599004909ffcaedf3",
+                "reveal_hash": "90ac92faf9b3a2cbf1c330f70e1eb05b6d06bce4a767956d9efe0e88cfe65f47"
+              },
+              {
+                "persona": "autoridad_responsable_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "94e8f50aa86dbfabcad4d9ae853ba71e6c4a3e2edc2243885011a7e9675d1371",
+                "reveal_hash": "a32da61255c41e7b61641009aa76c3cb8190f69763d4795348ab2fae55468b49"
+              },
+              {
+                "persona": "tercero_interesado_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "af35eec9c65e5c9cbfd39113f10655ae29c156826cb418df7b5ac686c495f28b",
+                "reveal_hash": "2bc57ce7e0d785c048e09b8f1f8b9cd6b1d8da62f869fba0a4c5ae6606c3ee9f"
+              },
+              {
+                "persona": "secretario_proyectista_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "a3656e95cbec23701baca1eb01a8a2da220159e391751ceefe64eed39b9de86d",
+                "reveal_hash": "21bd167cf6e141058dd12524cad0d99c7e16084d41d1501ced4657c49c7c4807"
+              },
+              {
+                "persona": "revisor_procedencia_amparo",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "ee64236767b6acdfbc0dbcfecddf59c7c15511e4d86817539305fb494635faaf",
+                "reveal_hash": "0a47394a60ee3d1b1bc9765a59c46c4eb83c780f02ff350b4cdedb41e0a1262f"
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "8f58cb9962d1ae401814e3eaa2843888630ddcd10a61a5d0504f762b197c4707",
+                "reveal_hash": "3242570d2c9884fdb92c796490c69be8c9c1be2bde0c21c97402f36003f1a927"
+              }
+            ],
+            "reveal_material": [
+              {
+                "persona": "abogado_quejoso",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "fa13c1987ee3fffb0fde166a263c1a6b",
+                "reveal_hash": "90ac92faf9b3a2cbf1c330f70e1eb05b6d06bce4a767956d9efe0e88cfe65f47",
+                "commitment_hash": "067db8484f6f43121734b2d2116ca4c8929fe843a99e864599004909ffcaedf3"
+              },
+              {
+                "persona": "autoridad_responsable_revisor",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "23736d5c59bbce1e223c35729d62c139",
+                "reveal_hash": "a32da61255c41e7b61641009aa76c3cb8190f69763d4795348ab2fae55468b49",
+                "commitment_hash": "94e8f50aa86dbfabcad4d9ae853ba71e6c4a3e2edc2243885011a7e9675d1371"
+              },
+              {
+                "persona": "tercero_interesado_revisor",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "aa6a0511657becbe0f61f28e54badbb4",
+                "reveal_hash": "2bc57ce7e0d785c048e09b8f1f8b9cd6b1d8da62f869fba0a4c5ae6606c3ee9f",
+                "commitment_hash": "af35eec9c65e5c9cbfd39113f10655ae29c156826cb418df7b5ac686c495f28b"
+              },
+              {
+                "persona": "secretario_proyectista_revisor",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "03453140681454f4133a60a38feaf92f",
+                "reveal_hash": "21bd167cf6e141058dd12524cad0d99c7e16084d41d1501ced4657c49c7c4807",
+                "commitment_hash": "a3656e95cbec23701baca1eb01a8a2da220159e391751ceefe64eed39b9de86d"
+              },
+              {
+                "persona": "revisor_procedencia_amparo",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "b5f8ae5ab1ad80d7f362061e247ff694",
+                "reveal_hash": "0a47394a60ee3d1b1bc9765a59c46c4eb83c780f02ff350b4cdedb41e0a1262f",
+                "commitment_hash": "ee64236767b6acdfbc0dbcfecddf59c7c15511e4d86817539305fb494635faaf"
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "1ba418ec061f7b39c0571a3ccfa8ddff",
+                "reveal_hash": "3242570d2c9884fdb92c796490c69be8c9c1be2bde0c21c97402f36003f1a927",
+                "commitment_hash": "8f58cb9962d1ae401814e3eaa2843888630ddcd10a61a5d0504f762b197c4707"
+              }
+            ]
+          }
+        }
+      ],
+      "initial_vote_commitments": [
+        {
+          "persona": "abogado_quejoso",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "067db8484f6f43121734b2d2116ca4c8929fe843a99e864599004909ffcaedf3",
+          "reveal_hash": "90ac92faf9b3a2cbf1c330f70e1eb05b6d06bce4a767956d9efe0e88cfe65f47"
+        },
+        {
+          "persona": "autoridad_responsable_revisor",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "94e8f50aa86dbfabcad4d9ae853ba71e6c4a3e2edc2243885011a7e9675d1371",
+          "reveal_hash": "a32da61255c41e7b61641009aa76c3cb8190f69763d4795348ab2fae55468b49"
+        },
+        {
+          "persona": "tercero_interesado_revisor",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "af35eec9c65e5c9cbfd39113f10655ae29c156826cb418df7b5ac686c495f28b",
+          "reveal_hash": "2bc57ce7e0d785c048e09b8f1f8b9cd6b1d8da62f869fba0a4c5ae6606c3ee9f"
+        },
+        {
+          "persona": "secretario_proyectista_revisor",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "a3656e95cbec23701baca1eb01a8a2da220159e391751ceefe64eed39b9de86d",
+          "reveal_hash": "21bd167cf6e141058dd12524cad0d99c7e16084d41d1501ced4657c49c7c4807"
+        },
+        {
+          "persona": "revisor_procedencia_amparo",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "ee64236767b6acdfbc0dbcfecddf59c7c15511e4d86817539305fb494635faaf",
+          "reveal_hash": "0a47394a60ee3d1b1bc9765a59c46c4eb83c780f02ff350b4cdedb41e0a1262f"
+        },
+        {
+          "persona": "revisor_jurisprudencial",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "8f58cb9962d1ae401814e3eaa2843888630ddcd10a61a5d0504f762b197c4707",
+          "reveal_hash": "3242570d2c9884fdb92c796490c69be8c9c1be2bde0c21c97402f36003f1a927"
+        }
+      ]
+    }
+  }
+}

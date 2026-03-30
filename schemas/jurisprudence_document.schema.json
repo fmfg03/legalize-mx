@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legalize-mx.local/schemas/jurisprudence_document.schema.json",
+  "title": "JurisprudenceDocument",
+  "type": "object",
+  "required": [
+    "doc_type",
+    "document_kind",
+    "country",
+    "jurisdiction",
+    "source_system",
+    "doc_id",
+    "registry_id",
+    "source_url",
+    "title",
+    "status",
+    "text",
+    "citation_label"
+  ],
+  "properties": {
+    "doc_type": { "const": "jurisprudence" },
+    "document_kind": {
+      "type": "string",
+      "enum": ["tesis", "precedente", "voto", "acuerdo"]
+    },
+    "country": { "type": "string", "const": "mx" },
+    "jurisdiction": { "type": "string" },
+    "court_system": { "type": ["string", "null"] },
+    "source_system": { "type": "string" },
+    "doc_id": { "type": "string" },
+    "registry_id": { "type": "string" },
+    "canonical_url": { "type": ["string", "null"] },
+    "source_url": { "type": "string" },
+    "retrieved_at": { "type": ["string", "null"] },
+    "title": { "type": "string" },
+    "rubro": { "type": ["string", "null"] },
+    "subtitle": { "type": ["string", "null"] },
+    "type": { "type": ["string", "null"] },
+    "epoch": { "type": ["string", "null"] },
+    "instance": { "type": ["string", "null"] },
+    "organ": { "type": ["string", "null"] },
+    "matter": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "case_type": { "type": ["string", "null"] },
+    "case_numbers": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "publication_date": { "type": ["string", "null"] },
+    "binding_note_date": { "type": ["string", "null"] },
+    "mandatory_effect": { "type": ["boolean", "null"] },
+    "citation_label": { "type": "string" },
+    "text": { "type": "string" },
+    "text_normalized": { "type": ["string", "null"] },
+    "source_payload_path": { "type": ["string", "null"] },
+    "source_pdf_url": { "type": ["string", "null"] },
+    "source_pdf_path": { "type": ["string", "null"] },
+    "source_certificate_sha256": { "type": ["string", "null"] },
+    "parser_version": { "type": ["string", "null"] },
+    "last_seen_at": { "type": ["string", "null"] },
+    "related_documents": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "interpreted_norms": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "status": { "type": "string" },
+    "text_checksum_sha256": { "type": ["string", "null"] },
+    "metadata_checksum_sha256": { "type": ["string", "null"] }
+  },
+  "additionalProperties": true
+}

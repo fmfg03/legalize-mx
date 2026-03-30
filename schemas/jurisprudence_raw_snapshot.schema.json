@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legalize-mx.local/schemas/jurisprudence_raw_snapshot.schema.json",
+  "title": "JurisprudenceRawSnapshot",
+  "type": "object",
+  "required": [
+    "source_system",
+    "document_kind",
+    "registry_id",
+    "fetched_at",
+    "source_url",
+    "payload_sha256",
+    "payload_relpath"
+  ],
+  "properties": {
+    "source_system": { "type": "string" },
+    "document_kind": {
+      "type": "string",
+      "enum": ["tesis", "precedente", "voto", "acuerdo"]
+    },
+    "registry_id": { "type": "string" },
+    "fetched_at": { "type": "string" },
+    "source_url": { "type": "string" },
+    "payload_sha256": { "type": "string" },
+    "payload_relpath": { "type": "string" },
+    "pdf_url": { "type": ["string", "null"] },
+    "pdf_relpath": { "type": ["string", "null"] },
+    "certificate_sha256": { "type": ["string", "null"] },
+    "etag": { "type": ["string", "null"] },
+    "last_modified": { "type": ["string", "null"] }
+  },
+  "additionalProperties": true
+}

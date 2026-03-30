@@ -1,0 +1,24 @@
+{
+  "document_kind": "voto",
+  "next_page": 2,
+  "completed": false,
+  "runs": 2,
+  "last_run_at": "2026-03-30T01:03:11.838390Z",
+  "last_status": "ok",
+  "last_count_total": 9931,
+  "last_source_index": "votos",
+  "last_registry_ids": [
+    "300172",
+    "47490",
+    "47489",
+    "47488",
+    "47487",
+    "47486",
+    "47485",
+    "47484",
+    "47483",
+    "47482"
+  ],
+  "last_pages_fetched": 1,
+  "last_page_size": 10
+}

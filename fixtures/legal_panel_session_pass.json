@@ -1,0 +1,135 @@
+{
+  "request": {
+    "task_id": "legal-panel-pass-001",
+    "task_kind": "demand_drafting",
+    "objective": "Emitir una recomendacion argumentativa sobre daño moral con soporte normativo y jurisprudencial.",
+    "query": "¿Como estructurar una reclamacion por daño moral con apoyo en jurisprudencia y en el articulo 1916 del Codigo Civil Federal?",
+    "jurisdiction": "federal",
+    "matter_profile": "civil_damage",
+    "query_date": "2026-03-30",
+    "complexity": "high",
+    "consequence_level": "critical",
+    "requires_jurisprudence": true,
+    "writes_for_user": true
+  },
+  "draft_bundle": {
+    "request_id": "req-pass-juris-001",
+    "response_type": "recommendation",
+    "jurisdiction": "federal",
+    "query_date": "2026-03-30",
+    "response_text": "La linea argumental puede apoyarse en la tesis con registro digital 2006737, donde la Primera Sala sostuvo que el daño moral es un género dividido en tres especies: daño al honor, daños estéticos y daños a los sentimientos. Esa cita puede usarse junto con el articulo 1916 del Codigo Civil Federal para estructurar la pretension indemnizatoria.",
+    "citations": [
+      {
+        "citation_id": "cit-juris-2006737",
+        "doc_type": "jurisprudence",
+        "doc_id": "mx-sjf-tesis-2006737",
+        "registry_id": "2006737",
+        "title": "DAÑO MORAL. SU CLASIFICACIÓN EN CUANTO AL CARÁCTER DEL INTERÉS AFECTADO.",
+        "locator": "registro digital 2006737",
+        "jurisdiction": "federal",
+        "source_url": "https://www.scjn.gob.mx/sites/default/files/pagina_transparencia/documento/2016-11/Criterios_PJF_Proteccion_datos_2a_Ed_Feb_2016.pdf",
+        "quote": "En nuestro ordenamiento jurídico se plantea una distinción en el tratamiento de la responsabilidad por daño al patrimonio moral, dependiendo de su carácter. En efecto, puede sostenerse que el daño moral es un género dividido en tres especies, a saber: (i) daño al honor, el cual afecta a una persona en su vida privada, honor o propia imagen; (ii) daños estéticos, que son los que afectan la configuración y los aspectos físicos de las personas; y, (iii) daños a los sentimientos o a la parte afectiva del patrimonio moral, como se les ha denominado en la doctrina, y que hieren a un individuo en sus afectos.",
+        "quote_sha256": "3554dc094f5407a753d503a4b385a910a40e26ff71b0bc242807075fa527e251"
+      },
+      {
+        "citation_id": "cit-ccf-1916-j",
+        "doc_type": "legislation",
+        "doc_id": "mx-federal-ccf",
+        "title": "Codigo Civil Federal",
+        "locator": "articulo 1916",
+        "jurisdiction": "federal",
+        "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/ccf.htm",
+        "official_publication": "DOF",
+        "quote": "Cuando un hecho u omision ilicitos produzcan un dano moral, el responsable del mismo tendra la obligacion de repararlo mediante una indemnizacion en dinero",
+        "quote_sha256": "53c4add5494708a088a2606c4bff7a12553e5d4e128fc3871ff57ea3dcf4b2f5"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "clm-juris-1",
+        "text": "La Primera Sala distinguió tres especies de daño moral en la tesis de registro digital 2006737.",
+        "kind": "jurisprudence",
+        "citation_ids": [
+          "cit-juris-2006737"
+        ]
+      },
+      {
+        "claim_id": "clm-juris-2",
+        "text": "El articulo 1916 del Codigo Civil Federal da soporte normativo a la reparacion por daño moral.",
+        "kind": "legislation",
+        "citation_ids": [
+          "cit-ccf-1916-j"
+        ]
+      }
+    ]
+  },
+  "initial_vote_round": [
+    {
+      "persona": "litigante_actor",
+      "decision": "approve",
+      "confidence": 0.91,
+      "justification": "La combinacion de tesis y articulo sustenta una recomendacion juridicamente usable."
+    },
+    {
+      "persona": "abogado_contraparte",
+      "decision": "conditional",
+      "confidence": 0.78,
+      "justification": "La salida es util, pero debe cuidarse la forma de presentar la tesis para no sobregeneralizar."
+    },
+    {
+      "persona": "juzgador_revisor",
+      "decision": "conditional",
+      "confidence": 0.72,
+      "justification": "La recomendacion es defendible, aunque exige control sobre el alcance del precedente."
+    },
+    {
+      "persona": "revisor_probatorio",
+      "decision": "approve",
+      "confidence": 0.86,
+      "justification": "Los hechos juridicamente relevantes estan suficientemente sustentados para una recomendacion preliminar."
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.87,
+      "justification": "La estructura argumental es consistente y cita evidencia local verificable."
+    }
+  ],
+  "final_vote_round": [
+    {
+      "persona": "litigante_actor",
+      "decision": "approve",
+      "confidence": 0.92,
+      "justification": "La deliberacion reforzo la pertinencia de la tesis y de la norma aplicable."
+    },
+    {
+      "persona": "abogado_contraparte",
+      "decision": "approve",
+      "confidence": 0.84,
+      "justification": "La version final ya delimita la tesis y evita sobreextender sus efectos.",
+      "structured_change_justification": {
+        "trigger": "Se acoto expresamente el alcance de la tesis y se mantuvo la base normativa principal en el articulo 1916.",
+        "evidence_delta": "La salida final ya distingue soporte jurisprudencial de soporte normativo.",
+        "reasoning_delta": "Desaparecio el riesgo de presentar la tesis como regla automatica."
+      }
+    },
+    {
+      "persona": "juzgador_revisor",
+      "decision": "conditional",
+      "confidence": 0.70,
+      "justification": "La recomendacion sigue siendo util, aunque la prudencia en la redaccion sigue siendo necesaria."
+    },
+    {
+      "persona": "revisor_probatorio",
+      "decision": "approve",
+      "confidence": 0.85,
+      "justification": "La deliberacion no revelo vacios probatorios materiales para esta salida preliminar."
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.89,
+      "justification": "La evidencia, la redaccion y el encuadre del precedente son consistentes."
+    }
+  ]
+}

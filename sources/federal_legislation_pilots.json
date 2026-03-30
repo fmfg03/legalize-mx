@@ -1,0 +1,138 @@
+{
+  "documents": [
+    {
+      "norm_id": "mx-federal-cpeum",
+      "path": "mexico/legislation/federal/constitution/cpeum.md",
+      "title": "Constitucion Politica de los Estados Unidos Mexicanos",
+      "short_title": "CPEUM",
+      "category": "constitution",
+      "rank": "constitucion",
+      "subject_tags": ["constitucional"],
+      "source_system": "diputados",
+      "source_id": "cpeum",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm",
+      "official_publication": "DOF",
+      "official_publication_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm",
+      "publication_date": "1917-02-05",
+      "effective_date": "1917-02-05",
+      "last_reform_date": "2025-10-15",
+      "consolidation_date": "2025-10-15",
+      "content_scope": "pilot_selected_articles",
+      "editorial_metadata": [
+        "Fuente principal: Camara de Diputados",
+        "Medio oficial: Diario Oficial de la Federacion",
+        "Publicacion original: DOF 1917-02-05",
+        "Ultima reforma integrada en la compilacion consultada: 2025-10-15",
+        "Alcance del documento piloto: articulos seleccionados"
+      ],
+      "notes": [
+        "Metadatos tomados de la compilacion de la Camara de Diputados.",
+        "Texto del articulo seleccionado normalizado a partir de extractos publicos vinculados a `CPEUM.pdf` y a la ficha `ref/cpeum.htm`.",
+        "Pendiente: ingesta automatica del texto completo vigente desde fuente primaria descargable."
+      ],
+      "sections": [
+        {
+          "section_path": ["Titulo Primero"],
+          "articles": [
+            {
+              "article_number": "1o.",
+              "text": "En los Estados Unidos Mexicanos todas las personas gozaran de los derechos humanos reconocidos en esta Constitucion y en los tratados internacionales de los que el Estado Mexicano sea parte, asi como de las garantias para su proteccion, cuyo ejercicio no podra restringirse ni suspenderse, salvo en los casos y bajo las condiciones que esta Constitucion establece.\n\nLas normas relativas a los derechos humanos se interpretaran de conformidad con esta Constitucion y con los tratados internacionales de la materia favoreciendo en todo tiempo a las personas la proteccion mas amplia.\n\nTodas las autoridades, en el ambito de sus competencias, tienen la obligacion de promover, respetar, proteger y garantizar los derechos humanos de conformidad con los principios de universalidad, interdependencia, indivisibilidad y progresividad. En consecuencia, el Estado debera prevenir, investigar, sancionar y reparar las violaciones a los derechos humanos, en los terminos que establezca la ley.\n\nQueda prohibida toda discriminacion motivada por origen etnico o nacional, el genero, la edad, las discapacidades, la condicion social, las condiciones de salud, la religion, las opiniones, las preferencias sexuales, el estado civil o cualquier otra que atente contra la dignidad humana y tenga por objeto anular o menoscabar los derechos y libertades de las personas."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "norm_id": "mx-federal-ccf",
+      "path": "mexico/legislation/federal/codes/ccf.md",
+      "title": "Codigo Civil Federal",
+      "short_title": "CCF",
+      "category": "code",
+      "rank": "codigo",
+      "subject_tags": ["civil"],
+      "source_system": "diputados",
+      "source_id": "ccf",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/ccf.htm",
+      "official_publication": "DOF",
+      "official_publication_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/ccf.htm",
+      "publication_date": "1928-08-31",
+      "effective_date": "1932-10-01",
+      "last_reform_date": "2025-11-14",
+      "consolidation_date": "2025-11-14",
+      "content_scope": "pilot_selected_articles",
+      "editorial_metadata": [
+        "Fuente principal: Camara de Diputados",
+        "Medio oficial: Diario Oficial de la Federacion",
+        "Publicacion original: DOF 1928-05-26, 1928-07-14, 1928-08-03 y 1928-08-31",
+        "Ultima reforma integrada en la compilacion consultada: 2025-11-14",
+        "Alcance del documento piloto: articulos seleccionados"
+      ],
+      "notes": [
+        "Metadatos tomados de la ficha oficial de la Camara de Diputados.",
+        "Texto del articulo seleccionado normalizado a partir del PDF vigente indexado publicamente por la Camara de Diputados.",
+        "Pendiente: ingesta automatica del texto completo vigente y del historico de reformas."
+      ],
+      "sections": [
+        {
+          "section_path": ["Libro Cuarto"],
+          "articles": [
+            {
+              "article_number": "1916",
+              "text": "Por dano moral se entiende la afectacion que una persona sufre en sus sentimientos, afectos, creencias, decoro, honor, reputacion, vida privada, configuracion y aspecto fisicos, o bien en la consideracion que de si misma tienen los demas. Se presumira que hubo dano moral cuando se vulnere o menoscabe ilegitimamente la libertad o la integridad fisica o psiquica de las personas.\n\nCuando un hecho u omision ilicitos produzcan un dano moral, el responsable del mismo tendra la obligacion de repararlo mediante una indemnizacion en dinero, con independencia de que se haya causado dano material, tanto en responsabilidad contractual como extracontractual. Igual obligacion de reparar el dano moral tendra quien incurra en responsabilidad objetiva conforme a los articulo 1913, asi como el Estado y sus servidores publicos, conforme a los articulos 1927 y 1928, todos ellos del presente Codigo.\n\nLa accion de reparacion no es transmisible a terceros por acto entre vivos y solo pasa a los herederos de la victima cuando esta haya intentado la accion en vida.\n\nEl monto de la indemnizacion lo determinara el juez tomando en cuenta los derechos lesionados, el grado de responsabilidad, la situacion economica del responsable, y la de la victima, asi como las demas circunstancias del caso."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "norm_id": "mx-federal-cpf",
+      "path": "mexico/legislation/federal/codes/cpf.md",
+      "title": "Codigo Penal Federal",
+      "short_title": "CPF",
+      "category": "code",
+      "rank": "codigo",
+      "subject_tags": ["penal"],
+      "source_system": "diputados",
+      "source_id": "cpf",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpf.htm",
+      "official_publication": "DOF",
+      "official_publication_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpf.htm",
+      "publication_date": "1931-08-14",
+      "effective_date": "1931-09-17",
+      "last_reform_date": "2025-11-28",
+      "consolidation_date": "2025-11-28",
+      "content_scope": "pilot_selected_articles",
+      "editorial_metadata": [
+        "Fuente principal: Camara de Diputados",
+        "Medio oficial: Diario Oficial de la Federacion",
+        "Publicacion original: DOF 1931-08-14",
+        "Ultima reforma integrada en la compilacion consultada: 2025-11-28",
+        "Alcance del documento piloto: articulos seleccionados"
+      ],
+      "notes": [
+        "Metadatos tomados de la ficha oficial de la Camara de Diputados.",
+        "Texto de los articulos seleccionados normalizado a partir del PDF vigente indexado publicamente por la Camara de Diputados.",
+        "Pendiente: ingesta automatica del texto completo vigente y del historico de reformas."
+      ],
+      "sections": [
+        {
+          "section_path": ["Libro Primero"],
+          "articles": [
+            {
+              "article_number": "1o.",
+              "text": "Este Codigo se aplicara en toda la Republica para los delitos del orden federal."
+            },
+            {
+              "article_number": "2o.",
+              "text": "Se aplicara, asimismo:\n\nI. Por los delitos que se inicien, preparen o cometan en el extranjero, cuando produzcan o se pretenda que tengan efectos en el territorio de la Republica; o bien, por los delitos que se inicien, preparen o cometan en el extranjero, siempre que un tratado vinculativo para Mexico prevea la obligacion de extraditar o juzgar, se actualicen los requisitos previstos en el articulo 4o. de este Codigo y no se extradite al probable responsable al Estado que lo haya requerido; y\n\nII. Por los delitos cometidos en los consulados mexicanos o en contra de su personal, cuando no hubieren sido juzgados en el pais en que se cometieron."
+            },
+            {
+              "article_number": "3o.",
+              "text": "Los delitos continuos cometidos en el extranjero, que se sigan cometiendo en la Republica, se perseguiran con arreglo a las leyes de esta, sean mexicanos o extranjeros los delincuentes.\n\nLa misma regla se aplicara en el caso de delitos continuados."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

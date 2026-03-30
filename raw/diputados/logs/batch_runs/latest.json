@@ -1,0 +1,29 @@
+{
+  "cycle_id": "e5071bcc-a963-4d5d-a7ba-a47f0273b25e",
+  "started_at": "2026-03-29T23:42:27Z",
+  "finished_at": "2026-03-29T23:50:19Z",
+  "duration_ms": 472531,
+  "batch_exit_code": 1,
+  "command": [
+    "/root/legalize-mx/.venv/bin/python",
+    "/root/legalize-mx/scripts/run_ingestion_batch.py",
+    "--source-ids-file",
+    "/root/legalize-mx/ops/ingestion/source_ids.txt",
+    "--resume-from-log",
+    "--retry-partials",
+    "--allow-partial",
+    "--drain-queue",
+    "--sleep-between",
+    "1.0",
+    "--max-errors",
+    "10",
+    "--timeout",
+    "30",
+    "--retries",
+    "2",
+    "--retry-delay",
+    "1.5"
+  ],
+  "batch_summary": null,
+  "stdout": "{\"processed\": 3, \"succeeded\": 0, \"failed\": 3, \"remaining\": 3, \"queue_path\": \"/root/legalize-mx/raw/diputados/queue/pending_downloads.jsonl\"}\n{\n  \"selected_count\": 3,\n  \"processed\": 2,\n  \"ok\": 0,\n  \"partial\": 2,\n  \"error\": 0,\n  \"skipped\": [\n    {\n      \"source_id\": \"ccf\",\n      \"reason\": \"latest_status_ok\"\n    }\n  ],\n  \"results\": [\n    {\n      \"run_id\": \"af102bfd-5745-4a27-9b63-2cc7342e2358\",\n      \"source_id\": \"cpeum\",\n      \"status\": \"partial\",\n      \"started_at\": \"2026-03-29T23:42:27Z\",\n      \"metadata\": {\n        \"ok\": false,\n        \"source\": null\n      },\n      \"text\": {\n        \"ok\": false,\n        \"path\": null\n      },\n      \"parse\": {\n        \"ok\": false,\n        \"section_count\": 0,\n        \"article_count\": 0\n      },\n      \"import\": {\n        \"ok\": false,\n        \"path\": null,\n        \"temp_json\": null\n      },\n      \"errors\": [\n        {\n          \"stage\": \"metadata\",\n          \"error\": \"[{\\\"source_id\\\": \\\"cpeum\\\", \\\"source_url\\\": \\\"https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm\\\", \\\"error\\\": \\\"timed out\\\"}]\"\n        }\n      ],\n      \"duration_ms\": 93727,\n      \"finished_at\": \"2026-03-29T23:44:01Z\",\n      \"exit_code\": 1,\n      \"log_path\": \"/root/legalize-mx/raw/diputados/logs/ingestion_log.jsonl\"\n    },\n    {\n      \"run_id\": \"0d48c9b0-52cb-46b5-a001-abe64bea1380\",\n      \"source_id\": \"cpf\",\n      \"status\": \"partial\",\n      \"started_at\": \"2026-03-29T23:44:02Z\",\n      \"metadata\": {\n        \"ok\": false,\n        \"source\": null\n      },\n      \"text\": {\n        \"ok\": false,\n        \"path\": null\n      },\n      \"parse\": {\n        \"ok\": false,\n        \"section_count\": 0,\n        \"article_count\": 0\n      },\n      \"import\": {\n        \"ok\": false,\n        \"path\": null,\n        \"temp_json\": null\n      },\n      \"errors\": [\n        {\n          \"stage\": \"metadata\",\n          \"error\": \"[{\\\"source_id\\\": \\\"cpf\\\", \\\"source_url\\\": \\\"https://www.diputados.gob.mx/LeyesBiblio/ref/cpf.htm\\\", \\\"error\\\": \\\"timed out\\\"}]\"\n        }\n      ],\n      \"duration_ms\": 94188,\n      \"finished_at\": \"2026-03-29T23:45:36Z\",\n      \"exit_code\": 1,\n      \"log_path\": \"/root/legalize-mx/raw/diputados/logs/ingestion_log.jsonl\"\n    }\n  ],\n  \"stopped_early\": false,\n  \"queue_drain\": {\n    \"ok\": false,\n    \"exit_code\": 1,\n    \"queue_path\": \"/root/legalize-mx/raw/diputados/queue/pending_downloads.jsonl\",\n    \"remaining\": 3\n  }\n}"
+}

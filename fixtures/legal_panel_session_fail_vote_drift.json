@@ -1,0 +1,109 @@
+{
+  "request": {
+    "task_id": "legal-panel-fail-001",
+    "task_kind": "demand_drafting",
+    "objective": "Emitir una recomendacion sobre daño moral basada en una tesis inexistente.",
+    "query": "¿Existe una tesis obligatoria que haga automatico el daño moral?",
+    "jurisdiction": "federal",
+    "matter_profile": "civil_damage",
+    "query_date": "2026-03-30",
+    "complexity": "high",
+    "consequence_level": "critical",
+    "requires_jurisprudence": true,
+    "writes_for_user": true
+  },
+  "draft_bundle": {
+    "request_id": "req-fail-001",
+    "response_type": "draft",
+    "jurisdiction": "federal",
+    "query_date": "2026-03-30",
+    "response_text": "Existe jurisprudencia firme de la SCJN y tesis obligatoria con registro digital 9999999 que confirma que procede automaticamente el dano moral en este caso.",
+    "citations": [
+      {
+        "citation_id": "cit-fake-juris-1",
+        "doc_type": "jurisprudence",
+        "doc_id": "mx-sjf-fake-9999999",
+        "title": "Tesis inventada sobre dano moral automatico",
+        "locator": "registro digital 9999999",
+        "jurisdiction": "federal",
+        "source_url": "https://sjf.scjn.gob.mx/fake/9999999",
+        "quote": "Procede automaticamente el dano moral en cualquier controversia civil.",
+        "quote_sha256": "92880892bb047da17bf15efbb18f9493a957e7b0a5599de41d1581c6b1b8863e"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "clm-fake-1",
+        "text": "Existe jurisprudencia obligatoria que confirma automaticamente el dano moral.",
+        "kind": "jurisprudence",
+        "citation_ids": [
+          "cit-fake-juris-1"
+        ]
+      }
+    ]
+  },
+  "initial_vote_round": [
+    {
+      "persona": "litigante_actor",
+      "decision": "approve",
+      "confidence": 0.88,
+      "justification": "La respuesta parece util si la tesis existiera."
+    },
+    {
+      "persona": "abogado_contraparte",
+      "decision": "conditional",
+      "confidence": 0.76,
+      "justification": "Falta verificar la existencia y alcance de la tesis citada."
+    },
+    {
+      "persona": "juzgador_revisor",
+      "decision": "conditional",
+      "confidence": 0.70,
+      "justification": "La salida exige validacion adicional."
+    },
+    {
+      "persona": "revisor_probatorio",
+      "decision": "approve",
+      "confidence": 0.80,
+      "justification": "No observo aun un vacio probatorio formal, aunque la base jurisprudencial es dudosa."
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.82,
+      "justification": "La redaccion es clara, aunque la cita no esta confirmada."
+    }
+  ],
+  "final_vote_round": [
+    {
+      "persona": "litigante_actor",
+      "decision": "approve",
+      "confidence": 0.86,
+      "justification": "Mantengo mi voto."
+    },
+    {
+      "persona": "abogado_contraparte",
+      "decision": "approve",
+      "confidence": 0.83,
+      "justification": "Cambio a aprobacion sin exponer la justificacion estructurada requerida."
+    },
+    {
+      "persona": "juzgador_revisor",
+      "decision": "conditional",
+      "confidence": 0.69,
+      "justification": "La salida sigue necesitando cautela."
+    },
+    {
+      "persona": "revisor_probatorio",
+      "decision": "approve",
+      "confidence": 0.81,
+      "justification": "La redaccion sigue siendo clara."
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "reject",
+      "confidence": 0.91,
+      "justification": "La tesis citada no existe en el indice local ni en la fuente juridica valida."
+    }
+  ]
+}

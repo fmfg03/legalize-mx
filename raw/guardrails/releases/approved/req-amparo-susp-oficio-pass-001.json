@@ -1,0 +1,661 @@
+{
+  "request_id": "req-amparo-susp-oficio-pass-001",
+  "response_type": "recommendation",
+  "jurisdiction": "federal",
+  "query_date": "2026-03-30",
+  "response_text": "La recomendacion preliminar de suspension de oficio puede liberarse cuando el supuesto de tutela inmediata esta debidamente identificado, el riesgo grave aparece acreditado y la medida no afecta interes social ni orden publico.",
+  "citations": [
+    {
+      "citation_id": "cit-cpeum-1-amparo-susp-oficio-pass",
+      "doc_type": "legislation",
+      "doc_id": "mx-federal-cpeum",
+      "title": "Constitucion Politica de los Estados Unidos Mexicanos",
+      "locator": "articulo 1o.",
+      "jurisdiction": "federal",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm",
+      "official_publication": "DOF",
+      "quote": "Todas las autoridades, en el ambito de sus competencias, tienen la obligacion de promover, respetar, proteger y garantizar los derechos humanos",
+      "quote_sha256": "a1b84d8b3aa42312c92174c049819ed8f77a0c7292f119ad335d6d0bc4847ad3"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "clm-amparo-susp-oficio-pass-1",
+      "text": "La suspension de oficio solo debe recomendarse cuando el supuesto de tutela inmediata y el riesgo grave estan articulados con precision.",
+      "kind": "legislation",
+      "citation_ids": [
+        "cit-cpeum-1-amparo-susp-oficio-pass"
+      ]
+    }
+  ],
+  "panel_metadata": {
+    "panel_protocol": {
+      "initial_round": "independent_sealed",
+      "final_round": "post_deliberation",
+      "change_guardrail": "structured_justification_required",
+      "majority_rule": "final_round_majority"
+    },
+    "route_decision": {
+      "route": "hybrid",
+      "reason": "Escrito juridico con impacto alto; requiere razonamiento fuerte, ejecucion local y gate de liberacion.",
+      "handoffs": [
+        {
+          "stage": "reason",
+          "provider": "anthropic_api",
+          "requires": [
+            "structured_task_request",
+            "retrieval_context",
+            "explicit_jurisdiction",
+            "query_date",
+            "citation_bundle_target"
+          ]
+        },
+        {
+          "stage": "execute",
+          "provider": "local_ollama",
+          "requires": [
+            "structured_execution_plan",
+            "retrieval_context",
+            "citation_ids",
+            "style_constraints"
+          ]
+        },
+        {
+          "stage": "panel",
+          "provider": "legalize_mx_legal_panel",
+          "requires": [
+            "legal_panel_session",
+            "sealed_first_round",
+            "vote_reveal_evidence"
+          ]
+        },
+        {
+          "stage": "release",
+          "provider": "legalize_mx_guardrails",
+          "requires": [
+            "assistant_response_bundle",
+            "grounding_gate_pass"
+          ]
+        }
+      ],
+      "must_pass_release_gate": true,
+      "legal_panel_script": "/root/legalize-mx/scripts/legal_panel_orchestrator.py",
+      "release_gate_script": "/root/legalize-mx/scripts/release_legal_response.py"
+    },
+    "panel_metrics": {
+      "majority_decision": "approve",
+      "vote_distribution": {
+        "approve": 6
+      },
+      "agreement_ratio": 1.0,
+      "mean_confidence": 0.8316666666666667,
+      "confidence_variance": 0.0014472222222222215,
+      "consensus_confidence": 0.8316666666666667
+    },
+    "vote_changes": [
+      {
+        "persona": "autoridad_responsable_revisor",
+        "initial_decision": "conditional",
+        "final_decision": "approve"
+      }
+    ],
+    "initial_vote_round": [
+      {
+        "persona": "abogado_quejoso",
+        "decision": "approve",
+        "confidence": 0.87,
+        "justification": "La tutela inmediata esta bien planteada.",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "metadata": {}
+      },
+      {
+        "persona": "autoridad_responsable_revisor",
+        "decision": "conditional",
+        "confidence": 0.74,
+        "justification": "La medida requiere delimitacion fina.",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "metadata": {}
+      },
+      {
+        "persona": "secretario_proyectista_revisor",
+        "decision": "approve",
+        "confidence": 0.82,
+        "justification": "El proyecto cautelar es resoluble.",
+        "metadata": {
+          "amparo_suspension_oficio": {
+            "proyecto_cautelar_madurez": "apto"
+          }
+        },
+        "round_id": "round_1_initial_sealed",
+        "sealed": true
+      },
+      {
+        "persona": "revisor_suspension_oficio_amparo",
+        "decision": "approve",
+        "confidence": 0.86,
+        "justification": "El supuesto de suspension de oficio y el riesgo grave estan claros.",
+        "metadata": {
+          "amparo_suspension_oficio": {
+            "supuesto_oficio_status": "claro",
+            "riesgo_grave_status": "acreditado",
+            "medida_status": "viable"
+          }
+        },
+        "round_id": "round_1_initial_sealed",
+        "sealed": true
+      },
+      {
+        "persona": "revisor_interes_social_orden_publico",
+        "decision": "approve",
+        "confidence": 0.83,
+        "justification": "No advierto conflicto relevante con interes social ni orden publico.",
+        "metadata": {
+          "amparo_suspension_oficio": {
+            "interes_social_status": "neutro",
+            "orden_publico_status": "neutro"
+          }
+        },
+        "round_id": "round_1_initial_sealed",
+        "sealed": true
+      },
+      {
+        "persona": "revisor_jurisprudencial",
+        "decision": "approve",
+        "confidence": 0.79,
+        "justification": "No hay problema citacional en esta recomendacion.",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "metadata": {}
+      }
+    ],
+    "final_vote_round": [
+      {
+        "persona": "abogado_quejoso",
+        "decision": "approve",
+        "confidence": 0.88,
+        "justification": "La tutela inmediata sigue estando bien fundada.",
+        "round_id": "round_2_post_deliberation",
+        "sealed": false,
+        "metadata": {}
+      },
+      {
+        "persona": "autoridad_responsable_revisor",
+        "decision": "approve",
+        "confidence": 0.77,
+        "justification": "La deliberacion acoto suficientemente la medida.",
+        "structured_change_justification": {
+          "trigger": "La medida de oficio quedo delimitada con menor impacto operativo.",
+          "evidence_delta": "Se preciso el alcance temporal y material de la tutela.",
+          "reasoning_delta": "Disminuyo el riesgo de exceso cautelar."
+        },
+        "round_id": "round_2_post_deliberation",
+        "sealed": false,
+        "metadata": {}
+      },
+      {
+        "persona": "secretario_proyectista_revisor",
+        "decision": "approve",
+        "confidence": 0.83,
+        "justification": "El proyecto cautelar es emitible.",
+        "metadata": {
+          "amparo_suspension_oficio": {
+            "proyecto_cautelar_madurez": "apto"
+          }
+        },
+        "round_id": "round_2_post_deliberation",
+        "sealed": false
+      },
+      {
+        "persona": "revisor_suspension_oficio_amparo",
+        "decision": "approve",
+        "confidence": 0.87,
+        "justification": "Se conserva un supuesto claro de tutela inmediata con riesgo grave acreditado.",
+        "metadata": {
+          "amparo_suspension_oficio": {
+            "supuesto_oficio_status": "claro",
+            "riesgo_grave_status": "acreditado",
+            "medida_status": "viable"
+          }
+        },
+        "round_id": "round_2_post_deliberation",
+        "sealed": false
+      },
+      {
+        "persona": "revisor_interes_social_orden_publico",
+        "decision": "approve",
+        "confidence": 0.84,
+        "justification": "La medida sigue siendo neutral para interes social y orden publico.",
+        "metadata": {
+          "amparo_suspension_oficio": {
+            "interes_social_status": "neutro",
+            "orden_publico_status": "neutro"
+          }
+        },
+        "round_id": "round_2_post_deliberation",
+        "sealed": false
+      },
+      {
+        "persona": "revisor_jurisprudencial",
+        "decision": "approve",
+        "confidence": 0.8,
+        "justification": "No observo problema citacional.",
+        "round_id": "round_2_post_deliberation",
+        "sealed": false,
+        "metadata": {}
+      }
+    ],
+    "initial_vote_commitments": [
+      {
+        "persona": "abogado_quejoso",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "e809f4030630851c50886dc3c9df2cdcc74e326494e9ba886c68c135dcf0fe68",
+        "reveal_hash": "fc48227286c883bd6220daa571161d6e8354d9c9b7a6b9f76414ca6d9a91b849"
+      },
+      {
+        "persona": "autoridad_responsable_revisor",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "a92a8c2f9ff29e1d698b32ee92a95939b1afee1ba9965506610afd68b7fdc34e",
+        "reveal_hash": "ef0af036c2a90f7feb047a32f6012ef8d3c3dd6d70601667d4194aa099c7eed6"
+      },
+      {
+        "persona": "secretario_proyectista_revisor",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "9f8349b02e2a5e43cd253785410c377fccf5181137ee24221058f43b71eda120",
+        "reveal_hash": "4530268e45610f65cf681d11a5476af4b7f5e0c947fd54028cfac208de33c831"
+      },
+      {
+        "persona": "revisor_suspension_oficio_amparo",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "5f0d64847b0bb19170b1f47787cb8f8061940f2e57baf526f75dafa3ed3fdfd5",
+        "reveal_hash": "8d77237960d67260f678caa58c9ff19d1ff3bf4d3226d24b77b55e4056f0eb76"
+      },
+      {
+        "persona": "revisor_interes_social_orden_publico",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "49b1ef8322252ed25522f63b925d6483d8eafba2c4ce78d8c06393457b32b0df",
+        "reveal_hash": "a5b526e7dcb224b76573f00d78af71fe83091110c0bbf0e0c4d118c7e4a5b359"
+      },
+      {
+        "persona": "revisor_jurisprudencial",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "4364599563b922557a0976dc06b631f3b8b4f7bfb946543485439bc8c595f2a8",
+        "reveal_hash": "c1123649c2a0aaf03bab8c8fbefea9c64e4e2bf9d2f9decfca9d9203e13bd538"
+      }
+    ],
+    "vote_evidence": {
+      "event_type": "legal_panel_vote_protocol_evidence_v1",
+      "evidence_chain_id": "67a3e657c0a57bfca32e804deb949c1931beeaec5810a6f3fb3d4bd0bf8e59fc",
+      "merkle_root": "6d88d0fff197bb7ea38caaf084c10e0b0d1e4e6929002d7326a775e0f568ce07",
+      "events": [
+        {
+          "event_type": "legal_panel_vote_round_sealed_v1",
+          "round_id": "round_1_initial_sealed",
+          "ts": "2026-03-30T02:12:13.872345Z",
+          "event_id": "b23f73bf75f33d84d9278729f0391699de5ce524d4ba7162b2465cf2fa2e8a33",
+          "parent_event_id": null,
+          "payload_hash": "4159bde75033fa524a674dfd23ad3976dc5d3720f2587dafc9920b21350d52d1",
+          "payload": {
+            "query_hash": "4295f4aae5f98936fa15e0cb87156ee8f2672ee3ef41cfe8752f70cc334e9251",
+            "jurisdiction": "federal",
+            "sealed_commitments": [
+              {
+                "persona": "abogado_quejoso",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "e809f4030630851c50886dc3c9df2cdcc74e326494e9ba886c68c135dcf0fe68",
+                "reveal_hash": "fc48227286c883bd6220daa571161d6e8354d9c9b7a6b9f76414ca6d9a91b849"
+              },
+              {
+                "persona": "autoridad_responsable_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "a92a8c2f9ff29e1d698b32ee92a95939b1afee1ba9965506610afd68b7fdc34e",
+                "reveal_hash": "ef0af036c2a90f7feb047a32f6012ef8d3c3dd6d70601667d4194aa099c7eed6"
+              },
+              {
+                "persona": "secretario_proyectista_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "9f8349b02e2a5e43cd253785410c377fccf5181137ee24221058f43b71eda120",
+                "reveal_hash": "4530268e45610f65cf681d11a5476af4b7f5e0c947fd54028cfac208de33c831"
+              },
+              {
+                "persona": "revisor_suspension_oficio_amparo",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "5f0d64847b0bb19170b1f47787cb8f8061940f2e57baf526f75dafa3ed3fdfd5",
+                "reveal_hash": "8d77237960d67260f678caa58c9ff19d1ff3bf4d3226d24b77b55e4056f0eb76"
+              },
+              {
+                "persona": "revisor_interes_social_orden_publico",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "49b1ef8322252ed25522f63b925d6483d8eafba2c4ce78d8c06393457b32b0df",
+                "reveal_hash": "a5b526e7dcb224b76573f00d78af71fe83091110c0bbf0e0c4d118c7e4a5b359"
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "4364599563b922557a0976dc06b631f3b8b4f7bfb946543485439bc8c595f2a8",
+                "reveal_hash": "c1123649c2a0aaf03bab8c8fbefea9c64e4e2bf9d2f9decfca9d9203e13bd538"
+              }
+            ]
+          }
+        },
+        {
+          "event_type": "legal_panel_deliberation_completed_v1",
+          "round_id": "deliberation",
+          "ts": "2026-03-30T02:12:13.872393Z",
+          "event_id": "404b9dccc256513328ec6852ed19fdeac7600c292205281eaa9d405cb0626eb9",
+          "parent_event_id": "b23f73bf75f33d84d9278729f0391699de5ce524d4ba7162b2465cf2fa2e8a33",
+          "payload_hash": "5ba9601a97dc7e5118ad65b519784754e5048f5c474626aad910a25b9ba11d35",
+          "payload": {
+            "query_hash": "4295f4aae5f98936fa15e0cb87156ee8f2672ee3ef41cfe8752f70cc334e9251",
+            "jurisdiction": "federal",
+            "initial_commitment_count": 6
+          }
+        },
+        {
+          "event_type": "legal_panel_vote_round_revealed_v1",
+          "round_id": "round_2_post_deliberation",
+          "ts": "2026-03-30T02:12:13.872420Z",
+          "event_id": "bad7b09f629a02413e20a48f2cee34291b19205608e4f260a17cd889277f7739",
+          "parent_event_id": "404b9dccc256513328ec6852ed19fdeac7600c292205281eaa9d405cb0626eb9",
+          "payload_hash": "554d2e66a08e517a5a1f12353eb645ba37b25ab074d14deb986562b183d17724",
+          "payload": {
+            "query_hash": "4295f4aae5f98936fa15e0cb87156ee8f2672ee3ef41cfe8752f70cc334e9251",
+            "jurisdiction": "federal",
+            "initial_vote_round": [
+              {
+                "persona": "abogado_quejoso",
+                "decision": "approve",
+                "confidence": 0.87,
+                "justification": "La tutela inmediata esta bien planteada.",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "metadata": {}
+              },
+              {
+                "persona": "autoridad_responsable_revisor",
+                "decision": "conditional",
+                "confidence": 0.74,
+                "justification": "La medida requiere delimitacion fina.",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "metadata": {}
+              },
+              {
+                "persona": "secretario_proyectista_revisor",
+                "decision": "approve",
+                "confidence": 0.82,
+                "justification": "El proyecto cautelar es resoluble.",
+                "metadata": {
+                  "amparo_suspension_oficio": {
+                    "proyecto_cautelar_madurez": "apto"
+                  }
+                },
+                "round_id": "round_1_initial_sealed",
+                "sealed": true
+              },
+              {
+                "persona": "revisor_suspension_oficio_amparo",
+                "decision": "approve",
+                "confidence": 0.86,
+                "justification": "El supuesto de suspension de oficio y el riesgo grave estan claros.",
+                "metadata": {
+                  "amparo_suspension_oficio": {
+                    "supuesto_oficio_status": "claro",
+                    "riesgo_grave_status": "acreditado",
+                    "medida_status": "viable"
+                  }
+                },
+                "round_id": "round_1_initial_sealed",
+                "sealed": true
+              },
+              {
+                "persona": "revisor_interes_social_orden_publico",
+                "decision": "approve",
+                "confidence": 0.83,
+                "justification": "No advierto conflicto relevante con interes social ni orden publico.",
+                "metadata": {
+                  "amparo_suspension_oficio": {
+                    "interes_social_status": "neutro",
+                    "orden_publico_status": "neutro"
+                  }
+                },
+                "round_id": "round_1_initial_sealed",
+                "sealed": true
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "decision": "approve",
+                "confidence": 0.79,
+                "justification": "No hay problema citacional en esta recomendacion.",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "metadata": {}
+              }
+            ],
+            "final_vote_round": [
+              {
+                "persona": "abogado_quejoso",
+                "decision": "approve",
+                "confidence": 0.88,
+                "justification": "La tutela inmediata sigue estando bien fundada.",
+                "round_id": "round_2_post_deliberation",
+                "sealed": false,
+                "metadata": {}
+              },
+              {
+                "persona": "autoridad_responsable_revisor",
+                "decision": "approve",
+                "confidence": 0.77,
+                "justification": "La deliberacion acoto suficientemente la medida.",
+                "structured_change_justification": {
+                  "trigger": "La medida de oficio quedo delimitada con menor impacto operativo.",
+                  "evidence_delta": "Se preciso el alcance temporal y material de la tutela.",
+                  "reasoning_delta": "Disminuyo el riesgo de exceso cautelar."
+                },
+                "round_id": "round_2_post_deliberation",
+                "sealed": false,
+                "metadata": {}
+              },
+              {
+                "persona": "secretario_proyectista_revisor",
+                "decision": "approve",
+                "confidence": 0.83,
+                "justification": "El proyecto cautelar es emitible.",
+                "metadata": {
+                  "amparo_suspension_oficio": {
+                    "proyecto_cautelar_madurez": "apto"
+                  }
+                },
+                "round_id": "round_2_post_deliberation",
+                "sealed": false
+              },
+              {
+                "persona": "revisor_suspension_oficio_amparo",
+                "decision": "approve",
+                "confidence": 0.87,
+                "justification": "Se conserva un supuesto claro de tutela inmediata con riesgo grave acreditado.",
+                "metadata": {
+                  "amparo_suspension_oficio": {
+                    "supuesto_oficio_status": "claro",
+                    "riesgo_grave_status": "acreditado",
+                    "medida_status": "viable"
+                  }
+                },
+                "round_id": "round_2_post_deliberation",
+                "sealed": false
+              },
+              {
+                "persona": "revisor_interes_social_orden_publico",
+                "decision": "approve",
+                "confidence": 0.84,
+                "justification": "La medida sigue siendo neutral para interes social y orden publico.",
+                "metadata": {
+                  "amparo_suspension_oficio": {
+                    "interes_social_status": "neutro",
+                    "orden_publico_status": "neutro"
+                  }
+                },
+                "round_id": "round_2_post_deliberation",
+                "sealed": false
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "decision": "approve",
+                "confidence": 0.8,
+                "justification": "No observo problema citacional.",
+                "round_id": "round_2_post_deliberation",
+                "sealed": false,
+                "metadata": {}
+              }
+            ],
+            "sealed_commitments": [
+              {
+                "persona": "abogado_quejoso",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "e809f4030630851c50886dc3c9df2cdcc74e326494e9ba886c68c135dcf0fe68",
+                "reveal_hash": "fc48227286c883bd6220daa571161d6e8354d9c9b7a6b9f76414ca6d9a91b849"
+              },
+              {
+                "persona": "autoridad_responsable_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "a92a8c2f9ff29e1d698b32ee92a95939b1afee1ba9965506610afd68b7fdc34e",
+                "reveal_hash": "ef0af036c2a90f7feb047a32f6012ef8d3c3dd6d70601667d4194aa099c7eed6"
+              },
+              {
+                "persona": "secretario_proyectista_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "9f8349b02e2a5e43cd253785410c377fccf5181137ee24221058f43b71eda120",
+                "reveal_hash": "4530268e45610f65cf681d11a5476af4b7f5e0c947fd54028cfac208de33c831"
+              },
+              {
+                "persona": "revisor_suspension_oficio_amparo",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "5f0d64847b0bb19170b1f47787cb8f8061940f2e57baf526f75dafa3ed3fdfd5",
+                "reveal_hash": "8d77237960d67260f678caa58c9ff19d1ff3bf4d3226d24b77b55e4056f0eb76"
+              },
+              {
+                "persona": "revisor_interes_social_orden_publico",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "49b1ef8322252ed25522f63b925d6483d8eafba2c4ce78d8c06393457b32b0df",
+                "reveal_hash": "a5b526e7dcb224b76573f00d78af71fe83091110c0bbf0e0c4d118c7e4a5b359"
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "4364599563b922557a0976dc06b631f3b8b4f7bfb946543485439bc8c595f2a8",
+                "reveal_hash": "c1123649c2a0aaf03bab8c8fbefea9c64e4e2bf9d2f9decfca9d9203e13bd538"
+              }
+            ],
+            "reveal_material": [
+              {
+                "persona": "abogado_quejoso",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "f5d7140ef941ee8320b9a5aee7dd814e",
+                "reveal_hash": "fc48227286c883bd6220daa571161d6e8354d9c9b7a6b9f76414ca6d9a91b849",
+                "commitment_hash": "e809f4030630851c50886dc3c9df2cdcc74e326494e9ba886c68c135dcf0fe68"
+              },
+              {
+                "persona": "autoridad_responsable_revisor",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "8b44311d5e8c79cab8deae090bc2cda4",
+                "reveal_hash": "ef0af036c2a90f7feb047a32f6012ef8d3c3dd6d70601667d4194aa099c7eed6",
+                "commitment_hash": "a92a8c2f9ff29e1d698b32ee92a95939b1afee1ba9965506610afd68b7fdc34e"
+              },
+              {
+                "persona": "secretario_proyectista_revisor",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "78d81c3c1e9ae06bb34eb7fde0e501bb",
+                "reveal_hash": "4530268e45610f65cf681d11a5476af4b7f5e0c947fd54028cfac208de33c831",
+                "commitment_hash": "9f8349b02e2a5e43cd253785410c377fccf5181137ee24221058f43b71eda120"
+              },
+              {
+                "persona": "revisor_suspension_oficio_amparo",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "d28e4b4a381176a71be080159088b6e6",
+                "reveal_hash": "8d77237960d67260f678caa58c9ff19d1ff3bf4d3226d24b77b55e4056f0eb76",
+                "commitment_hash": "5f0d64847b0bb19170b1f47787cb8f8061940f2e57baf526f75dafa3ed3fdfd5"
+              },
+              {
+                "persona": "revisor_interes_social_orden_publico",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "5c0514fe8966062e0eb4afa8c916bab3",
+                "reveal_hash": "a5b526e7dcb224b76573f00d78af71fe83091110c0bbf0e0c4d118c7e4a5b359",
+                "commitment_hash": "49b1ef8322252ed25522f63b925d6483d8eafba2c4ce78d8c06393457b32b0df"
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "e528e9c85c0559aa2abc65d2ddac97c2",
+                "reveal_hash": "c1123649c2a0aaf03bab8c8fbefea9c64e4e2bf9d2f9decfca9d9203e13bd538",
+                "commitment_hash": "4364599563b922557a0976dc06b631f3b8b4f7bfb946543485439bc8c595f2a8"
+              }
+            ]
+          }
+        }
+      ],
+      "initial_vote_commitments": [
+        {
+          "persona": "abogado_quejoso",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "e809f4030630851c50886dc3c9df2cdcc74e326494e9ba886c68c135dcf0fe68",
+          "reveal_hash": "fc48227286c883bd6220daa571161d6e8354d9c9b7a6b9f76414ca6d9a91b849"
+        },
+        {
+          "persona": "autoridad_responsable_revisor",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "a92a8c2f9ff29e1d698b32ee92a95939b1afee1ba9965506610afd68b7fdc34e",
+          "reveal_hash": "ef0af036c2a90f7feb047a32f6012ef8d3c3dd6d70601667d4194aa099c7eed6"
+        },
+        {
+          "persona": "secretario_proyectista_revisor",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "9f8349b02e2a5e43cd253785410c377fccf5181137ee24221058f43b71eda120",
+          "reveal_hash": "4530268e45610f65cf681d11a5476af4b7f5e0c947fd54028cfac208de33c831"
+        },
+        {
+          "persona": "revisor_suspension_oficio_amparo",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "5f0d64847b0bb19170b1f47787cb8f8061940f2e57baf526f75dafa3ed3fdfd5",
+          "reveal_hash": "8d77237960d67260f678caa58c9ff19d1ff3bf4d3226d24b77b55e4056f0eb76"
+        },
+        {
+          "persona": "revisor_interes_social_orden_publico",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "49b1ef8322252ed25522f63b925d6483d8eafba2c4ce78d8c06393457b32b0df",
+          "reveal_hash": "a5b526e7dcb224b76573f00d78af71fe83091110c0bbf0e0c4d118c7e4a5b359"
+        },
+        {
+          "persona": "revisor_jurisprudencial",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "4364599563b922557a0976dc06b631f3b8b4f7bfb946543485439bc8c595f2a8",
+          "reveal_hash": "c1123649c2a0aaf03bab8c8fbefea9c64e4e2bf9d2f9decfca9d9203e13bd538"
+        }
+      ]
+    }
+  }
+}

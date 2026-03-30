@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legalize-mx.local/schemas/legal_panel_session.schema.json",
+  "title": "LegalPanelSession",
+  "type": "object",
+  "required": [
+    "request",
+    "draft_bundle",
+    "initial_vote_round",
+    "final_vote_round"
+  ],
+  "properties": {
+    "request": {
+      "type": "object",
+      "required": [
+        "task_id",
+        "query",
+        "jurisdiction"
+      ],
+      "properties": {
+        "task_id": { "type": "string" },
+        "task_kind": { "type": ["string", "null"] },
+        "objective": { "type": ["string", "null"] },
+        "query": { "type": "string" },
+        "jurisdiction": { "type": "string" },
+        "matter_profile": { "type": ["string", "null"] },
+        "query_date": { "type": ["string", "null"] },
+        "complexity": { "type": ["string", "null"] },
+        "consequence_level": { "type": ["string", "null"] },
+        "requires_jurisprudence": { "type": ["boolean", "null"] },
+        "writes_for_user": { "type": ["boolean", "null"] }
+      },
+      "additionalProperties": true
+    },
+    "draft_bundle": {
+      "$ref": "assistant_response_bundle.schema.json"
+    },
+    "initial_vote_round": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/voteRecord" }
+    },
+    "final_vote_round": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/voteRecord" }
+    }
+  },
+  "$defs": {
+    "voteRecord": {
+      "type": "object",
+      "required": [
+        "persona",
+        "decision",
+        "confidence",
+        "justification"
+      ],
+      "properties": {
+        "persona": { "type": "string" },
+        "decision": { "type": "string" },
+        "confidence": { "type": "number" },
+        "justification": { "type": "string" },
+        "structured_change_justification": {
+          "type": ["object", "null"],
+          "properties": {
+            "trigger": { "type": ["string", "null"] },
+            "evidence_delta": { "type": ["string", "null"] },
+            "reasoning_delta": { "type": ["string", "null"] }
+          },
+          "additionalProperties": true
+        },
+        "metadata": { "type": ["object", "null"] }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

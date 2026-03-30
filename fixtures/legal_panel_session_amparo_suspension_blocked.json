@@ -1,0 +1,163 @@
+{
+  "request": {
+    "task_id": "legal-panel-amparo-susp-block-001",
+    "task_kind": "demand_drafting",
+    "objective": "Emitir una recomendacion cautelar cuando la suspension invade interes social y la medida es inviable.",
+    "query": "¿Debe bloquearse una recomendacion de suspension si la medida cautelar afecta interes social u orden publico?",
+    "jurisdiction": "federal",
+    "matter_profile": "amparo_suspension",
+    "query_date": "2026-03-30",
+    "complexity": "high",
+    "consequence_level": "critical",
+    "requires_jurisprudence": false,
+    "writes_for_user": true
+  },
+  "draft_bundle": {
+    "request_id": "req-amparo-susp-block-001",
+    "response_type": "recommendation",
+    "jurisdiction": "federal",
+    "query_date": "2026-03-30",
+    "response_text": "Se propone una suspension amplia aun cuando la medida invade interes social y contraviene orden publico.",
+    "citations": [
+      {
+        "citation_id": "cit-cpeum-1-amparo-susp-block",
+        "doc_type": "legislation",
+        "doc_id": "mx-federal-cpeum",
+        "title": "Constitucion Politica de los Estados Unidos Mexicanos",
+        "locator": "articulo 1o.",
+        "jurisdiction": "federal",
+        "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm",
+        "official_publication": "DOF",
+        "quote": "Todas las autoridades, en el ambito de sus competencias, tienen la obligacion de promover, respetar, proteger y garantizar los derechos humanos",
+        "quote_sha256": "a1b84d8b3aa42312c92174c049819ed8f77a0c7292f119ad335d6d0bc4847ad3"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "clm-amparo-susp-block-1",
+        "text": "La recomendacion pretende sostener una suspension amplia.",
+        "kind": "legislation",
+        "citation_ids": [
+          "cit-cpeum-1-amparo-susp-block"
+        ]
+      }
+    ]
+  },
+  "initial_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "approve",
+      "confidence": 0.80,
+      "justification": "Se intenta proteger de inmediato al quejoso."
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "reject",
+      "confidence": 0.78,
+      "justification": "La medida es excesiva."
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "reject",
+      "confidence": 0.88,
+      "justification": "El proyecto cautelar es inviable.",
+      "metadata": {
+        "amparo_suspension": {
+          "proyecto_cautelar_madurez": "inviable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_suspension_amparo",
+      "decision": "reject",
+      "confidence": 0.91,
+      "justification": "La medida cautelar es inviable en sus propios terminos.",
+      "metadata": {
+        "amparo_suspension": {
+          "apariencia_status": "solida",
+          "peligro_demora_status": "acreditado",
+          "medida_status": "inviable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_interes_social_orden_publico",
+      "decision": "reject",
+      "confidence": 0.92,
+      "justification": "La medida afecta interes social y orden publico.",
+      "metadata": {
+        "amparo_suspension": {
+          "interes_social_status": "afectado",
+          "orden_publico_status": "afectado"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.77,
+      "justification": "El problema es cautelar, no citacional."
+    }
+  ],
+  "final_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "conditional",
+      "confidence": 0.76,
+      "justification": "La estrategia cautelar debe replantearse.",
+      "structured_change_justification": {
+        "trigger": "La deliberacion confirmo choques con interes social y viabilidad de la medida.",
+        "evidence_delta": "Se consolidaron objeciones materiales a la suspension.",
+        "reasoning_delta": "La recomendacion ya no puede liberarse como peticion cautelar."
+      }
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "reject",
+      "confidence": 0.79,
+      "justification": "La medida sigue siendo excesiva."
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "reject",
+      "confidence": 0.89,
+      "justification": "El proyecto cautelar sigue siendo inviable.",
+      "metadata": {
+        "amparo_suspension": {
+          "proyecto_cautelar_madurez": "inviable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_suspension_amparo",
+      "decision": "reject",
+      "confidence": 0.92,
+      "justification": "La medida solicitada es inviable.",
+      "metadata": {
+        "amparo_suspension": {
+          "apariencia_status": "solida",
+          "peligro_demora_status": "acreditado",
+          "medida_status": "inviable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_interes_social_orden_publico",
+      "decision": "reject",
+      "confidence": 0.93,
+      "justification": "La medida afecta interes social y orden publico.",
+      "metadata": {
+        "amparo_suspension": {
+          "interes_social_status": "afectado",
+          "orden_publico_status": "afectado"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.78,
+      "justification": "No observo objecion citacional adicional."
+    }
+  ]
+}

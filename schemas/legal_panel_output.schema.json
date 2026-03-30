@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legalize-mx.local/schemas/legal_panel_output.schema.json",
+  "title": "LegalPanelOutput",
+  "type": "object",
+  "required": [
+    "panel_verdict",
+    "panel_metrics",
+    "candidate_bundle_path",
+    "receipt_log"
+  ],
+  "properties": {
+    "panel_verdict": { "type": "string" },
+    "panel_metrics": { "type": "object" },
+    "vote_changes": { "type": "array", "items": { "type": "object" } },
+    "candidate_bundle_path": { "type": "string" },
+    "receipt_log": { "type": "string" },
+    "release_result": { "type": ["object", "null"] },
+    "failures": { "type": "array", "items": { "type": "object" } }
+  },
+  "additionalProperties": true
+}

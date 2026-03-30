@@ -1,0 +1,25 @@
+sources:
+  - source_system: scjn_sjf
+    scope: federal_jurisprudence
+    official_status: official_publication_channel
+    trust_level: highest
+    base_url: https://sjf.scjn.gob.mx/
+    api_reference: https://bicentenario.scjn.gob.mx/manual-usuario-descarga
+    notes:
+      - "Usar para tesis, precedentes, votos y acuerdos."
+
+  - source_system: scjn_sij
+    scope: federal_sentences
+    official_status: official
+    trust_level: high
+    base_url: https://www2.scjn.gob.mx/
+    notes:
+      - "Usar para sentencias y versiones taquigraficas cuando aplique."
+
+  - source_system: scjn_bicentenario
+    scope: open_data_downloads
+    official_status: official
+    trust_level: high
+    base_url: https://bicentenario.scjn.gob.mx/
+    notes:
+      - "Usar para descargas CSV/JSON y documentacion operativa."

@@ -1,0 +1,16 @@
+# Generated indexes and local work artifacts
+*.tmp
+*.log
+*.sqlite
+*.db
+.DS_Store
+__pycache__/
+.pytest_cache/
+.venv/
+
+# Download cache only
+cache/
+
+# Embeddings and vector stores
+vectorstore/
+embeddings/

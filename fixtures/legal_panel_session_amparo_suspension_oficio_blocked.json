@@ -1,0 +1,163 @@
+{
+  "request": {
+    "task_id": "legal-panel-amparo-susp-oficio-block-001",
+    "task_kind": "demand_drafting",
+    "objective": "Bloquear una recomendacion de suspension de oficio cuando falta el supuesto material y la medida afecta interes social.",
+    "query": "¿Debe bloquearse una recomendacion de suspension de oficio si no esta claro el supuesto material y ademas se afecta interes social u orden publico?",
+    "jurisdiction": "federal",
+    "matter_profile": "amparo_suspension_oficio",
+    "query_date": "2026-03-30",
+    "complexity": "high",
+    "consequence_level": "critical",
+    "requires_jurisprudence": false,
+    "writes_for_user": true
+  },
+  "draft_bundle": {
+    "request_id": "req-amparo-susp-oficio-block-001",
+    "response_type": "recommendation",
+    "jurisdiction": "federal",
+    "query_date": "2026-03-30",
+    "response_text": "Se intenta sostener una suspension de oficio sin supuesto material claro y con afectacion al interes social.",
+    "citations": [
+      {
+        "citation_id": "cit-cpeum-1-amparo-susp-oficio-block",
+        "doc_type": "legislation",
+        "doc_id": "mx-federal-cpeum",
+        "title": "Constitucion Politica de los Estados Unidos Mexicanos",
+        "locator": "articulo 1o.",
+        "jurisdiction": "federal",
+        "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm",
+        "official_publication": "DOF",
+        "quote": "Todas las autoridades, en el ambito de sus competencias, tienen la obligacion de promover, respetar, proteger y garantizar los derechos humanos",
+        "quote_sha256": "a1b84d8b3aa42312c92174c049819ed8f77a0c7292f119ad335d6d0bc4847ad3"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "clm-amparo-susp-oficio-block-1",
+        "text": "La propuesta pretende liberar una tutela oficiosa sin base material suficiente.",
+        "kind": "legislation",
+        "citation_ids": [
+          "cit-cpeum-1-amparo-susp-oficio-block"
+        ]
+      }
+    ]
+  },
+  "initial_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "approve",
+      "confidence": 0.79,
+      "justification": "Se busca reaccion inmediata."
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "reject",
+      "confidence": 0.78,
+      "justification": "La medida oficiosa es excesiva."
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "reject",
+      "confidence": 0.88,
+      "justification": "El proyecto cautelar es inviable.",
+      "metadata": {
+        "amparo_suspension_oficio": {
+          "proyecto_cautelar_madurez": "inviable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_suspension_oficio_amparo",
+      "decision": "reject",
+      "confidence": 0.91,
+      "justification": "No hay supuesto material suficiente para suspension de oficio.",
+      "metadata": {
+        "amparo_suspension_oficio": {
+          "supuesto_oficio_status": "ausente",
+          "riesgo_grave_status": "ausente",
+          "medida_status": "inviable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_interes_social_orden_publico",
+      "decision": "reject",
+      "confidence": 0.92,
+      "justification": "La medida afecta interes social y orden publico.",
+      "metadata": {
+        "amparo_suspension_oficio": {
+          "interes_social_status": "afectado",
+          "orden_publico_status": "afectado"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.77,
+      "justification": "El problema es cautelar, no citacional."
+    }
+  ],
+  "final_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "conditional",
+      "confidence": 0.75,
+      "justification": "La estrategia debe replantearse.",
+      "structured_change_justification": {
+        "trigger": "La deliberacion confirmo ausencia del supuesto oficioso y afectacion social.",
+        "evidence_delta": "Se consolidaron objeciones materiales a la tutela inmediata.",
+        "reasoning_delta": "La recomendacion ya no puede salir como suspension de oficio."
+      }
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "reject",
+      "confidence": 0.79,
+      "justification": "La medida sigue siendo excesiva."
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "reject",
+      "confidence": 0.89,
+      "justification": "El proyecto cautelar sigue siendo inviable.",
+      "metadata": {
+        "amparo_suspension_oficio": {
+          "proyecto_cautelar_madurez": "inviable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_suspension_oficio_amparo",
+      "decision": "reject",
+      "confidence": 0.92,
+      "justification": "No existe supuesto material para tutela oficiosa y la medida es inviable.",
+      "metadata": {
+        "amparo_suspension_oficio": {
+          "supuesto_oficio_status": "ausente",
+          "riesgo_grave_status": "ausente",
+          "medida_status": "inviable"
+        }
+      }
+    },
+    {
+      "persona": "revisor_interes_social_orden_publico",
+      "decision": "reject",
+      "confidence": 0.93,
+      "justification": "La medida sigue afectando interes social y orden publico.",
+      "metadata": {
+        "amparo_suspension_oficio": {
+          "interes_social_status": "afectado",
+          "orden_publico_status": "afectado"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.78,
+      "justification": "No observo objecion citacional adicional."
+    }
+  ]
+}

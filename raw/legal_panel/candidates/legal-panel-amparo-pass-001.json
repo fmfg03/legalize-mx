@@ -1,0 +1,662 @@
+{
+  "request_id": "req-amparo-pass-001",
+  "response_type": "recommendation",
+  "jurisdiction": "federal",
+  "query_date": "2026-03-30",
+  "response_text": "La recomendacion preliminar puede centrarse en que el acto de autoridad debe examinarse a la luz del articulo 1o. constitucional, subrayando la obligacion de promover, respetar, proteger y garantizar los derechos humanos. La estructura debe separar con claridad acto reclamado, autoridad responsable, concepto de violacion y efectos constitucionales buscados.",
+  "citations": [
+    {
+      "citation_id": "cit-cpeum-1-amparo",
+      "doc_type": "legislation",
+      "doc_id": "mx-federal-cpeum",
+      "title": "Constitucion Politica de los Estados Unidos Mexicanos",
+      "locator": "articulo 1o.",
+      "jurisdiction": "federal",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm",
+      "official_publication": "DOF",
+      "quote": "Todas las autoridades, en el ambito de sus competencias, tienen la obligacion de promover, respetar, proteger y garantizar los derechos humanos",
+      "quote_sha256": "a1b84d8b3aa42312c92174c049819ed8f77a0c7292f119ad335d6d0bc4847ad3"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "clm-amparo-1",
+      "text": "El articulo 1o. constitucional obliga a todas las autoridades a promover, respetar, proteger y garantizar los derechos humanos.",
+      "kind": "legislation",
+      "citation_ids": [
+        "cit-cpeum-1-amparo"
+      ]
+    }
+  ],
+  "panel_metadata": {
+    "panel_protocol": {
+      "initial_round": "independent_sealed",
+      "final_round": "post_deliberation",
+      "change_guardrail": "structured_justification_required",
+      "majority_rule": "final_round_majority"
+    },
+    "route_decision": {
+      "route": "hybrid",
+      "reason": "Escrito juridico con impacto alto; requiere razonamiento fuerte, ejecucion local y gate de liberacion.",
+      "handoffs": [
+        {
+          "stage": "reason",
+          "provider": "anthropic_api",
+          "requires": [
+            "structured_task_request",
+            "retrieval_context",
+            "explicit_jurisdiction",
+            "query_date",
+            "citation_bundle_target"
+          ]
+        },
+        {
+          "stage": "execute",
+          "provider": "local_ollama",
+          "requires": [
+            "structured_execution_plan",
+            "retrieval_context",
+            "citation_ids",
+            "style_constraints"
+          ]
+        },
+        {
+          "stage": "panel",
+          "provider": "legalize_mx_legal_panel",
+          "requires": [
+            "legal_panel_session",
+            "sealed_first_round",
+            "vote_reveal_evidence"
+          ]
+        },
+        {
+          "stage": "release",
+          "provider": "legalize_mx_guardrails",
+          "requires": [
+            "assistant_response_bundle",
+            "grounding_gate_pass"
+          ]
+        }
+      ],
+      "must_pass_release_gate": true,
+      "legal_panel_script": "/root/legalize-mx/scripts/legal_panel_orchestrator.py",
+      "release_gate_script": "/root/legalize-mx/scripts/release_legal_response.py"
+    },
+    "panel_metrics": {
+      "majority_decision": "approve",
+      "vote_distribution": {
+        "approve": 5,
+        "conditional": 1
+      },
+      "agreement_ratio": 0.8333333333333334,
+      "mean_confidence": 0.8216666666666667,
+      "confidence_variance": 0.0024805555555555557,
+      "consensus_confidence": 0.6847222222222222
+    },
+    "vote_changes": [
+      {
+        "persona": "autoridad_responsable_revisor",
+        "initial_decision": "conditional",
+        "final_decision": "approve"
+      }
+    ],
+    "initial_vote_round": [
+      {
+        "persona": "abogado_quejoso",
+        "decision": "approve",
+        "confidence": 0.9,
+        "justification": "La recomendacion identifica el eje constitucional y la arquitectura minima del escrito.",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "metadata": {}
+      },
+      {
+        "persona": "autoridad_responsable_revisor",
+        "decision": "conditional",
+        "confidence": 0.74,
+        "justification": "La narrativa debe cuidar que el acto reclamado quede mejor delimitado.",
+        "metadata": {
+          "amparo": {
+            "acto_reclamado_status": "dudoso"
+          }
+        },
+        "round_id": "round_1_initial_sealed",
+        "sealed": true
+      },
+      {
+        "persona": "tercero_interesado_revisor",
+        "decision": "conditional",
+        "confidence": 0.73,
+        "justification": "Debe preverse el interes afectado de terceros si existe.",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "metadata": {}
+      },
+      {
+        "persona": "secretario_proyectista_revisor",
+        "decision": "approve",
+        "confidence": 0.83,
+        "justification": "La salida es estructurable en clave judicial sin exagerar sus conclusiones.",
+        "metadata": {
+          "amparo": {
+            "proyecto_madurez": "apto"
+          }
+        },
+        "round_id": "round_1_initial_sealed",
+        "sealed": true
+      },
+      {
+        "persona": "revisor_procedencia_amparo",
+        "decision": "approve",
+        "confidence": 0.81,
+        "justification": "No observo, en esta fase preliminar, una objecion frontal de procedencia.",
+        "metadata": {
+          "amparo": {
+            "acto_reclamado_status": "identificado",
+            "interes_status": "acreditado",
+            "definitividad_status": "cumplida",
+            "suspension_status": "viable"
+          }
+        },
+        "round_id": "round_1_initial_sealed",
+        "sealed": true
+      },
+      {
+        "persona": "revisor_jurisprudencial",
+        "decision": "approve",
+        "confidence": 0.8,
+        "justification": "La salida no sobregeneraliza criterios jurisprudenciales y se apoya en base constitucional valida.",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "metadata": {}
+      }
+    ],
+    "final_vote_round": [
+      {
+        "persona": "abogado_quejoso",
+        "decision": "approve",
+        "confidence": 0.91,
+        "justification": "La recomendacion mantiene el enfoque correcto para formular conceptos de violacion.",
+        "round_id": "round_2_post_deliberation",
+        "sealed": false,
+        "metadata": {}
+      },
+      {
+        "persona": "autoridad_responsable_revisor",
+        "decision": "approve",
+        "confidence": 0.79,
+        "justification": "La deliberacion acoto mejor el acto reclamado y la autoridad responsable.",
+        "structured_change_justification": {
+          "trigger": "Se delimito expresamente el acto reclamado y la estructura del escrito.",
+          "evidence_delta": "La version final distingue acto, autoridad responsable y efectos buscados.",
+          "reasoning_delta": "Desaparecio la objecion inicial sobre indeterminacion del acto."
+        },
+        "metadata": {
+          "amparo": {
+            "acto_reclamado_status": "identificado"
+          }
+        },
+        "round_id": "round_2_post_deliberation",
+        "sealed": false
+      },
+      {
+        "persona": "tercero_interesado_revisor",
+        "decision": "conditional",
+        "confidence": 0.75,
+        "justification": "Sigue siendo prudente verificar si existe tercero interesado concreto.",
+        "round_id": "round_2_post_deliberation",
+        "sealed": false,
+        "metadata": {}
+      },
+      {
+        "persona": "secretario_proyectista_revisor",
+        "decision": "approve",
+        "confidence": 0.85,
+        "justification": "La recomendacion es proyectable como borrador preliminar.",
+        "metadata": {
+          "amparo": {
+            "proyecto_madurez": "apto"
+          }
+        },
+        "round_id": "round_2_post_deliberation",
+        "sealed": false
+      },
+      {
+        "persona": "revisor_procedencia_amparo",
+        "decision": "approve",
+        "confidence": 0.82,
+        "justification": "No hay objecion de procedencia material en esta formulacion preliminar.",
+        "metadata": {
+          "amparo": {
+            "acto_reclamado_status": "identificado",
+            "interes_status": "acreditado",
+            "definitividad_status": "cumplida",
+            "suspension_status": "viable"
+          }
+        },
+        "round_id": "round_2_post_deliberation",
+        "sealed": false
+      },
+      {
+        "persona": "revisor_jurisprudencial",
+        "decision": "approve",
+        "confidence": 0.81,
+        "justification": "No hay uso abusivo de jurisprudencia ni invencion de criterios.",
+        "round_id": "round_2_post_deliberation",
+        "sealed": false,
+        "metadata": {}
+      }
+    ],
+    "initial_vote_commitments": [
+      {
+        "persona": "abogado_quejoso",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "511c9e3ee0c039071add1a5da6c0b2905c187c0e00ac22a516da6a674265bd5a",
+        "reveal_hash": "9c23d704783d641ef0fbf4a18425250b180a1a22f04dd897bfb3c25180042961"
+      },
+      {
+        "persona": "autoridad_responsable_revisor",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "c2ac1836e723d72b5338824ce95de441658bfb935d44cb869367cab590d37de7",
+        "reveal_hash": "687bf45b47ed0eb111dc1ac60b13c0c9da31fdbf24e292732ff6f17f3ec6368f"
+      },
+      {
+        "persona": "tercero_interesado_revisor",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "c1d5b02d503b1f6587ef4055ea71f39fe1ade24f648db11b7883123bde9b5a31",
+        "reveal_hash": "88a6dbc310ccde05323f3996c12d605cae109571667252307c00c12ebd4ec972"
+      },
+      {
+        "persona": "secretario_proyectista_revisor",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "7cfef6e03f0ae497577f219f2cb6a44d9f4a76872cba89d3ee00c514de804322",
+        "reveal_hash": "2f9f67b271d3972d1537496bfecf95d6c34646b602d65d9eac9e008adc4842af"
+      },
+      {
+        "persona": "revisor_procedencia_amparo",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "29866563bfdb30f33286771833fc911a56a14b652e3acd17966d30cf64317096",
+        "reveal_hash": "2c87f9932adc8fa32f2ad6b300fd25451692de4f9a49075ce4a083d403156bc7"
+      },
+      {
+        "persona": "revisor_jurisprudencial",
+        "round_id": "round_1_initial_sealed",
+        "sealed": true,
+        "commitment_hash": "fc8d5401b95ff38b69ce44756d0c8c8e9aba87db562e951eb1a6aea9ca129321",
+        "reveal_hash": "c7f317efc0938ab0cd7f504004f381b6a59e8e0b9710edc1bb11bb3d554a7cf9"
+      }
+    ],
+    "vote_evidence": {
+      "event_type": "legal_panel_vote_protocol_evidence_v1",
+      "evidence_chain_id": "8eac7105459d18434ccdb61dcefecbb1a6c90c77f70f7c94d59711f5d01690cc",
+      "merkle_root": "05e51c450459b081e46c4ca05f43957a3569221af3719aca509e1e8605fc7b9d",
+      "events": [
+        {
+          "event_type": "legal_panel_vote_round_sealed_v1",
+          "round_id": "round_1_initial_sealed",
+          "ts": "2026-03-30T02:03:09.200082Z",
+          "event_id": "eca0d20ec3729cb950c7864c99d055b76f39e1e87d7a6eb25a2711490e4521ec",
+          "parent_event_id": null,
+          "payload_hash": "1586478488a5ca7d7db1b3e6c974d7d7c5776d4134ffb3abecdc4a8856be6b61",
+          "payload": {
+            "query_hash": "73ffec269f19781ddf28fdd466144a1b92709c71130729ba387f1b5723a3b9db",
+            "jurisdiction": "federal",
+            "sealed_commitments": [
+              {
+                "persona": "abogado_quejoso",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "511c9e3ee0c039071add1a5da6c0b2905c187c0e00ac22a516da6a674265bd5a",
+                "reveal_hash": "9c23d704783d641ef0fbf4a18425250b180a1a22f04dd897bfb3c25180042961"
+              },
+              {
+                "persona": "autoridad_responsable_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "c2ac1836e723d72b5338824ce95de441658bfb935d44cb869367cab590d37de7",
+                "reveal_hash": "687bf45b47ed0eb111dc1ac60b13c0c9da31fdbf24e292732ff6f17f3ec6368f"
+              },
+              {
+                "persona": "tercero_interesado_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "c1d5b02d503b1f6587ef4055ea71f39fe1ade24f648db11b7883123bde9b5a31",
+                "reveal_hash": "88a6dbc310ccde05323f3996c12d605cae109571667252307c00c12ebd4ec972"
+              },
+              {
+                "persona": "secretario_proyectista_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "7cfef6e03f0ae497577f219f2cb6a44d9f4a76872cba89d3ee00c514de804322",
+                "reveal_hash": "2f9f67b271d3972d1537496bfecf95d6c34646b602d65d9eac9e008adc4842af"
+              },
+              {
+                "persona": "revisor_procedencia_amparo",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "29866563bfdb30f33286771833fc911a56a14b652e3acd17966d30cf64317096",
+                "reveal_hash": "2c87f9932adc8fa32f2ad6b300fd25451692de4f9a49075ce4a083d403156bc7"
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "fc8d5401b95ff38b69ce44756d0c8c8e9aba87db562e951eb1a6aea9ca129321",
+                "reveal_hash": "c7f317efc0938ab0cd7f504004f381b6a59e8e0b9710edc1bb11bb3d554a7cf9"
+              }
+            ]
+          }
+        },
+        {
+          "event_type": "legal_panel_deliberation_completed_v1",
+          "round_id": "deliberation",
+          "ts": "2026-03-30T02:03:09.200129Z",
+          "event_id": "c6c4fa0184ee405ea1b3c693b90b076c206fecf1ac1cdd69f6495fead959726b",
+          "parent_event_id": "eca0d20ec3729cb950c7864c99d055b76f39e1e87d7a6eb25a2711490e4521ec",
+          "payload_hash": "016233066dce6c067793a14ad462516087d5f121333a3f0eaf765a1c27f37634",
+          "payload": {
+            "query_hash": "73ffec269f19781ddf28fdd466144a1b92709c71130729ba387f1b5723a3b9db",
+            "jurisdiction": "federal",
+            "initial_commitment_count": 6
+          }
+        },
+        {
+          "event_type": "legal_panel_vote_round_revealed_v1",
+          "round_id": "round_2_post_deliberation",
+          "ts": "2026-03-30T02:03:09.200153Z",
+          "event_id": "6903b6b2b1d0b52400da5f6b16a4ec607340dc6b06157a293a8a8327f6263305",
+          "parent_event_id": "c6c4fa0184ee405ea1b3c693b90b076c206fecf1ac1cdd69f6495fead959726b",
+          "payload_hash": "0dd5f9894da736a4bb5cc6ea2340019505a68b6b841ad29c5932ce7c01a20051",
+          "payload": {
+            "query_hash": "73ffec269f19781ddf28fdd466144a1b92709c71130729ba387f1b5723a3b9db",
+            "jurisdiction": "federal",
+            "initial_vote_round": [
+              {
+                "persona": "abogado_quejoso",
+                "decision": "approve",
+                "confidence": 0.9,
+                "justification": "La recomendacion identifica el eje constitucional y la arquitectura minima del escrito.",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "metadata": {}
+              },
+              {
+                "persona": "autoridad_responsable_revisor",
+                "decision": "conditional",
+                "confidence": 0.74,
+                "justification": "La narrativa debe cuidar que el acto reclamado quede mejor delimitado.",
+                "metadata": {
+                  "amparo": {
+                    "acto_reclamado_status": "dudoso"
+                  }
+                },
+                "round_id": "round_1_initial_sealed",
+                "sealed": true
+              },
+              {
+                "persona": "tercero_interesado_revisor",
+                "decision": "conditional",
+                "confidence": 0.73,
+                "justification": "Debe preverse el interes afectado de terceros si existe.",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "metadata": {}
+              },
+              {
+                "persona": "secretario_proyectista_revisor",
+                "decision": "approve",
+                "confidence": 0.83,
+                "justification": "La salida es estructurable en clave judicial sin exagerar sus conclusiones.",
+                "metadata": {
+                  "amparo": {
+                    "proyecto_madurez": "apto"
+                  }
+                },
+                "round_id": "round_1_initial_sealed",
+                "sealed": true
+              },
+              {
+                "persona": "revisor_procedencia_amparo",
+                "decision": "approve",
+                "confidence": 0.81,
+                "justification": "No observo, en esta fase preliminar, una objecion frontal de procedencia.",
+                "metadata": {
+                  "amparo": {
+                    "acto_reclamado_status": "identificado",
+                    "interes_status": "acreditado",
+                    "definitividad_status": "cumplida",
+                    "suspension_status": "viable"
+                  }
+                },
+                "round_id": "round_1_initial_sealed",
+                "sealed": true
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "decision": "approve",
+                "confidence": 0.8,
+                "justification": "La salida no sobregeneraliza criterios jurisprudenciales y se apoya en base constitucional valida.",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "metadata": {}
+              }
+            ],
+            "final_vote_round": [
+              {
+                "persona": "abogado_quejoso",
+                "decision": "approve",
+                "confidence": 0.91,
+                "justification": "La recomendacion mantiene el enfoque correcto para formular conceptos de violacion.",
+                "round_id": "round_2_post_deliberation",
+                "sealed": false,
+                "metadata": {}
+              },
+              {
+                "persona": "autoridad_responsable_revisor",
+                "decision": "approve",
+                "confidence": 0.79,
+                "justification": "La deliberacion acoto mejor el acto reclamado y la autoridad responsable.",
+                "structured_change_justification": {
+                  "trigger": "Se delimito expresamente el acto reclamado y la estructura del escrito.",
+                  "evidence_delta": "La version final distingue acto, autoridad responsable y efectos buscados.",
+                  "reasoning_delta": "Desaparecio la objecion inicial sobre indeterminacion del acto."
+                },
+                "metadata": {
+                  "amparo": {
+                    "acto_reclamado_status": "identificado"
+                  }
+                },
+                "round_id": "round_2_post_deliberation",
+                "sealed": false
+              },
+              {
+                "persona": "tercero_interesado_revisor",
+                "decision": "conditional",
+                "confidence": 0.75,
+                "justification": "Sigue siendo prudente verificar si existe tercero interesado concreto.",
+                "round_id": "round_2_post_deliberation",
+                "sealed": false,
+                "metadata": {}
+              },
+              {
+                "persona": "secretario_proyectista_revisor",
+                "decision": "approve",
+                "confidence": 0.85,
+                "justification": "La recomendacion es proyectable como borrador preliminar.",
+                "metadata": {
+                  "amparo": {
+                    "proyecto_madurez": "apto"
+                  }
+                },
+                "round_id": "round_2_post_deliberation",
+                "sealed": false
+              },
+              {
+                "persona": "revisor_procedencia_amparo",
+                "decision": "approve",
+                "confidence": 0.82,
+                "justification": "No hay objecion de procedencia material en esta formulacion preliminar.",
+                "metadata": {
+                  "amparo": {
+                    "acto_reclamado_status": "identificado",
+                    "interes_status": "acreditado",
+                    "definitividad_status": "cumplida",
+                    "suspension_status": "viable"
+                  }
+                },
+                "round_id": "round_2_post_deliberation",
+                "sealed": false
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "decision": "approve",
+                "confidence": 0.81,
+                "justification": "No hay uso abusivo de jurisprudencia ni invencion de criterios.",
+                "round_id": "round_2_post_deliberation",
+                "sealed": false,
+                "metadata": {}
+              }
+            ],
+            "sealed_commitments": [
+              {
+                "persona": "abogado_quejoso",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "511c9e3ee0c039071add1a5da6c0b2905c187c0e00ac22a516da6a674265bd5a",
+                "reveal_hash": "9c23d704783d641ef0fbf4a18425250b180a1a22f04dd897bfb3c25180042961"
+              },
+              {
+                "persona": "autoridad_responsable_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "c2ac1836e723d72b5338824ce95de441658bfb935d44cb869367cab590d37de7",
+                "reveal_hash": "687bf45b47ed0eb111dc1ac60b13c0c9da31fdbf24e292732ff6f17f3ec6368f"
+              },
+              {
+                "persona": "tercero_interesado_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "c1d5b02d503b1f6587ef4055ea71f39fe1ade24f648db11b7883123bde9b5a31",
+                "reveal_hash": "88a6dbc310ccde05323f3996c12d605cae109571667252307c00c12ebd4ec972"
+              },
+              {
+                "persona": "secretario_proyectista_revisor",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "7cfef6e03f0ae497577f219f2cb6a44d9f4a76872cba89d3ee00c514de804322",
+                "reveal_hash": "2f9f67b271d3972d1537496bfecf95d6c34646b602d65d9eac9e008adc4842af"
+              },
+              {
+                "persona": "revisor_procedencia_amparo",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "29866563bfdb30f33286771833fc911a56a14b652e3acd17966d30cf64317096",
+                "reveal_hash": "2c87f9932adc8fa32f2ad6b300fd25451692de4f9a49075ce4a083d403156bc7"
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "round_id": "round_1_initial_sealed",
+                "sealed": true,
+                "commitment_hash": "fc8d5401b95ff38b69ce44756d0c8c8e9aba87db562e951eb1a6aea9ca129321",
+                "reveal_hash": "c7f317efc0938ab0cd7f504004f381b6a59e8e0b9710edc1bb11bb3d554a7cf9"
+              }
+            ],
+            "reveal_material": [
+              {
+                "persona": "abogado_quejoso",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "b62957a7f9da10fa2e7084b8a2f4baae",
+                "reveal_hash": "9c23d704783d641ef0fbf4a18425250b180a1a22f04dd897bfb3c25180042961",
+                "commitment_hash": "511c9e3ee0c039071add1a5da6c0b2905c187c0e00ac22a516da6a674265bd5a"
+              },
+              {
+                "persona": "autoridad_responsable_revisor",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "92ae3acb7cde74ac7d2f37a67d9ac023",
+                "reveal_hash": "687bf45b47ed0eb111dc1ac60b13c0c9da31fdbf24e292732ff6f17f3ec6368f",
+                "commitment_hash": "c2ac1836e723d72b5338824ce95de441658bfb935d44cb869367cab590d37de7"
+              },
+              {
+                "persona": "tercero_interesado_revisor",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "d410a4d81b27c485fb28e2eef28f370d",
+                "reveal_hash": "88a6dbc310ccde05323f3996c12d605cae109571667252307c00c12ebd4ec972",
+                "commitment_hash": "c1d5b02d503b1f6587ef4055ea71f39fe1ade24f648db11b7883123bde9b5a31"
+              },
+              {
+                "persona": "secretario_proyectista_revisor",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "45818b670bfbe309fa9be4aff9441dfc",
+                "reveal_hash": "2f9f67b271d3972d1537496bfecf95d6c34646b602d65d9eac9e008adc4842af",
+                "commitment_hash": "7cfef6e03f0ae497577f219f2cb6a44d9f4a76872cba89d3ee00c514de804322"
+              },
+              {
+                "persona": "revisor_procedencia_amparo",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "3a3ed367b47a767ad97042100a878d05",
+                "reveal_hash": "2c87f9932adc8fa32f2ad6b300fd25451692de4f9a49075ce4a083d403156bc7",
+                "commitment_hash": "29866563bfdb30f33286771833fc911a56a14b652e3acd17966d30cf64317096"
+              },
+              {
+                "persona": "revisor_jurisprudencial",
+                "round_id": "round_1_initial_sealed",
+                "reveal_nonce": "5a313c8d54713438f780e6254553a038",
+                "reveal_hash": "c7f317efc0938ab0cd7f504004f381b6a59e8e0b9710edc1bb11bb3d554a7cf9",
+                "commitment_hash": "fc8d5401b95ff38b69ce44756d0c8c8e9aba87db562e951eb1a6aea9ca129321"
+              }
+            ]
+          }
+        }
+      ],
+      "initial_vote_commitments": [
+        {
+          "persona": "abogado_quejoso",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "511c9e3ee0c039071add1a5da6c0b2905c187c0e00ac22a516da6a674265bd5a",
+          "reveal_hash": "9c23d704783d641ef0fbf4a18425250b180a1a22f04dd897bfb3c25180042961"
+        },
+        {
+          "persona": "autoridad_responsable_revisor",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "c2ac1836e723d72b5338824ce95de441658bfb935d44cb869367cab590d37de7",
+          "reveal_hash": "687bf45b47ed0eb111dc1ac60b13c0c9da31fdbf24e292732ff6f17f3ec6368f"
+        },
+        {
+          "persona": "tercero_interesado_revisor",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "c1d5b02d503b1f6587ef4055ea71f39fe1ade24f648db11b7883123bde9b5a31",
+          "reveal_hash": "88a6dbc310ccde05323f3996c12d605cae109571667252307c00c12ebd4ec972"
+        },
+        {
+          "persona": "secretario_proyectista_revisor",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "7cfef6e03f0ae497577f219f2cb6a44d9f4a76872cba89d3ee00c514de804322",
+          "reveal_hash": "2f9f67b271d3972d1537496bfecf95d6c34646b602d65d9eac9e008adc4842af"
+        },
+        {
+          "persona": "revisor_procedencia_amparo",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "29866563bfdb30f33286771833fc911a56a14b652e3acd17966d30cf64317096",
+          "reveal_hash": "2c87f9932adc8fa32f2ad6b300fd25451692de4f9a49075ce4a083d403156bc7"
+        },
+        {
+          "persona": "revisor_jurisprudencial",
+          "round_id": "round_1_initial_sealed",
+          "sealed": true,
+          "commitment_hash": "fc8d5401b95ff38b69ce44756d0c8c8e9aba87db562e951eb1a6aea9ca129321",
+          "reveal_hash": "c7f317efc0938ab0cd7f504004f381b6a59e8e0b9710edc1bb11bb3d554a7cf9"
+        }
+      ]
+    }
+  }
+}

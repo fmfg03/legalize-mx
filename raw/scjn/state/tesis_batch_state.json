@@ -1,0 +1,24 @@
+{
+  "document_kind": "tesis",
+  "next_page": 3,
+  "completed": false,
+  "runs": 2,
+  "last_run_at": "2026-03-30T01:02:50.040411Z",
+  "last_status": "ok",
+  "last_count_total": 311319,
+  "last_source_index": "tesis",
+  "last_registry_ids": [
+    "2031967",
+    "2031966",
+    "2031965",
+    "2031964",
+    "2031963",
+    "2031962",
+    "2031961",
+    "2031960",
+    "2031959",
+    "2031958"
+  ],
+  "last_pages_fetched": 1,
+  "last_page_size": 10
+}

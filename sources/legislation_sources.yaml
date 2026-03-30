@@ -1,0 +1,25 @@
+sources:
+  - source_system: diputados
+    scope: federal_legislation
+    official_status: informative_compilation
+    trust_level: high_with_verification
+    base_url: https://www.diputados.gob.mx/LeyesBiblio/
+    notes:
+      - "Texto vigente util para consolidacion."
+      - "Validar contra DOF cuando exista conflicto."
+
+  - source_system: dof
+    scope: federal_official_publication
+    official_status: official
+    trust_level: highest
+    base_url: https://www.dof.gob.mx/
+    notes:
+      - "Fuente canonica para decretos, reformas y vigencia oficial."
+
+  - source_system: ojn
+    scope: supplemental_federal_state_municipal
+    official_status: informative_compilation
+    trust_level: medium
+    base_url: https://www.ordenjuridico.gob.mx/
+    notes:
+      - "No usar como unica fuente de verdad."

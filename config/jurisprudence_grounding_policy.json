@@ -1,0 +1,23 @@
+{
+  "policy_id": "legalize-mx-jurisprudence-grounding-v1",
+  "description": "Bloquea respuestas juridicas que mencionen jurisprudencia sin evidencia local verificable.",
+  "jurisprudence_claim_kinds": [
+    "jurisprudence",
+    "mixed"
+  ],
+  "require_local_index_match": true,
+  "require_quote_for_jurisprudence": true,
+  "forbidden_without_evidence_patterns": [
+    "\\bjurisprudenc(?:ia|ial)\\b",
+    "\\btesis\\b",
+    "\\bprecedent(?:e|es)\\b",
+    "registro\\s+digital",
+    "\\bscjn\\b",
+    "\\bsjf\\b",
+    "contradicci[oó]n\\s+de\\s+tesis",
+    "tribunal\\s+colegiado",
+    "pleno\\s+regional",
+    "primera\\s+sala",
+    "segunda\\s+sala"
+  ]
+}

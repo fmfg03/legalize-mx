@@ -1,0 +1,18 @@
+{
+  "policy_id": "legalize-mx-legal-response-release-v1",
+  "description": "Todo escrito juridico liberable debe pasar por el gate de grounding jurisprudencial antes de salir.",
+  "protected_response_types": [
+    "draft",
+    "demand",
+    "lawsuit",
+    "petition",
+    "brief",
+    "motion",
+    "recommendation",
+    "conclusion",
+    "legal_opinion"
+  ],
+  "required_gates": [
+    "legalize-mx-jurisprudence-grounding-v1"
+  ]
+}

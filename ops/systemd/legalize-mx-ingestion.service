@@ -1,0 +1,13 @@
+[Unit]
+Description=legalize-mx federal ingestion batch
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/root/legalize-mx
+ExecStart=/root/legalize-mx/.venv/bin/python /root/legalize-mx/scripts/run_ingestion_cycle.py --source-ids-file /root/legalize-mx/ops/ingestion/source_ids.txt --resume-from-log --retry-partials --allow-partial --drain-queue --max-errors 10 --sleep-between 1
+Nice=10
+
+[Install]
+WantedBy=multi-user.target

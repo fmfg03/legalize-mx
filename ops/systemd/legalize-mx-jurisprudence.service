@@ -1,0 +1,13 @@
+[Unit]
+Description=legalize-mx SCJN jurisprudence ingestion batch
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/root/legalize-mx
+ExecStart=/root/legalize-mx/.venv/bin/python /root/legalize-mx/scripts/run_scjn_jurisprudence_cycle.py --all-kinds --page-size 10 --pages-per-run 1
+Nice=10
+
+[Install]
+WantedBy=multi-user.target

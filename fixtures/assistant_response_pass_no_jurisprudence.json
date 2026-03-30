@@ -1,0 +1,51 @@
+{
+  "request_id": "req-pass-001",
+  "response_type": "recommendation",
+  "jurisdiction": "federal",
+  "query_date": "2026-03-30",
+  "response_text": "La demanda debe fundarse en el articulo 1o. constitucional para sostener la obligacion de todas las autoridades de promover, respetar, proteger y garantizar los derechos humanos. Si el dano moral es relevante, el articulo 1916 del Codigo Civil Federal da la base normativa para reclamar indemnizacion.",
+  "citations": [
+    {
+      "citation_id": "cit-cpeum-1",
+      "doc_type": "legislation",
+      "doc_id": "mx-federal-cpeum",
+      "title": "Constitucion Politica de los Estados Unidos Mexicanos",
+      "locator": "articulo 1o.",
+      "jurisdiction": "federal",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm",
+      "official_publication": "DOF",
+      "quote": "Todas las autoridades, en el ambito de sus competencias, tienen la obligacion de promover, respetar, proteger y garantizar los derechos humanos",
+      "quote_sha256": "a1b84d8b3aa42312c92174c049819ed8f77a0c7292f119ad335d6d0bc4847ad3"
+    },
+    {
+      "citation_id": "cit-ccf-1916",
+      "doc_type": "legislation",
+      "doc_id": "mx-federal-ccf",
+      "title": "Codigo Civil Federal",
+      "locator": "articulo 1916",
+      "jurisdiction": "federal",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/ccf.htm",
+      "official_publication": "DOF",
+      "quote": "Cuando un hecho u omision ilicitos produzcan un dano moral, el responsable del mismo tendra la obligacion de repararlo mediante una indemnizacion en dinero",
+      "quote_sha256": "53c4add5494708a088a2606c4bff7a12553e5d4e128fc3871ff57ea3dcf4b2f5"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "clm-1",
+      "text": "El articulo 1o. constitucional impone deberes de proteccion de derechos humanos a todas las autoridades.",
+      "kind": "legislation",
+      "citation_ids": [
+        "cit-cpeum-1"
+      ]
+    },
+    {
+      "claim_id": "clm-2",
+      "text": "El articulo 1916 del Codigo Civil Federal permite fundar una reclamacion por dano moral.",
+      "kind": "legislation",
+      "citation_ids": [
+        "cit-ccf-1916"
+      ]
+    }
+  ]
+}

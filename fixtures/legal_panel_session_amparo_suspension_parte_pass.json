@@ -1,0 +1,165 @@
+{
+  "request": {
+    "task_id": "legal-panel-amparo-susp-parte-pass-001",
+    "task_kind": "demand_drafting",
+    "objective": "Emitir una recomendacion preliminar de suspension a peticion de parte cuando la apariencia del derecho, el peligro y la garantia estan razonablemente cubiertos.",
+    "query": "¿Puede liberarse una recomendacion de suspension a peticion de parte cuando hay apariencia suficiente, peligro acreditado y garantia cautelar atendible?",
+    "jurisdiction": "federal",
+    "matter_profile": "amparo_suspension_parte",
+    "query_date": "2026-03-30",
+    "complexity": "high",
+    "consequence_level": "critical",
+    "requires_jurisprudence": false,
+    "writes_for_user": true
+  },
+  "draft_bundle": {
+    "request_id": "req-amparo-susp-parte-pass-001",
+    "response_type": "recommendation",
+    "jurisdiction": "federal",
+    "query_date": "2026-03-30",
+    "response_text": "La recomendacion preliminar de suspension a peticion de parte puede liberarse cuando la apariencia del derecho es suficiente, el riesgo de dano se encuentra articulado y la garantia cautelar es atendible sin afectar interes social ni orden publico.",
+    "citations": [
+      {
+        "citation_id": "cit-cpeum-1-amparo-susp-parte-pass",
+        "doc_type": "legislation",
+        "doc_id": "mx-federal-cpeum",
+        "title": "Constitucion Politica de los Estados Unidos Mexicanos",
+        "locator": "articulo 1o.",
+        "jurisdiction": "federal",
+        "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm",
+        "official_publication": "DOF",
+        "quote": "Todas las autoridades, en el ambito de sus competencias, tienen la obligacion de promover, respetar, proteger y garantizar los derechos humanos",
+        "quote_sha256": "a1b84d8b3aa42312c92174c049819ed8f77a0c7292f119ad335d6d0bc4847ad3"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "clm-amparo-susp-parte-pass-1",
+        "text": "La peticion cautelar requiere apariencia, peligro y garantia razonablemente suficientes.",
+        "kind": "legislation",
+        "citation_ids": [
+          "cit-cpeum-1-amparo-susp-parte-pass"
+        ]
+      }
+    ]
+  },
+  "initial_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "approve",
+      "confidence": 0.88,
+      "justification": "La peticion cautelar es defendible."
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "conditional",
+      "confidence": 0.72,
+      "justification": "Debe afinarse la garantia."
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "approve",
+      "confidence": 0.82,
+      "justification": "El proyecto cautelar es proyectable.",
+      "metadata": {
+        "amparo_suspension_parte": {
+          "proyecto_cautelar_madurez": "apto"
+        }
+      }
+    },
+    {
+      "persona": "revisor_suspension_parte_amparo",
+      "decision": "approve",
+      "confidence": 0.85,
+      "justification": "Apariencia, peligro y garantia se sostienen en nivel suficiente.",
+      "metadata": {
+        "amparo_suspension_parte": {
+          "apariencia_status": "solida",
+          "peligro_demora_status": "acreditado",
+          "medida_status": "viable",
+          "garantia_status": "cubierta"
+        }
+      }
+    },
+    {
+      "persona": "revisor_interes_social_orden_publico",
+      "decision": "approve",
+      "confidence": 0.83,
+      "justification": "La medida no invade interes social ni orden publico.",
+      "metadata": {
+        "amparo_suspension_parte": {
+          "interes_social_status": "neutro",
+          "orden_publico_status": "neutro"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.79,
+      "justification": "No hay problema citacional en esta recomendacion."
+    }
+  ],
+  "final_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "approve",
+      "confidence": 0.89,
+      "justification": "La peticion cautelar sigue siendo defendible."
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "approve",
+      "confidence": 0.77,
+      "justification": "La deliberacion mejoro la explicacion de la garantia cautelar.",
+      "structured_change_justification": {
+        "trigger": "Se preciso la cobertura de garantia y el alcance de la medida.",
+        "evidence_delta": "La peticion ya no deja vacios sobre respaldo cautelar.",
+        "reasoning_delta": "Disminuyo el riesgo de una suspension sobredimensionada."
+      }
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "approve",
+      "confidence": 0.83,
+      "justification": "El proyecto cautelar es emitible.",
+      "metadata": {
+        "amparo_suspension_parte": {
+          "proyecto_cautelar_madurez": "apto"
+        }
+      }
+    },
+    {
+      "persona": "revisor_suspension_parte_amparo",
+      "decision": "approve",
+      "confidence": 0.86,
+      "justification": "Se mantienen apariencia, peligro y garantia en rango defendible.",
+      "metadata": {
+        "amparo_suspension_parte": {
+          "apariencia_status": "solida",
+          "peligro_demora_status": "acreditado",
+          "medida_status": "viable",
+          "garantia_status": "cubierta"
+        }
+      }
+    },
+    {
+      "persona": "revisor_interes_social_orden_publico",
+      "decision": "approve",
+      "confidence": 0.84,
+      "justification": "La medida sigue siendo neutral para interes social y orden publico.",
+      "metadata": {
+        "amparo_suspension_parte": {
+          "interes_social_status": "neutro",
+          "orden_publico_status": "neutro"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.8,
+      "justification": "No observo problema citacional."
+    }
+  ]
+}

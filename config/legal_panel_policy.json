@@ -1,0 +1,431 @@
+{
+  "policy_id": "legalize-mx-legal-panel-v1",
+  "description": "Paneles colegiados por materia para escritos juridicos de alto impacto con primera ronda sellada, reveal post-deliberacion, veto funcional y escalacion por rol critico.",
+  "require_structured_change_justification": true,
+  "allowed_release_decisions": [
+    "approve",
+    "conditional"
+  ],
+  "blocked_majority_decisions": [
+    "reject",
+    "abstain"
+  ],
+  "default_profile": "civil_damage",
+  "profiles": {
+    "civil_damage": {
+      "description": "Panel para reclamaciones civiles y teoria del caso por daño moral u otras pretensiones indemnizatorias.",
+      "panel_personas": [
+        "litigante_actor",
+        "abogado_contraparte",
+        "juzgador_revisor",
+        "revisor_probatorio",
+        "revisor_jurisprudencial"
+      ],
+      "blocking_roles": {
+        "revisor_probatorio": [
+          "reject"
+        ],
+        "revisor_jurisprudencial": [
+          "reject"
+        ]
+      },
+      "escalation_roles": {
+        "revisor_probatorio": [
+          "conditional"
+        ],
+        "revisor_jurisprudencial": [
+          "conditional"
+        ]
+      }
+    },
+    "penal_defense": {
+      "description": "Panel para asuntos penales con tension entre defensa, fiscalia y control judicial.",
+      "panel_personas": [
+        "abogado_defensa",
+        "ministerio_publico_revisor",
+        "juez_control_revisor",
+        "revisor_probatorio",
+        "revisor_constitucional"
+      ],
+      "blocking_roles": {
+        "revisor_probatorio": [
+          "reject"
+        ],
+        "revisor_constitucional": [
+          "reject"
+        ]
+      },
+      "escalation_roles": {
+        "juez_control_revisor": [
+          "conditional"
+        ],
+        "revisor_constitucional": [
+          "conditional"
+        ]
+      }
+    },
+    "amparo": {
+      "description": "Panel para estrategia de amparo con control de procedencia, tension entre quejoso, autoridad, tercero interesado y revision proyectista.",
+      "panel_personas": [
+        "abogado_quejoso",
+        "autoridad_responsable_revisor",
+        "tercero_interesado_revisor",
+        "secretario_proyectista_revisor",
+        "revisor_procedencia_amparo",
+        "revisor_jurisprudencial"
+      ],
+      "blocking_roles": {
+        "revisor_procedencia_amparo": [
+          "reject"
+        ],
+        "revisor_jurisprudencial": [
+          "reject"
+        ],
+        "secretario_proyectista_revisor": [
+          "reject"
+        ]
+      },
+      "escalation_roles": {
+        "revisor_procedencia_amparo": [
+          "conditional"
+        ],
+        "secretario_proyectista_revisor": [
+          "conditional"
+        ],
+        "revisor_jurisprudencial": [
+          "conditional"
+        ]
+      },
+      "required_metadata_paths": {
+        "revisor_procedencia_amparo": [
+          "metadata.amparo.acto_reclamado_status",
+          "metadata.amparo.interes_status",
+          "metadata.amparo.definitividad_status",
+          "metadata.amparo.suspension_status"
+        ],
+        "secretario_proyectista_revisor": [
+          "metadata.amparo.proyecto_madurez"
+        ]
+      },
+      "issue_controls": [
+        {
+          "persona": "revisor_procedencia_amparo",
+          "path": "metadata.amparo.acto_reclamado_status",
+          "escalate_values": ["dudoso"],
+          "block_values": ["ausente"],
+          "label": "acto reclamado"
+        },
+        {
+          "persona": "revisor_procedencia_amparo",
+          "path": "metadata.amparo.interes_status",
+          "escalate_values": ["dudoso"],
+          "block_values": ["ausente"],
+          "label": "interes juridico o legitimo"
+        },
+        {
+          "persona": "revisor_procedencia_amparo",
+          "path": "metadata.amparo.definitividad_status",
+          "escalate_values": ["dudosa"],
+          "block_values": ["incumplida"],
+          "label": "definitividad"
+        },
+        {
+          "persona": "revisor_procedencia_amparo",
+          "path": "metadata.amparo.suspension_status",
+          "escalate_values": ["delicada"],
+          "block_values": ["inviable"],
+          "label": "suspension"
+        },
+        {
+          "persona": "secretario_proyectista_revisor",
+          "path": "metadata.amparo.proyecto_madurez",
+          "escalate_values": ["inmaduro"],
+          "block_values": ["inviable"],
+          "label": "madurez proyectista"
+        }
+      ]
+    },
+    "amparo_suspension": {
+      "description": "Panel transicional para estrategia cautelar en amparo. Conserva compatibilidad, pero la operacion recomendada ya se divide entre suspension de oficio y suspension a peticion de parte.",
+      "panel_personas": [
+        "abogado_quejoso",
+        "autoridad_responsable_revisor",
+        "secretario_proyectista_revisor",
+        "revisor_suspension_amparo",
+        "revisor_interes_social_orden_publico",
+        "revisor_jurisprudencial"
+      ],
+      "blocking_roles": {
+        "revisor_suspension_amparo": [
+          "reject"
+        ],
+        "revisor_interes_social_orden_publico": [
+          "reject"
+        ],
+        "secretario_proyectista_revisor": [
+          "reject"
+        ]
+      },
+      "escalation_roles": {
+        "revisor_suspension_amparo": [
+          "conditional"
+        ],
+        "revisor_interes_social_orden_publico": [
+          "conditional"
+        ],
+        "secretario_proyectista_revisor": [
+          "conditional"
+        ]
+      },
+      "required_metadata_paths": {
+        "revisor_suspension_amparo": [
+          "metadata.amparo_suspension.apariencia_status",
+          "metadata.amparo_suspension.peligro_demora_status",
+          "metadata.amparo_suspension.medida_status"
+        ],
+        "revisor_interes_social_orden_publico": [
+          "metadata.amparo_suspension.interes_social_status",
+          "metadata.amparo_suspension.orden_publico_status"
+        ],
+        "secretario_proyectista_revisor": [
+          "metadata.amparo_suspension.proyecto_cautelar_madurez"
+        ]
+      },
+      "issue_controls": [
+        {
+          "persona": "revisor_suspension_amparo",
+          "path": "metadata.amparo_suspension.apariencia_status",
+          "escalate_values": ["debil"],
+          "block_values": ["ausente"],
+          "label": "apariencia del buen derecho"
+        },
+        {
+          "persona": "revisor_suspension_amparo",
+          "path": "metadata.amparo_suspension.peligro_demora_status",
+          "escalate_values": ["dudoso"],
+          "block_values": ["ausente"],
+          "label": "peligro en la demora"
+        },
+        {
+          "persona": "revisor_suspension_amparo",
+          "path": "metadata.amparo_suspension.medida_status",
+          "escalate_values": ["estrecha"],
+          "block_values": ["inviable"],
+          "label": "medida cautelar solicitada"
+        },
+        {
+          "persona": "revisor_interes_social_orden_publico",
+          "path": "metadata.amparo_suspension.interes_social_status",
+          "escalate_values": ["sensitivo"],
+          "block_values": ["afectado"],
+          "label": "interes social"
+        },
+        {
+          "persona": "revisor_interes_social_orden_publico",
+          "path": "metadata.amparo_suspension.orden_publico_status",
+          "escalate_values": ["sensitivo"],
+          "block_values": ["afectado"],
+          "label": "orden publico"
+        },
+        {
+          "persona": "secretario_proyectista_revisor",
+          "path": "metadata.amparo_suspension.proyecto_cautelar_madurez",
+          "escalate_values": ["inmaduro"],
+          "block_values": ["inviable"],
+          "label": "madurez cautelar proyectista"
+        }
+      ]
+    },
+    "amparo_suspension_oficio": {
+      "description": "Panel para suspension de oficio en amparo. Controla supuesto de tutela inmediata, riesgo grave y compatibilidad con interes social y orden publico.",
+      "panel_personas": [
+        "abogado_quejoso",
+        "autoridad_responsable_revisor",
+        "secretario_proyectista_revisor",
+        "revisor_suspension_oficio_amparo",
+        "revisor_interes_social_orden_publico",
+        "revisor_jurisprudencial"
+      ],
+      "blocking_roles": {
+        "revisor_suspension_oficio_amparo": [
+          "reject"
+        ],
+        "revisor_interes_social_orden_publico": [
+          "reject"
+        ],
+        "secretario_proyectista_revisor": [
+          "reject"
+        ]
+      },
+      "escalation_roles": {
+        "revisor_suspension_oficio_amparo": [
+          "conditional"
+        ],
+        "revisor_interes_social_orden_publico": [
+          "conditional"
+        ],
+        "secretario_proyectista_revisor": [
+          "conditional"
+        ]
+      },
+      "required_metadata_paths": {
+        "revisor_suspension_oficio_amparo": [
+          "metadata.amparo_suspension_oficio.supuesto_oficio_status",
+          "metadata.amparo_suspension_oficio.riesgo_grave_status",
+          "metadata.amparo_suspension_oficio.medida_status"
+        ],
+        "revisor_interes_social_orden_publico": [
+          "metadata.amparo_suspension_oficio.interes_social_status",
+          "metadata.amparo_suspension_oficio.orden_publico_status"
+        ],
+        "secretario_proyectista_revisor": [
+          "metadata.amparo_suspension_oficio.proyecto_cautelar_madurez"
+        ]
+      },
+      "issue_controls": [
+        {
+          "persona": "revisor_suspension_oficio_amparo",
+          "path": "metadata.amparo_suspension_oficio.supuesto_oficio_status",
+          "escalate_values": ["dudoso"],
+          "block_values": ["ausente"],
+          "label": "supuesto material de suspension de oficio"
+        },
+        {
+          "persona": "revisor_suspension_oficio_amparo",
+          "path": "metadata.amparo_suspension_oficio.riesgo_grave_status",
+          "escalate_values": ["insuficiente"],
+          "block_values": ["ausente"],
+          "label": "riesgo grave de afectacion"
+        },
+        {
+          "persona": "revisor_suspension_oficio_amparo",
+          "path": "metadata.amparo_suspension_oficio.medida_status",
+          "escalate_values": ["estrecha"],
+          "block_values": ["inviable"],
+          "label": "medida cautelar de oficio"
+        },
+        {
+          "persona": "revisor_interes_social_orden_publico",
+          "path": "metadata.amparo_suspension_oficio.interes_social_status",
+          "escalate_values": ["sensitivo"],
+          "block_values": ["afectado"],
+          "label": "interes social"
+        },
+        {
+          "persona": "revisor_interes_social_orden_publico",
+          "path": "metadata.amparo_suspension_oficio.orden_publico_status",
+          "escalate_values": ["sensitivo"],
+          "block_values": ["afectado"],
+          "label": "orden publico"
+        },
+        {
+          "persona": "secretario_proyectista_revisor",
+          "path": "metadata.amparo_suspension_oficio.proyecto_cautelar_madurez",
+          "escalate_values": ["inmaduro"],
+          "block_values": ["inviable"],
+          "label": "madurez cautelar proyectista"
+        }
+      ]
+    },
+    "amparo_suspension_parte": {
+      "description": "Panel para suspension a peticion de parte en amparo. Controla apariencia del buen derecho, peligro en la demora, garantia y limites frente a interes social y orden publico.",
+      "panel_personas": [
+        "abogado_quejoso",
+        "autoridad_responsable_revisor",
+        "secretario_proyectista_revisor",
+        "revisor_suspension_parte_amparo",
+        "revisor_interes_social_orden_publico",
+        "revisor_jurisprudencial"
+      ],
+      "blocking_roles": {
+        "revisor_suspension_parte_amparo": [
+          "reject"
+        ],
+        "revisor_interes_social_orden_publico": [
+          "reject"
+        ],
+        "secretario_proyectista_revisor": [
+          "reject"
+        ]
+      },
+      "escalation_roles": {
+        "revisor_suspension_parte_amparo": [
+          "conditional"
+        ],
+        "revisor_interes_social_orden_publico": [
+          "conditional"
+        ],
+        "secretario_proyectista_revisor": [
+          "conditional"
+        ]
+      },
+      "required_metadata_paths": {
+        "revisor_suspension_parte_amparo": [
+          "metadata.amparo_suspension_parte.apariencia_status",
+          "metadata.amparo_suspension_parte.peligro_demora_status",
+          "metadata.amparo_suspension_parte.medida_status",
+          "metadata.amparo_suspension_parte.garantia_status"
+        ],
+        "revisor_interes_social_orden_publico": [
+          "metadata.amparo_suspension_parte.interes_social_status",
+          "metadata.amparo_suspension_parte.orden_publico_status"
+        ],
+        "secretario_proyectista_revisor": [
+          "metadata.amparo_suspension_parte.proyecto_cautelar_madurez"
+        ]
+      },
+      "issue_controls": [
+        {
+          "persona": "revisor_suspension_parte_amparo",
+          "path": "metadata.amparo_suspension_parte.apariencia_status",
+          "escalate_values": ["debil"],
+          "block_values": ["ausente"],
+          "label": "apariencia del buen derecho"
+        },
+        {
+          "persona": "revisor_suspension_parte_amparo",
+          "path": "metadata.amparo_suspension_parte.peligro_demora_status",
+          "escalate_values": ["dudoso"],
+          "block_values": ["ausente"],
+          "label": "peligro en la demora"
+        },
+        {
+          "persona": "revisor_suspension_parte_amparo",
+          "path": "metadata.amparo_suspension_parte.medida_status",
+          "escalate_values": ["estrecha"],
+          "block_values": ["inviable"],
+          "label": "medida cautelar solicitada"
+        },
+        {
+          "persona": "revisor_suspension_parte_amparo",
+          "path": "metadata.amparo_suspension_parte.garantia_status",
+          "escalate_values": ["delicada"],
+          "block_values": ["omisa"],
+          "label": "garantia cautelar"
+        },
+        {
+          "persona": "revisor_interes_social_orden_publico",
+          "path": "metadata.amparo_suspension_parte.interes_social_status",
+          "escalate_values": ["sensitivo"],
+          "block_values": ["afectado"],
+          "label": "interes social"
+        },
+        {
+          "persona": "revisor_interes_social_orden_publico",
+          "path": "metadata.amparo_suspension_parte.orden_publico_status",
+          "escalate_values": ["sensitivo"],
+          "block_values": ["afectado"],
+          "label": "orden publico"
+        },
+        {
+          "persona": "secretario_proyectista_revisor",
+          "path": "metadata.amparo_suspension_parte.proyecto_cautelar_madurez",
+          "escalate_values": ["inmaduro"],
+          "block_values": ["inviable"],
+          "label": "madurez cautelar proyectista"
+        }
+      ]
+    }
+  },
+  "release_gate_script": "/root/legalize-mx/scripts/release_legal_response.py"
+}

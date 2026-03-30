@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legalize-mx.local/schemas/law_chunk.schema.json",
+  "title": "LawChunk",
+  "type": "object",
+  "required": [
+    "chunk_id",
+    "doc_id",
+    "doc_type",
+    "jurisdiction",
+    "title",
+    "text",
+    "source_url",
+    "citation_label"
+  ],
+  "properties": {
+    "chunk_id": { "type": "string" },
+    "doc_id": { "type": "string" },
+    "doc_type": { "const": "legislation" },
+    "jurisdiction": { "type": "string" },
+    "category": { "type": ["string", "null"] },
+    "rank": { "type": ["string", "null"] },
+    "title": { "type": "string" },
+    "article_number": { "type": ["string", "null"] },
+    "section_path": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "heading": { "type": ["string", "null"] },
+    "text": { "type": "string" },
+    "text_normalized": { "type": ["string", "null"] },
+    "publication_date": { "type": ["string", "null"] },
+    "last_reform_date": { "type": ["string", "null"] },
+    "status": { "type": ["string", "null"] },
+    "source_url": { "type": "string" },
+    "official_publication": { "type": ["string", "null"] },
+    "citation_label": { "type": "string" },
+    "embedding_model": { "type": ["string", "null"] },
+    "checksum_sha256": { "type": ["string", "null"] }
+  },
+  "additionalProperties": true
+}

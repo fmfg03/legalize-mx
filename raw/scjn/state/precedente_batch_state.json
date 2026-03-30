@@ -1,0 +1,24 @@
+{
+  "document_kind": "precedente",
+  "next_page": 2,
+  "completed": false,
+  "runs": 2,
+  "last_run_at": "2026-03-30T01:03:05.005720Z",
+  "last_status": "ok",
+  "last_count_total": 22708,
+  "last_source_index": "ejecutoria",
+  "last_registry_ids": [
+    "33929",
+    "33928",
+    "33927",
+    "33926",
+    "33925",
+    "33924",
+    "33923",
+    "33922",
+    "33921",
+    "33920"
+  ],
+  "last_pages_fetched": 1,
+  "last_page_size": 10
+}

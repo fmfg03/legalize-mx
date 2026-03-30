@@ -1,0 +1,65 @@
+{
+  "cycle_id": "950787d2-ee03-4003-a563-9f9a3be0328d",
+  "started_at": "2026-03-29T23:41:39Z",
+  "finished_at": "2026-03-29T23:41:39Z",
+  "duration_ms": 171,
+  "batch_exit_code": 0,
+  "command": [
+    "/root/legalize-mx/.venv/bin/python",
+    "/root/legalize-mx/scripts/run_ingestion_batch.py",
+    "--source-ids",
+    "ccf",
+    "--refresh",
+    "--timeout",
+    "30",
+    "--retries",
+    "2",
+    "--retry-delay",
+    "1.5",
+    "--metadata-dir",
+    "/tmp",
+    "--text-dir",
+    "/tmp"
+  ],
+  "batch_summary": {
+    "selected_count": 1,
+    "processed": 1,
+    "ok": 1,
+    "partial": 0,
+    "error": 0,
+    "skipped": [],
+    "results": [
+      {
+        "run_id": "3a8b53f8-f993-484b-9952-db339d88665b",
+        "source_id": "ccf",
+        "status": "ok",
+        "started_at": "2026-03-29T23:41:39Z",
+        "metadata": {
+          "ok": true,
+          "source": "local_file"
+        },
+        "text": {
+          "ok": true,
+          "path": "/tmp/ccf-offline.txt"
+        },
+        "parse": {
+          "ok": true,
+          "section_count": 1,
+          "article_count": 1
+        },
+        "import": {
+          "ok": true,
+          "path": "mexico/legislation/federal/codes/ccf.md",
+          "temp_json": null
+        },
+        "errors": [],
+        "duration_ms": 3,
+        "finished_at": "2026-03-29T23:41:39Z",
+        "exit_code": 0,
+        "log_path": "/root/legalize-mx/raw/diputados/logs/ingestion_log.jsonl"
+      }
+    ],
+    "stopped_early": false,
+    "queue_drain": null
+  }
+}

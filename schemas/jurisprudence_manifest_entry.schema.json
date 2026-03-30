@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legalize-mx.local/schemas/jurisprudence_manifest_entry.schema.json",
+  "title": "JurisprudenceManifestEntry",
+  "type": "object",
+  "required": [
+    "doc_id",
+    "doc_type",
+    "document_kind",
+    "registry_id",
+    "title",
+    "jurisdiction",
+    "source_system",
+    "source_url",
+    "document_path",
+    "status"
+  ],
+  "properties": {
+    "doc_id": { "type": "string" },
+    "doc_type": { "const": "jurisprudence" },
+    "document_kind": {
+      "type": "string",
+      "enum": ["tesis", "precedente", "voto", "acuerdo"]
+    },
+    "registry_id": { "type": "string" },
+    "title": { "type": "string" },
+    "citation_label": { "type": ["string", "null"] },
+    "jurisdiction": { "type": "string" },
+    "source_system": { "type": "string" },
+    "source_url": { "type": "string" },
+    "document_path": { "type": "string" },
+    "publication_date": { "type": ["string", "null"] },
+    "last_seen_at": { "type": ["string", "null"] },
+    "status": { "type": "string" },
+    "text_checksum_sha256": { "type": ["string", "null"] },
+    "metadata_checksum_sha256": { "type": ["string", "null"] }
+  },
+  "additionalProperties": true
+}

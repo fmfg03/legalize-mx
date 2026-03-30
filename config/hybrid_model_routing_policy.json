@@ -1,0 +1,29 @@
+{
+  "policy_id": "legalize-mx-hybrid-routing-v1",
+  "description": "Separa deliberacion juridica de alta complejidad de ejecucion operativa y libera escritos solo tras pasar guardrails.",
+  "providers": {
+    "reasoning_provider": "anthropic_api",
+    "local_provider": "local_ollama"
+  },
+  "legal_panel_script": "/root/legalize-mx/scripts/legal_panel_orchestrator.py",
+  "release_gate_script": "/root/legalize-mx/scripts/release_legal_response.py",
+  "handoff_contracts": {
+    "anthropic_api": {
+      "requires": [
+        "structured_task_request",
+        "retrieval_context",
+        "explicit_jurisdiction",
+        "query_date",
+        "citation_bundle_target"
+      ]
+    },
+    "local_ollama": {
+      "requires": [
+        "structured_execution_plan",
+        "retrieval_context",
+        "citation_ids",
+        "style_constraints"
+      ]
+    }
+  }
+}

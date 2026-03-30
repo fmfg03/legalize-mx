@@ -1,0 +1,12 @@
+[Unit]
+Description=Run legalize-mx ingestion batch periodically
+
+[Timer]
+OnBootSec=10m
+OnUnitActiveSec=6h
+RandomizedDelaySec=15m
+Persistent=true
+Unit=legalize-mx-ingestion.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,153 @@
+{
+  "request": {
+    "task_id": "legal-panel-amparo-escalate-001",
+    "task_kind": "demand_drafting",
+    "objective": "Emitir una recomendacion preliminar de amparo cuando la procedencia aun no esta suficientemente despejada.",
+    "query": "¿Debe recomendarse promover amparo indirecto si todavia no esta claro el acto reclamado ni el perjuicio actual?",
+    "jurisdiction": "federal",
+    "matter_profile": "amparo",
+    "query_date": "2026-03-30",
+    "complexity": "high",
+    "consequence_level": "critical",
+    "requires_jurisprudence": false,
+    "writes_for_user": true
+  },
+  "draft_bundle": {
+    "request_id": "req-amparo-escalate-001",
+    "response_type": "recommendation",
+    "jurisdiction": "federal",
+    "query_date": "2026-03-30",
+    "response_text": "La recomendacion preliminar sugiere explorar la via de amparo, pero antes debe verificarse con precision el acto reclamado, la afectacion actual y la posicion juridica del promovente.",
+    "citations": [
+      {
+        "citation_id": "cit-cpeum-1-amparo-escalate",
+        "doc_type": "legislation",
+        "doc_id": "mx-federal-cpeum",
+        "title": "Constitucion Politica de los Estados Unidos Mexicanos",
+        "locator": "articulo 1o.",
+        "jurisdiction": "federal",
+        "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm",
+        "official_publication": "DOF",
+        "quote": "Todas las autoridades, en el ambito de sus competencias, tienen la obligacion de promover, respetar, proteger y garantizar los derechos humanos",
+        "quote_sha256": "a1b84d8b3aa42312c92174c049819ed8f77a0c7292f119ad335d6d0bc4847ad3"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "clm-amparo-escalate-1",
+        "text": "La recomendacion debe partir de una identificacion precisa del acto y de la afectacion constitucional relevante.",
+        "kind": "legislation",
+        "citation_ids": [
+          "cit-cpeum-1-amparo-escalate"
+        ]
+      }
+    ]
+  },
+  "initial_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "approve",
+      "confidence": 0.84,
+      "justification": "La via puede ser viable si se concreta mejor el caso."
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "conditional",
+      "confidence": 0.72,
+      "justification": "La salida debe evitar afirmar procedencia sin acto claramente fijado."
+    },
+    {
+      "persona": "tercero_interesado_revisor",
+      "decision": "conditional",
+      "confidence": 0.71,
+      "justification": "Puede haber terceros afectados no identificados."
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "conditional",
+      "confidence": 0.77,
+      "justification": "La estructura es util, pero el proyecto no esta maduro sin mejor delimitacion de procedencia.",
+      "metadata": {
+        "amparo": {
+          "proyecto_madurez": "inmaduro"
+        }
+      }
+    },
+    {
+      "persona": "revisor_procedencia_amparo",
+      "decision": "conditional",
+      "confidence": 0.89,
+      "justification": "La procedencia sigue siendo dudosa mientras no se aclare acto reclamado, interes juridico y afectacion actual.",
+      "metadata": {
+        "amparo": {
+          "acto_reclamado_status": "dudoso",
+          "interes_status": "dudoso",
+          "definitividad_status": "dudosa",
+          "suspension_status": "delicada"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.78,
+      "justification": "No hay problema jurisprudencial directo en esta formulacion preliminar."
+    }
+  ],
+  "final_vote_round": [
+    {
+      "persona": "abogado_quejoso",
+      "decision": "approve",
+      "confidence": 0.85,
+      "justification": "Sigue siendo razonable explorar la via."
+    },
+    {
+      "persona": "autoridad_responsable_revisor",
+      "decision": "conditional",
+      "confidence": 0.73,
+      "justification": "La recomendacion no debe avanzar a escrito final todavia."
+    },
+    {
+      "persona": "tercero_interesado_revisor",
+      "decision": "conditional",
+      "confidence": 0.72,
+      "justification": "Sigue faltando delimitar el impacto sobre terceros."
+    },
+    {
+      "persona": "secretario_proyectista_revisor",
+      "decision": "conditional",
+      "confidence": 0.79,
+      "justification": "El proyecto aun exige maduracion procesal.",
+      "metadata": {
+        "amparo": {
+          "proyecto_madurez": "inmaduro"
+        }
+      }
+    },
+    {
+      "persona": "revisor_procedencia_amparo",
+      "decision": "conditional",
+      "confidence": 0.90,
+      "justification": "La procedencia sigue abierta y exige revision humana antes de liberar.",
+      "structured_change_justification": {
+        "trigger": "La deliberacion confirmo que el acto reclamado y la afectacion actual siguen insuficientemente fijados.",
+        "evidence_delta": "No aparecio evidencia nueva que cierre procedencia.",
+        "reasoning_delta": "La recomendacion solo puede mantenerse en nivel exploratorio."
+      },
+      "metadata": {
+        "amparo": {
+          "acto_reclamado_status": "dudoso",
+          "interes_status": "dudoso",
+          "definitividad_status": "dudosa",
+          "suspension_status": "delicada"
+        }
+      }
+    },
+    {
+      "persona": "revisor_jurisprudencial",
+      "decision": "approve",
+      "confidence": 0.79,
+      "justification": "No hay problema citacional directo, pero la procedencia manda."
+    }
+  ]
+}
