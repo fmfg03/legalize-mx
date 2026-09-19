@@ -46,6 +46,7 @@ legalize-mx/
 4. La unidad de retrieval para jurisprudencia es el documento individual.
 5. Toda respuesta del asistente debe incluir citas estructuradas.
 6. Ninguna afirmacion jurisprudencial debe salir sin pasar un gate de evidencia local verificable.
+7. Ninguna autoridad juridica debe salir como soporte liberable sin pasar primero un gate de resolucion de autoridad local o live verificable.
 
 ## Documentacion
 
@@ -53,11 +54,17 @@ El diseno de referencia esta resumido en [docs/architecture.md](docs/architectur
 
 La compuerta de no-invencion de jurisprudencia esta en [docs/jurisprudence-grounding-gate.md](docs/jurisprudence-grounding-gate.md).
 
+La compuerta de resolucion de autoridad juridica esta en [docs/legal-authority-verification-gate.md](docs/legal-authority-verification-gate.md).
+
 La ruta obligatoria de liberacion de escritos esta en [docs/legal-response-release-gate.md](docs/legal-response-release-gate.md).
 
 El diseno del modo hibrido `Anthropic para razonamiento / local para talacha` esta en [docs/hybrid-model-routing.md](docs/hybrid-model-routing.md).
 
 El patron colegiado para escritos juridicos de alto impacto esta en [docs/legal-panel-orchestrator.md](docs/legal-panel-orchestrator.md).
+
+La consola operativa interna para observar corpus, colas, lotes y recibos esta en [docs/operator-console.md](docs/operator-console.md).
+
+El backend inicial para expedientes, documentos versionados y actuaciones esta en [docs/expediente-backend.md](docs/expediente-backend.md).
 
 ## Estado
 

@@ -1,0 +1,10 @@
+{
+  "policy_id": "legalize-mx-legal-authority-verification-v1",
+  "description": "Verifica citas juridicas contra corpus local y resolvedores autorizados antes de liberarlas como soporte de autoridad.",
+  "require_live_for_doc_types": [],
+  "notes": [
+    "local-first con verificacion puntual autorizada",
+    "las fuentes licenciadas quedan detras de adapters separados",
+    "la ausencia de configuracion de un provider licenciado bloquea solo si la cita depende de ese provider"
+  ]
+}

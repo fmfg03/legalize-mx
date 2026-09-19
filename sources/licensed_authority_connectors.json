@@ -1,0 +1,32 @@
+{
+  "providers": [
+    {
+      "provider_id": "vlex",
+      "display_name": "vLex",
+      "base_url_env": "LEGALIZE_MX_VLEX_BASE_URL",
+      "api_key_env": "LEGALIZE_MX_VLEX_API_KEY",
+      "query_url_template": "{base_url}/search?q={query}"
+    },
+    {
+      "provider_id": "westlaw",
+      "display_name": "Westlaw",
+      "base_url_env": "LEGALIZE_MX_WESTLAW_BASE_URL",
+      "api_key_env": "LEGALIZE_MX_WESTLAW_API_KEY",
+      "query_url_template": "{base_url}/search?q={query}"
+    },
+    {
+      "provider_id": "lexis",
+      "display_name": "Lexis",
+      "base_url_env": "LEGALIZE_MX_LEXIS_BASE_URL",
+      "api_key_env": "LEGALIZE_MX_LEXIS_API_KEY",
+      "query_url_template": "{base_url}/search?q={query}"
+    },
+    {
+      "provider_id": "tirant",
+      "display_name": "Tirant",
+      "base_url_env": "LEGALIZE_MX_TIRANT_BASE_URL",
+      "api_key_env": "LEGALIZE_MX_TIRANT_API_KEY",
+      "query_url_template": "{base_url}/search?q={query}"
+    }
+  ]
+}

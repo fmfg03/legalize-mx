@@ -1,0 +1,36 @@
+{
+  "citations": {
+    "cit-live-juris-1": {
+      "verified": true,
+      "adapter": "fixture_scjn",
+      "binding_status": "binding",
+      "payload": {
+        "registry_id": "2999999",
+        "title": "DAÑO MORAL. SU CLASIFICACIÓN EN CUANTO AL CARÁCTER DEL INTERÉS AFECTADO.",
+        "text": "En nuestro ordenamiento jurídico se plantea una distinción en el tratamiento de la responsabilidad por daño al patrimonio moral, dependiendo de su carácter. En efecto, puede sostenerse que el daño moral es un género dividido en tres especies, a saber: (i) daño al honor, el cual afecta a una persona en su vida privada, honor o propia imagen; (ii) daños estéticos, que son los que afectan la configuración y los aspectos físicos de las personas; y, (iii) daños a los sentimientos o a la parte afectiva del patrimonio moral.",
+        "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/tesis/2999999",
+        "citation_label": "Tesis con registro digital 2999999"
+      }
+    },
+    "cit-live-ley-1": {
+      "verified": true,
+      "adapter": "fixture_diputados",
+      "binding_status": "binding",
+      "payload": {
+        "title": "Ley Federal de Proteccion al Consumidor",
+        "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/lfpc.htm",
+        "citation_label": "Ley Federal de Proteccion al Consumidor, articulo 1"
+      }
+    },
+    "cit-licensed-1": {
+      "verified": true,
+      "adapter": "fixture_vlex",
+      "binding_status": "unknown",
+      "payload": {
+        "title": "Criterio licenciado",
+        "text": "Texto de apoyo desde base licenciada.",
+        "source_url": "https://licensed.example/vlex/result/1"
+      }
+    }
+  }
+}

@@ -239,16 +239,38 @@ Recibos:
 
 `raw/guardrails/receipts/jurisprudence_grounding_gate_receipts.jsonl`
 
+### `validate_legal_authority.py`
+
+Gate de resolucion de autoridad juridica.
+
+Valida:
+
+1. coincidencia local en `indexes/`
+2. fallback live contra fuentes autorizadas
+3. adapters separados para fuentes licenciadas
+4. chunks suplementarios para el grounding gate cuando la fuente existe live pero aun no esta materializada localmente
+
+Ejemplo:
+
+```bash
+python3 scripts/validate_legal_authority.py --bundle fixtures/assistant_response_live_resolution.json --live-fixture fixtures/legal_authority_live_fixture.json
+```
+
+Recibos:
+
+`raw/guardrails/receipts/legal_authority_verification_receipts.jsonl`
+
 ### `release_legal_response.py`
 
 Ruta obligatoria de liberacion de escritos juridicos.
 
 Hace:
 
-1. corre el gate jurisprudencial
-2. escribe recibo del gate
-3. escribe recibo de liberacion
-4. mueve el bundle a `approved` o `blocked`
+1. corre el authority gate
+2. corre el grounding gate con evidencia suplementaria cuando aplica
+3. escribe ambos recibos
+4. escribe recibo de liberacion
+5. mueve el bundle a `approved` o `blocked`
 
 Ejemplos:
 

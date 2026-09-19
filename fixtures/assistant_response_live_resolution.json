@@ -1,0 +1,45 @@
+{
+  "request_id": "req-live-001",
+  "response_type": "recommendation",
+  "jurisdiction": "federal",
+  "query_date": "2026-03-30",
+  "response_text": "La recomendacion puede apoyarse en la tesis con registro digital 2999999 y en el articulo 1 de la Ley Federal de Proteccion al Consumidor.",
+  "citations": [
+    {
+      "citation_id": "cit-live-juris-1",
+      "doc_type": "jurisprudence",
+      "doc_id": "mx-sjf-tesis-2999999",
+      "registry_id": "2999999",
+      "title": "DAÑO MORAL. SU CLASIFICACIÓN EN CUANTO AL CARÁCTER DEL INTERÉS AFECTADO.",
+      "locator": "registro digital 2999999",
+      "jurisdiction": "federal",
+      "source_url": "https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/tesis/2999999",
+      "quote": "puede sostenerse que el daño moral es un género dividido en tres especies",
+      "quote_sha256": "c96c05be4b0836dda0bd32d4e8922a377e244492ea48d01433d9c66c381b41e9"
+    },
+    {
+      "citation_id": "cit-live-ley-1",
+      "doc_type": "legislation",
+      "doc_id": "mx-federal-lfpc",
+      "title": "Ley Federal de Proteccion al Consumidor",
+      "locator": "articulo 1",
+      "jurisdiction": "federal",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/lfpc.htm",
+      "official_publication": "DOF"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "clm-live-juris-1",
+      "text": "La tesis de registro digital 2999999 desarrolla la clasificacion del daño moral.",
+      "kind": "jurisprudence",
+      "citation_ids": ["cit-live-juris-1"]
+    },
+    {
+      "claim_id": "clm-live-ley-1",
+      "text": "La Ley Federal de Proteccion al Consumidor puede citarse como base normativa en el tema.",
+      "kind": "legislation",
+      "citation_ids": ["cit-live-ley-1"]
+    }
+  ]
+}

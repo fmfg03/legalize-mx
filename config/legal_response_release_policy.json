@@ -13,6 +13,7 @@
     "legal_opinion"
   ],
   "required_gates": [
+    "legalize-mx-legal-authority-verification-v1",
     "legalize-mx-jurisprudence-grounding-v1"
   ]
 }

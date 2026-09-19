@@ -200,7 +200,11 @@ def evaluate_bundle(
     policy: Dict[str, Any],
     legislation_chunks: List[Dict[str, Any]],
     jurisprudence_chunks: List[Dict[str, Any]],
+    supplemental_legislation_chunks: List[Dict[str, Any]] | None = None,
+    supplemental_jurisprudence_chunks: List[Dict[str, Any]] | None = None,
 ) -> Tuple[str, Dict[str, Any], List[GateFailure]]:
+    legislation_chunks = legislation_chunks + list(supplemental_legislation_chunks or [])
+    jurisprudence_chunks = jurisprudence_chunks + list(supplemental_jurisprudence_chunks or [])
     failures = validate_bundle_shape(bundle)
     citations = bundle.get("citations") if isinstance(bundle.get("citations"), list) else []
     claims = bundle.get("claims") if isinstance(bundle.get("claims"), list) else []

@@ -1,12 +1,13 @@
 # Legal Response Release Gate
 
-El gate de jurisprudencia por si solo no basta. Si se deja como script opcional, alguien lo omite y el sistema vuelve a inventar.
+El gate de jurisprudencia por si solo ya no basta. Si se deja como script opcional, alguien lo omite y el sistema vuelve a inventar o a citar autoridad no verificada live.
 
 La ruta correcta es:
 
 1. construir `assistant_response_bundle`
-2. pasar el bundle por `scripts/release_legal_response.py`
-3. solo liberar al usuario si el resultado es `APPROVED`
+2. pasar el bundle por el gate de autoridad juridica
+3. pasar el bundle por `scripts/release_legal_response.py`
+4. solo liberar al usuario si el resultado es `APPROVED`
 
 ## Politica
 
@@ -25,15 +26,18 @@ Protege salidas como:
 
 `scripts/release_legal_response.py`
 
-Hace tres cosas:
+Hace cuatro cosas:
 
-1. ejecuta el gate jurisprudencial con el indice local
-2. persiste el recibo del gate
-3. emite un recibo de liberacion y clasifica el bundle como `approved` o `blocked`
+1. ejecuta el gate de autoridad juridica contra corpus local y resolvedores autorizados
+2. ejecuta el grounding gate con indice local mas evidencia suplementaria verificable
+3. persiste ambos recibos
+4. emite un recibo de liberacion y clasifica el bundle como `approved` o `blocked`
 
 ## Artefactos
 
 Recibos del gate:
+
+`raw/guardrails/receipts/legal_authority_verification_receipts.jsonl`
 
 `raw/guardrails/receipts/jurisprudence_grounding_gate_receipts.jsonl`
 
