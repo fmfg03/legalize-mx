@@ -1,0 +1,61 @@
+{
+  "catalog_version": "2026-04-08",
+  "tracks": [
+    {
+      "id": "mx_cnpcf_base",
+      "label": "Mexico | CNPCF base",
+      "status": "draft_review_required",
+      "scope": "civil_familiar",
+      "jurisdiction_level": "federal",
+      "matter_types": ["civil", "familiar", "amparo"],
+      "notes": "Reglas iniciales para agenda procesal. Los vencimientos se calculan como dias habiles aproximados de lunes a viernes y requieren revision con el calendario oficial del organo jurisdiccional.",
+      "sources": [
+        {
+          "authority": "Codigo Nacional de Procedimientos Civiles y Familiares",
+          "citation": "Articulos 176, 229 y 239",
+          "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/CNPCF.pdf"
+        }
+      ],
+      "rules": [
+        {
+          "id": "cnpcf_emplazamiento_contestacion_demanda",
+          "trigger": {
+            "event_type": "notificacion",
+            "document_type": "emplazamiento"
+          },
+          "deadline": {
+            "label": "Vence contestacion de demanda",
+            "days_business": 15,
+            "status": "open"
+          },
+          "notes": "Al registrar una notificacion de emplazamiento, genera un plazo preliminar para contestar la demanda.",
+          "source": {
+            "article": "CNPCF articulo 239",
+            "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/CNPCF.pdf"
+          },
+          "requires_review": true,
+          "warning": "La fecha es tentativa. El CNPCF dispone que no corren los dias en que no puedan realizarse actuaciones judiciales; valida el calendario del tribunal."
+        },
+        {
+          "id": "cnpcf_sentencia_apelacion",
+          "trigger": {
+            "event_type": "notificacion",
+            "document_type": "sentencia"
+          },
+          "deadline": {
+            "label": "Vence apelacion contra sentencia definitiva",
+            "days_business": 9,
+            "status": "open"
+          },
+          "notes": "Al registrar una notificacion de sentencia, genera un plazo preliminar para interponer apelacion contra sentencia definitiva.",
+          "source": {
+            "article": "CNPCF articulo 176, fraccion I",
+            "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/CNPCF.pdf"
+          },
+          "requires_review": true,
+          "warning": "La fecha es tentativa. Verifica si la resolucion es apelable y confirma el calendario oficial del organo jurisdiccional."
+        }
+      ]
+    }
+  ]
+}
