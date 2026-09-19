@@ -34,6 +34,54 @@ sudo systemctl enable --now legalize-mx-ingestion.timer
 sudo systemctl enable --now legalize-mx-jurisprudence.timer
 ```
 
+## Despliegue web de Lexera
+
+Servicios versionados:
+
+1. `ops/systemd/lexera-api.service`
+2. `ops/systemd/lexera-console.service`
+3. `ops/nginx/lexera.mx`
+4. `ops/systemd/lexera-console.env.example`
+
+Instalacion basica:
+
+```bash
+sudo mkdir -p /var/www/letsencrypt
+sudo cp /root/legalize-mx/ops/systemd/lexera-api.service /etc/systemd/system/
+sudo cp /root/legalize-mx/ops/systemd/lexera-console.service /etc/systemd/system/
+sudo cp /root/legalize-mx/ops/nginx/lexera.mx /etc/nginx/sites-available/lexera.mx
+sudo ln -s /etc/nginx/sites-available/lexera.mx /etc/nginx/sites-enabled/lexera.mx
+sudo systemctl daemon-reload
+sudo systemctl enable --now lexera-api.service
+sudo systemctl enable --now lexera-console.service
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+Emision de certificados:
+
+```bash
+sudo certbot --nginx -d lexera.mx -d www.lexera.mx -d api.lexera.mx
+```
+
+En Cloudflare, usar `Full (strict)` despues de que el certificado del origen quede instalado.
+
+El servicio web de Lexera ahora necesita variables internas para hablar con el backend y con Ollama:
+
+```bash
+sudo cp /root/legalize-mx/ops/systemd/lexera-console.env.example /etc/default/lexera-console
+sudo nano /etc/default/lexera-console
+sudo systemctl daemon-reload
+sudo systemctl restart lexera-console.service
+```
+
+Variables:
+
+1. `LEXERA_API_BASE_URL`
+2. `LEXERA_API_KEY`
+3. `LEXERA_OLLAMA_CHAT_URL`
+4. `LEXERA_OLLAMA_MODEL`
+
 ## Verificacion
 
 ```bash

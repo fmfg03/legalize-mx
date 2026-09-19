@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>legalize-mx Operator Console</title>
+    <link rel="stylesheet" href="/ops/styles.css" />
+  </head>
+  <body>
+    <div class="backdrop">
+      <div class="backdrop-orb backdrop-orb-a"></div>
+      <div class="backdrop-orb backdrop-orb-b"></div>
+      <div class="gridline"></div>
+    </div>
+
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Operator Console</p>
+          <h1>Corpus integrity, ingestion pressure, and release evidence in one surface.</h1>
+          <p class="lede">
+            This UI sits on the repo’s own manifests, logs, queues, and receipts. It is for operating
+            the system, not pretending the system is finished.
+          </p>
+          <div class="hero-actions">
+            <button id="refreshButton" class="primary-button" type="button">Refresh snapshot</button>
+            <div class="hero-meta">
+              <span>Generated</span>
+              <strong id="generatedAt">Loading</strong>
+            </div>
+          </div>
+        </div>
+        <aside class="hero-panel">
+          <div class="signal-card">
+            <span class="signal-label">Repo root</span>
+            <strong id="repoRoot">/root/legalize-mx</strong>
+          </div>
+          <div class="signal-grid" id="topSignals"></div>
+        </aside>
+      </section>
+
+      <section class="metric-strip" id="metricStrip"></section>
+
+      <section class="content-grid">
+        <article class="panel panel-legislation">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Pipeline</p>
+              <h2>Federal legislation</h2>
+            </div>
+            <span id="legislationStatus" class="status-pill">Unknown</span>
+          </div>
+          <div class="panel-kpis" id="legislationKpis"></div>
+          <div class="subpanel">
+            <div class="subpanel-header">
+              <h3>Recent runs</h3>
+              <span id="legislationRunWindow" class="subtle-copy"></span>
+            </div>
+            <div id="legislationRuns" class="list-stack"></div>
+          </div>
+          <div class="subpanel">
+            <div class="subpanel-header">
+              <h3>Pending queue</h3>
+              <span id="queueCount" class="subtle-copy"></span>
+            </div>
+            <div id="queueItems" class="list-stack compact"></div>
+          </div>
+        </article>
+
+        <article class="panel panel-jurisprudence">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Pipeline</p>
+              <h2>SCJN jurisprudence</h2>
+            </div>
+            <span id="jurisprudenceStatus" class="status-pill">Unknown</span>
+          </div>
+          <div class="panel-kpis" id="jurisprudenceKpis"></div>
+          <div class="subpanel">
+            <div class="subpanel-header">
+              <h3>Incremental states</h3>
+              <span class="subtle-copy">Per document kind</span>
+            </div>
+            <div id="jurisprudenceStates" class="list-stack"></div>
+          </div>
+          <div class="subpanel">
+            <div class="subpanel-header">
+              <h3>Latest batch kinds</h3>
+              <span class="subtle-copy">Most recent cycle</span>
+            </div>
+            <div id="jurisprudenceKinds" class="list-stack"></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="content-grid secondary-grid">
+        <article class="panel panel-release">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Guardrails</p>
+              <h2>Release ledger</h2>
+            </div>
+          </div>
+          <div class="panel-kpis" id="releaseKpis"></div>
+          <div class="subpanel">
+            <div class="subpanel-header">
+              <h3>Recent releases</h3>
+              <span class="subtle-copy">Approved, blocked, bypassed</span>
+            </div>
+            <div id="releaseRows" class="list-stack"></div>
+          </div>
+        </article>
+
+        <article class="panel panel-corpus">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Corpus</p>
+              <h2>Canonical material</h2>
+            </div>
+          </div>
+          <div class="panel-kpis" id="corpusKpis"></div>
+          <div class="subpanel">
+            <div class="subpanel-header">
+              <h3>Newest jurisprudence docs</h3>
+              <span class="subtle-copy">Filesystem activity</span>
+            </div>
+            <div id="recentDocs" class="list-stack compact"></div>
+          </div>
+          <div class="subpanel">
+            <div class="subpanel-header">
+              <h3>Newest legislation docs</h3>
+              <span class="subtle-copy">Markdown corpus</span>
+            </div>
+            <div id="recentLegislation" class="list-stack compact"></div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <template id="metricCardTemplate">
+      <article class="metric-card">
+        <span class="metric-label"></span>
+        <strong class="metric-value"></strong>
+        <span class="metric-note"></span>
+      </article>
+    </template>
+
+    <template id="listRowTemplate">
+      <article class="list-row">
+        <div class="row-main">
+          <strong class="row-title"></strong>
+          <p class="row-detail"></p>
+        </div>
+        <div class="row-side">
+          <span class="row-tag"></span>
+          <span class="row-meta"></span>
+        </div>
+      </article>
+    </template>
+
+    <script src="/ops/app.js" type="module"></script>
+  </body>
+</html>

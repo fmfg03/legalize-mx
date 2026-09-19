@@ -1,0 +1,17 @@
+[Unit]
+Description=lexera operator console
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/legalize-mx
+EnvironmentFile=-/etc/default/lexera-console
+ExecStart=/root/legalize-mx/.venv/bin/python /root/legalize-mx/scripts/run_operator_console.py --host 127.0.0.1 --port 4173
+Restart=always
+RestartSec=5
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

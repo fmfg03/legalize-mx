@@ -1,0 +1,17 @@
+[Unit]
+Description=lexera expediente API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/legalize-mx
+Environment=LEGALIZE_MX_ALLOW_SQLITE_FALLBACK=true
+ExecStart=/root/legalize-mx/.venv/bin/uvicorn backend.app.main:app --host 127.0.0.1 --port 8090
+Restart=always
+RestartSec=5
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

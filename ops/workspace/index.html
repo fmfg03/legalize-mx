@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lexera</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="scene">
+      <div class="scene-glow scene-glow-a"></div>
+      <div class="scene-glow scene-glow-b"></div>
+      <div class="scene-grid"></div>
+    </div>
+
+    <main class="workspace-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Lexera</p>
+          <h1>Expedientes, documentos y copiloto legal en un mismo workspace.</h1>
+        </div>
+        <div class="topbar-actions">
+          <button id="refreshWorkspaceButton" class="ghost-button" type="button">Actualizar</button>
+          <a class="ghost-link" href="/ops/" target="_blank" rel="noreferrer">Operación</a>
+        </div>
+      </header>
+
+      <section class="status-strip" id="statusStrip"></section>
+
+      <section class="panel agenda-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Agenda general</p>
+            <h2>Terminos y audiencias de todos los expedientes</h2>
+          </div>
+        </div>
+        <p class="subtle-copy">
+          Los plazos sugeridos por regla procesal se muestran como preliminares y deben validarse contra el calendario oficial
+          del organo jurisdiccional.
+        </p>
+        <div id="agendaList" class="list-stack"></div>
+      </section>
+
+      <section class="workspace-grid">
+        <aside class="sidebar panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Expedientes</p>
+              <h2>Casos activos</h2>
+            </div>
+            <button id="toggleExpedienteFormButton" class="primary-button" type="button">Nuevo</button>
+          </div>
+
+          <form id="expedienteForm" class="stack-form hidden">
+            <label>
+              <span>Título</span>
+              <input name="title" type="text" required />
+            </label>
+            <label>
+              <span>Número</span>
+              <input name="expediente_number" type="text" />
+            </label>
+            <label>
+              <span>Materia</span>
+              <input name="matter_type" type="text" value="amparo" required />
+            </label>
+            <label>
+              <span>Jurisdicción</span>
+              <select name="jurisdiction_level">
+                <option value="federal">Federal</option>
+                <option value="estatal">Estatal</option>
+                <option value="municipal">Municipal</option>
+              </select>
+            </label>
+            <label>
+              <span>Autoridad o tribunal</span>
+              <input name="court_or_authority" type="text" />
+            </label>
+            <label>
+              <span>Resumen</span>
+              <textarea name="summary" rows="4"></textarea>
+            </label>
+            <label>
+              <span>Pista procesal</span>
+              <select name="procedure_track" id="procedureTrackSelect">
+                <option value="">Sin automatizacion</option>
+              </select>
+            </label>
+            <label>
+              <span>Parte inicial</span>
+              <input name="party_display_name" type="text" placeholder="Quejoso, actor, promovente..." />
+            </label>
+            <label>
+              <span>Rol de la parte</span>
+              <select name="party_role">
+                <option value="quejoso">Quejoso</option>
+                <option value="actor">Actor</option>
+                <option value="demandado">Demandado</option>
+                <option value="autoridad_responsable">Autoridad responsable</option>
+                <option value="tercero">Tercero</option>
+                <option value="apoderado">Apoderado</option>
+                <option value="other">Otro</option>
+              </select>
+            </label>
+            <div class="form-actions">
+              <button class="primary-button" type="submit">Crear expediente</button>
+            </div>
+          </form>
+
+          <div id="expedienteList" class="expediente-list"></div>
+        </aside>
+
+        <section class="main-column">
+          <article class="panel expediente-panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Expediente</p>
+                <h2 id="expedienteTitle">Selecciona un expediente</h2>
+                <p id="expedienteMeta" class="subtle-copy">La vista mostrará partes, documentos, plazos y actividad.</p>
+              </div>
+            </div>
+
+            <div id="expedienteSummaryCards" class="summary-grid"></div>
+
+            <div class="subpanel synthesis-panel">
+              <div class="subpanel-header">
+                <h3>Síntesis vigente</h3>
+              </div>
+              <p class="subtle-copy">
+                Esta sintesis ordena el expediente y es requisito previo para borradores y trabajo de fondo.
+              </p>
+              <div id="synthesisSummary" class="synthesis-summary"></div>
+              <div id="synthesisContent" class="synthesis-content"></div>
+            </div>
+
+            <div class="subpanel checklist-panel">
+              <div class="subpanel-header">
+                <h3>Control previo antes del fondo</h3>
+              </div>
+              <p class="subtle-copy">
+                Checklist persistente del expediente: personalidad, personeria, poderes, legitimacion, competencia, via,
+                notificaciones, fechas y plazos.
+              </p>
+              <form id="preflightChecklistForm" class="stack-form">
+                <label>
+                  <span>Objetivo adicional</span>
+                  <textarea
+                    name="objective"
+                    rows="3"
+                    placeholder="Ej. Valida si ya esta acreditada la personeria y si hay riesgo de preclusion."
+                  ></textarea>
+                </label>
+                <div class="form-actions">
+                  <button class="primary-button" type="submit">Auditar control previo</button>
+                </div>
+              </form>
+              <div id="preflightChecklistSummary" class="checklist-summary"></div>
+              <div id="preflightChecklistList" class="checklist-grid"></div>
+            </div>
+
+            <div class="two-column-section">
+              <div class="subpanel">
+                <div class="subpanel-header">
+                  <h3>Partes</h3>
+                </div>
+                <div id="partyList" class="list-stack compact"></div>
+              </div>
+              <div class="subpanel">
+                <div class="subpanel-header">
+                  <h3>Plazos</h3>
+                </div>
+                <div id="deadlineList" class="list-stack compact"></div>
+              </div>
+            </div>
+          </article>
+
+          <section class="operations-grid">
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Actividad</p>
+                  <h2>Nueva actuación</h2>
+                </div>
+              </div>
+              <form id="eventForm" class="stack-form">
+                <label>
+                  <span>Título</span>
+                  <input name="title" type="text" required />
+                </label>
+                <div class="form-grid">
+                  <label>
+                    <span>Tipo</span>
+                    <select name="event_type">
+                      <option value="actuacion">Actuación</option>
+                      <option value="notificacion">Notificación</option>
+                      <option value="audiencia">Audiencia</option>
+                      <option value="presentacion">Presentación</option>
+                      <option value="resolucion">Resolución</option>
+                      <option value="other">Otro</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Fecha y hora</span>
+                    <input name="event_date" type="datetime-local" required />
+                  </label>
+                </div>
+                <label>
+                  <span>Documento vinculado</span>
+                  <select name="document_id" class="document-select">
+                    <option value="">Sin vincular</option>
+                  </select>
+                </label>
+                <p class="form-hint">
+                  Si el expediente tiene pista procesal y registras una notificacion vinculada a un emplazamiento o sentencia,
+                  Lexera puede generar plazos preliminares automaticamente.
+                </p>
+                <label>
+                  <span>Detalle</span>
+                  <textarea name="description" rows="3"></textarea>
+                </label>
+                <div class="form-actions">
+                  <button class="primary-button" type="submit">Registrar actuación</button>
+                </div>
+              </form>
+            </article>
+
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Plazos</p>
+                  <h2>Nuevo plazo</h2>
+                </div>
+              </div>
+              <form id="deadlineForm" class="stack-form">
+                <label>
+                  <span>Etiqueta</span>
+                  <input name="label" type="text" required />
+                </label>
+                <div class="form-grid">
+                  <label>
+                    <span>Vence</span>
+                    <input name="due_at" type="datetime-local" required />
+                  </label>
+                  <label>
+                    <span>Estado</span>
+                    <select name="status">
+                      <option value="open">Abierto</option>
+                      <option value="satisfied">Cumplido</option>
+                      <option value="missed">Vencido</option>
+                      <option value="cancelled">Cancelado</option>
+                    </select>
+                  </label>
+                </div>
+                <label>
+                  <span>Documento vinculado</span>
+                  <select name="document_id" class="document-select">
+                    <option value="">Sin vincular</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Notas</span>
+                  <textarea name="notes" rows="3"></textarea>
+                </label>
+                <div class="form-actions">
+                  <button class="primary-button" type="submit">Guardar plazo</button>
+                </div>
+              </form>
+            </article>
+
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Plazos</p>
+                  <h2>Actualizar estado</h2>
+                </div>
+              </div>
+              <form id="deadlineUpdateForm" class="stack-form">
+                <label>
+                  <span>Plazo</span>
+                  <select name="deadline_id" id="deadlineUpdateSelect">
+                    <option value="">Selecciona un plazo</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Nuevo estado</span>
+                  <select name="status">
+                    <option value="open">Abierto</option>
+                    <option value="satisfied">Cumplido</option>
+                    <option value="missed">Vencido</option>
+                    <option value="cancelled">Cancelado</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Notas</span>
+                  <textarea name="notes" rows="3"></textarea>
+                </label>
+                <div class="form-actions">
+                  <button class="primary-button" type="submit">Actualizar plazo</button>
+                </div>
+              </form>
+            </article>
+          </section>
+
+          <article class="panel documents-panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Documentos</p>
+                <h2>Versiones dentro del expediente</h2>
+              </div>
+            </div>
+
+            <div class="two-column-section">
+              <form id="documentForm" class="stack-form document-form subpanel">
+                <div class="subpanel-header">
+                  <h3>Subir documento</h3>
+                </div>
+                <div class="form-grid">
+                  <label>
+                    <span>Título</span>
+                    <input name="title" type="text" required />
+                  </label>
+                  <label>
+                    <span>Tipo</span>
+                    <select name="document_type">
+                      <option value="notificacion">Notificación</option>
+                      <option value="emplazamiento">Emplazamiento</option>
+                      <option value="acuerdo">Acuerdo</option>
+                      <option value="sentencia">Sentencia</option>
+                      <option value="demanda">Demanda</option>
+                      <option value="escrito">Escrito</option>
+                      <option value="oficio">Oficio</option>
+                      <option value="constancia">Constancia</option>
+                      <option value="anexo">Anexo</option>
+                      <option value="prueba">Prueba</option>
+                      <option value="otro">Otro</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Fecha del acto</span>
+                    <input name="event_date" type="date" />
+                  </label>
+                  <label>
+                    <span>Archivo</span>
+                    <input name="file" type="file" required />
+                  </label>
+                </div>
+                <label>
+                  <span>Descripción</span>
+                  <textarea name="description" rows="3"></textarea>
+                </label>
+                <div class="form-actions">
+                  <button class="primary-button" type="submit">Subir documento</button>
+                </div>
+              </form>
+
+              <form id="draftForm" class="stack-form subpanel">
+                <div class="subpanel-header">
+                  <h3>Redactar por secciones</h3>
+                </div>
+                <p class="subtle-copy">
+                  Genera piezas concretas del escrito desde la sintesis vigente. Cada seccion se guarda por separado y
+                  puede volver a versionarse sin reescribir todo el documento.
+                </p>
+                <div class="form-grid">
+                  <label>
+                    <span>Nombre del escrito o bundle</span>
+                    <input name="bundle_title" type="text" required />
+                  </label>
+                  <label>
+                    <span>Tipo</span>
+                    <select name="document_type">
+                      <option value="escrito">Escrito</option>
+                      <option value="demanda">Demanda</option>
+                      <option value="oficio">Oficio</option>
+                      <option value="constancia">Constancia</option>
+                      <option value="otro">Otro</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Fecha del acto</span>
+                    <input name="event_date" type="date" />
+                  </label>
+                  <label>
+                    <span>Descripción</span>
+                    <input name="description" type="text" placeholder="Paquete de trabajo, proyecto de amparo, recurso..." />
+                  </label>
+                  <label>
+                    <span>Sección</span>
+                    <select name="section_key" id="draftSectionSelect" required>
+                      <option value="">Selecciona una seccion</option>
+                    </select>
+                  </label>
+                </div>
+                <p class="form-hint" id="draftSectionHelp">
+                  Selecciona una seccion concreta. Lexera la redacta con base en la sintesis y los documentos cargados.
+                </p>
+                <label>
+                  <span>Instrucción</span>
+                  <textarea
+                    name="prompt"
+                    rows="5"
+                    placeholder="Ej. Enfatiza los hechos asentados en la notificacion y deja claros los huecos sobre personeria."
+                    required
+                  ></textarea>
+                </label>
+                <div class="form-actions">
+                  <button class="primary-button" type="submit">Generar seccion y guardar</button>
+                </div>
+              </form>
+
+              <form id="caseAnalysisForm" class="stack-form subpanel">
+                <div class="subpanel-header">
+                  <h3>Generar síntesis vigente</h3>
+                </div>
+                <p class="subtle-copy">
+                  Reconstruye hechos confirmados, cronologia, documentos clave, control previo y siguiente paso operativo
+                  usando los documentos ya cargados.
+                </p>
+                <p class="subtle-copy">
+                  La sintesis es la base previa para cualquier analisis de fondo o borrador.
+                </p>
+                <label>
+                  <span>Título de la síntesis</span>
+                  <input name="title" type="text" value="Sintesis vigente del expediente" />
+                </label>
+                <label>
+                  <span>Objetivo adicional</span>
+                  <textarea
+                    name="objective"
+                    rows="4"
+                    placeholder="Ej. Ordena el expediente, identifica huecos y precisa el siguiente paso operativo inmediato."
+                  ></textarea>
+                </label>
+                <div class="form-actions">
+                  <button class="primary-button" type="submit">Generar sintesis</button>
+                </div>
+              </form>
+            </div>
+
+            <div id="documentList" class="list-stack"></div>
+          </article>
+
+          <section class="two-column-section">
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Defendability Gate</p>
+                  <h2>Evaluar liberabilidad</h2>
+                </div>
+              </div>
+              <form id="defendabilityForm" class="stack-form">
+                <label>
+                  <span>Version de documento</span>
+                  <select name="document_version_id" id="defendabilityVersionSelect">
+                    <option value="">Selecciona una version</option>
+                  </select>
+                </label>
+                <div class="form-actions">
+                  <button class="primary-button" type="submit">Evaluar defendibilidad</button>
+                </div>
+              </form>
+              <div id="defendabilityResult" class="revision-result empty-state">
+                Todavia no hay evaluacion de defendibilidad en esta sesion.
+              </div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Revision Guard</p>
+                  <h2>Revisar version existente</h2>
+                </div>
+              </div>
+              <form id="revisionForm" class="stack-form">
+                <label>
+                  <span>Version de documento</span>
+                  <select name="document_version_id" id="revisionVersionSelect">
+                    <option value="">Selecciona una version</option>
+                  </select>
+                </label>
+                <div class="form-grid">
+                  <label>
+                    <span>Modo</span>
+                    <select name="revision_mode" id="revisionModeSelect">
+                      <option value="narrow">Puntual</option>
+                      <option value="broad">Amplia</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Guardia</span>
+                    <input id="revisionModeHint" type="text" value="La revision puntual es el modo por defecto." readonly />
+                  </label>
+                </div>
+                <label>
+                  <span>Objetivo de la revision</span>
+                  <textarea
+                    name="objective"
+                    rows="4"
+                    placeholder="Ej. Corrige inconsistencias, depura redundancias y fortalece claridad sin reescritura total."
+                    required
+                  ></textarea>
+                </label>
+                <div class="form-actions">
+                  <button class="primary-button" type="submit">Revisar y generar nueva version</button>
+                </div>
+              </form>
+              <div id="revisionResult" class="revision-result empty-state">
+                Todavia no hay resultado de revision en esta sesion.
+              </div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Revisión</p>
+                  <h2>Registrar liberación</h2>
+                </div>
+              </div>
+              <form id="releaseForm" class="stack-form">
+                <label>
+                  <span>Versión de documento</span>
+                  <select name="document_version_id" id="releaseVersionSelect">
+                    <option value="">Selecciona una versión</option>
+                  </select>
+                </label>
+                <div class="form-grid">
+                  <label>
+                    <span>Veredicto</span>
+                    <select name="verdict">
+                      <option value="approved">Approved</option>
+                      <option value="blocked">Blocked</option>
+                      <option value="bypass">Bypass</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Tipo de respuesta</span>
+                    <input name="response_type" type="text" value="workspace_manual_review" />
+                  </label>
+                </div>
+                <label>
+                  <span>Notas de revisión</span>
+                  <textarea name="notes" rows="4"></textarea>
+                </label>
+                <div class="form-actions">
+                  <button class="primary-button" type="submit">Registrar revisión</button>
+                </div>
+              </form>
+            </article>
+
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Ledger</p>
+                  <h2>Release receipts</h2>
+                </div>
+              </div>
+              <div id="releaseReceiptList" class="list-stack"></div>
+            </article>
+          </section>
+
+          <article class="panel timeline-panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Actividad</p>
+                <h2>Línea de tiempo del expediente</h2>
+              </div>
+            </div>
+            <div id="timelineList" class="timeline-list"></div>
+          </article>
+        </section>
+
+        <aside class="copilot-column panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Copiloto</p>
+              <h2>Consulta el expediente</h2>
+            </div>
+          </div>
+          <p class="subtle-copy">
+            El copiloto usa el contexto del expediente seleccionado y corre en modelo local. Sus respuestas no pasan todavía
+            por la compuerta de liberación final.
+          </p>
+          <div id="copilotMessages" class="copilot-thread"></div>
+          <form id="copilotForm" class="copilot-form">
+            <textarea
+              id="copilotPrompt"
+              name="prompt"
+              rows="5"
+              placeholder="Pide un resumen, un mapa de riesgos, un borrador inicial o una estrategia procesal."
+              required
+            ></textarea>
+            <div class="form-actions">
+              <button class="primary-button" type="submit">Enviar al copiloto</button>
+            </div>
+          </form>
+        </aside>
+      </section>
+    </main>
+
+    <template id="expedienteListItemTemplate">
+      <button class="expediente-item" type="button">
+        <span class="expediente-item-title"></span>
+        <span class="expediente-item-meta"></span>
+      </button>
+    </template>
+
+    <template id="summaryCardTemplate">
+      <article class="summary-card">
+        <span class="summary-label"></span>
+        <strong class="summary-value"></strong>
+        <span class="summary-note"></span>
+      </article>
+    </template>
+
+    <template id="listRowTemplate">
+      <article class="list-row">
+        <div class="row-main">
+          <strong class="row-title"></strong>
+          <p class="row-detail"></p>
+        </div>
+        <div class="row-side">
+          <span class="row-tag"></span>
+          <span class="row-meta"></span>
+        </div>
+      </article>
+    </template>
+
+    <template id="timelineItemTemplate">
+      <article class="timeline-item">
+        <span class="timeline-date"></span>
+        <div class="timeline-body">
+          <strong class="timeline-title"></strong>
+          <p class="timeline-detail"></p>
+        </div>
+      </article>
+    </template>
+
+    <template id="chatBubbleTemplate">
+      <article class="chat-bubble">
+        <span class="chat-role"></span>
+        <div class="chat-content"></div>
+      </article>
+    </template>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
