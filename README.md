@@ -66,14 +66,13 @@ La consola operativa interna para observar corpus, colas, lotes y recibos esta e
 
 El backend inicial para expedientes, documentos versionados y actuaciones esta en [docs/expediente-backend.md](docs/expediente-backend.md).
 
+Para una evaluacion basada en evidencia del sistema desde GitHub, consultar [docs/system-potential.md](docs/system-potential.md) y la [guia de analisis por GitHub](docs/github-analysis-guide.md). La frontera entre lo versionado, lo local y los datos heredados esta definida en [docs/data-versioning-policy.md](docs/data-versioning-policy.md).
+
 ## Estado
 
-Scaffold inicial listo. Falta:
+El repositorio ya contiene implementaciones para ingesta y normalizacion, manifests y chunks, gates de evidencia y autoridad, liberacion controlada de respuestas, backend de expedientes y consola operativa. Esto no acredita por si mismo cobertura completa del corpus, despliegue productivo, aceptacion juridica ni resultados de un caso concreto.
 
-1. ingesta de legislacion federal
-2. ingesta de jurisprudencia
-3. generacion de chunks
-4. embeddings e indices de retrieval
+El estado de cada capacidad, sus rutas de evidencia y sus limites estan en [docs/system-potential.md](docs/system-potential.md). Antes de concluir disponibilidad o cobertura, ejecutar los checks y revisar los recibos vigentes del entorno correspondiente.
 
 ## Uso rapido del importador actual
 
