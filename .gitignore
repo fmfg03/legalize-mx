@@ -24,6 +24,8 @@ mexico/jurisprudence/sjf/
 indexes/*.jsonl
 
 # Case material and generated local documents are never part of the repository.
+.codex/
+sessions/
 drafts/
 docs/amparopenal/
 /*.pdf
