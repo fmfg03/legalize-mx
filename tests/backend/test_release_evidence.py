@@ -368,6 +368,7 @@ def test_committed_retry_ignores_mutable_inputs_without_duplicating(release_case
         with case["factory"]() as db:
             db.get(case["models"].GateExecution, execution_id).created_at = datetime.now(timezone.utc) - timedelta(days=1)
             db.commit()
+    execution = SimpleNamespace(id=execution_id)
     with case["factory"]() as db:
         retried = case["service"].release_from_execution(db=db, actor_id=actor_id, expediente_id=expediente_id, execution_id=execution_id, bundle=case["bundle"], root=root,
             audit_context=case["service"].ReleaseAuditContext(channel="mcp_oauth", route="/mcp", method="POST", tool="release_document"))
