@@ -12,7 +12,8 @@ def test_migration_from_main_schema_preserves_legacy_receipts(tmp_path):
     root = Path(__file__).parents[2]
     old = tmp_path / "main"
     old.mkdir()
-    archive = subprocess.run(["git", "archive", "HEAD", "backend"], cwd=root, capture_output=True, check=True).stdout
+    legacy_revision = "a1c226260019c0da40d45eff2d1fa5dd42b40ce4"
+    archive = subprocess.run(["git", "archive", legacy_revision, "backend"], cwd=root, capture_output=True, check=True).stdout
     with tarfile.open(fileobj=io.BytesIO(archive)) as tar:
         tar.extractall(old, filter="data")
     db_url = f"sqlite+pysqlite:///{tmp_path / 'migration.sqlite'}"

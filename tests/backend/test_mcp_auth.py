@@ -233,7 +233,7 @@ def test_mcp_release_end_to_end_builds_capabilities_once_per_invocation(app_bund
     with TestClient(app, base_url="https://legalize.example") as client:
         headers = {"Accept": "application/json, text/event-stream", "MCP-Protocol-Version": "2025-11-25", "Authorization": "Bearer " + oauth["token"]()}
         def call(name, payload):
-            response = client.post("/mcp", headers=headers, json={"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": name, "arguments": {"expediente_id": str(expediente.id), "payload": payload}, "_meta": {"actor_id": str(actor.id)}}})
+            response = client.post("/mcp", headers=headers, json={"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": name, "arguments": {"expediente_id": str(expediente.id), "payload": payload}, "_meta": {"actor_id": str(actor.id), "channel": "rest_api_key", "route": "/spoof", "method": "DELETE"}}})
             assert response.status_code == 200, response.text
             return response.json()["result"]
         evaluation = call("evaluate_document_release", {"document_version_id": str(version.id), "bundle": bundle})
@@ -252,6 +252,10 @@ def test_mcp_release_end_to_end_builds_capabilities_once_per_invocation(app_bund
         event = db.scalar(select(app_bundle["models"].ReleaseOutbox))
         assert event.payload["actor_user_id"] == str(actor.id)
         assert event.payload["execution_id"] == execution_id
+        audits = db.scalars(select(app_bundle["models"].AuditLog).where(app_bundle["models"].AuditLog.action.in_(["evaluate_release", "create_release_receipt"]))).all()
+        assert len(audits) == 2
+        assert all(log.route == "/mcp" and log.method == "POST" and log.extra_json["channel"] == "mcp_oauth" for log in audits)
+        assert {log.extra_json["tool"] for log in audits} == {"evaluate_document_release", "release_document"}
 
 
 def test_enabled_mcp_mount_uses_main_lifespan_and_auth(app_bundle, oauth, monkeypatch):

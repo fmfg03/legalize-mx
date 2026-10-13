@@ -63,8 +63,10 @@ def test_server_extracts_binary_formats_and_binds_original_bytes(app_bundle, mak
     storage = importlib.import_module("backend.app.storage")
     storage.resolve_storage_path(storage_key).write_bytes(create("Different content"))
     with app_bundle["db"].SessionLocal() as db:
+        retried = service.release_from_execution(db=db, actor_id=actor.id, expediente_id=expediente_id, execution_id=execution_id, bundle=bundle)
+        assert retried.id == receipt.id
         with pytest.raises(HTTPException):
-            service.release_from_execution(db=db, actor_id=actor.id, expediente_id=expediente_id, execution_id=execution_id, bundle=bundle)
+            service.evaluate_release(db=db, actor_id=actor.id, expediente_id=expediente_id, document_version_id=version_id, bundle=bundle)
 
 
 @pytest.mark.parametrize("suffix,payload", [(".pdf", b"broken PDF"), (".docx", b"broken ZIP"), (".txt", b"%PDF-1.4 fake")])
