@@ -22,4 +22,3 @@ def evaluate_release_gates(*, bundle, root, grounding_policy, authority_policy, 
         supplemental_jurisprudence_chunks=supplemental["jurisprudence_chunks"],
     )
     return authority_result, grounding_result
-

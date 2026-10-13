@@ -37,10 +37,14 @@ fuera de esta publicación. Ver slice0-local-validation.md para los límites com
 
 Se conserva byte por byte `legalize-mx-slice0-candidate-a1c2262-20261013.zip`, SHA256
 `4c10e4d5a06aac4cf1a96a1d3e84150fd7ec4d5b120f73531a87f0576db0a07d`, guardado en Library.
-Sus 49 archivos del candidato permanecen idénticos. Este checkpoint es nuevo;
+Sus archivos funcionales conservan el contenido entregado, salvo la eliminación
+de una línea vacía adicional al EOF de scripts/legal_release_gates.py, detectada
+por git diff --check contra el commit publicado (sin cambio de comportamiento).
+Este checkpoint es nuevo;
 docs/legal-response-release-gate.md se actualiza para describir la CLI autenticada
 y la evidencia persistente en vez de sus comandos históricos ya inválidos. Son
-los únicos deltas de publicación; no hay cambio adicional de código/producto/tests.
+los deltas documentales de publicación. La corrección EOF es el único delta de
+código y no modifica lógica ni tests; la revisión final usa el nuevo SHA exacto.
 
 Eliminar approved directo impone la política ya documentada en
 config/legal_response_release_policy.json y la regla operativa del release gate.
