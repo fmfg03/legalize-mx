@@ -29,6 +29,15 @@ defecto es 900 segundos. Un reintento equivalente devuelve el mismo recibo sin
 repetir auditoría ni outbox. Gates fallidos pueden producir un recibo blocked;
 ninguna de estas rutas admite bypass ni approved elegido por cliente.
 
+Para un recibo ya comprometido, retry valida reviewer/actor/expediente/bundle y la
+integridad de ejecución/recibo antes de devolverlo; no reevalúa documento, políticas,
+índices o caducidad actuales. Esos checks live se mantienen para primera liberación.
+La evidencia nueva guarda snapshots de las políticas del servidor, cuyos hashes e
+IDs requeridos se verifican sin leer políticas futuras durante retry/outbox. Evidencia
+anterior sin snapshot conserva sus IDs v1 y no se reescribe; un snapshot presente
+inválido falla cerrado. Canal/route/method/tool de auditoría proceden del servidor.
+Ver [correcciones de revisión automática](slice0-postmerge-review-fixes.md).
+
 La REST API mantiene el mecanismo API key existente que resuelve un AppUser local
 reviewer/admin. API key no autentica MCP. Consola, interfaz y CLI liberan a través
 de MCP con bearer individual, sin usar la API key compartida de la consola para
