@@ -10,7 +10,7 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session, selectinload
 
 from backend.app.audit import dumps_audit_details, record_audit_log
-from backend.app.release_service import evaluate_release, release_from_execution
+from backend.app.release_service import ReleaseAuditContext, evaluate_release, release_from_execution
 from backend.app.schemas.expedientes import ReleaseEvaluationCreate, ReleaseEvaluationRead
 from backend.app.db import get_db
 from backend.app.deps import require_audit_user, require_operator_user, require_read_user, require_reviewer_user
@@ -1055,16 +1055,18 @@ def create_release_receipt(
     return release_from_execution(
         db=db, actor_id=current_user.id, expediente_id=expediente.id,
         execution_id=payload.execution_id, bundle=payload.bundle,
+        audit_context=ReleaseAuditContext(channel="rest_api_key", route=request.url.path, method=request.method),
     )
 
 
 @router.post("/{expediente_id}/release-evaluations", response_model=ReleaseEvaluationRead, status_code=201)
 def create_release_evaluation(
-    expediente_id: str, payload: ReleaseEvaluationCreate,
+    expediente_id: str, payload: ReleaseEvaluationCreate, request: Request,
     current_user: AppUser = Depends(require_reviewer_user), db: Session = Depends(get_db),
 ):
     expediente = get_expediente_or_404(db, expediente_id)
     return evaluate_release(
         db=db, actor_id=current_user.id, expediente_id=expediente.id,
         document_version_id=payload.document_version_id, bundle=payload.bundle,
+        audit_context=ReleaseAuditContext(channel="rest_api_key", route=request.url.path, method=request.method),
     )

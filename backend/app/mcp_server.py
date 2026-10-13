@@ -13,7 +13,7 @@ from mcp.server.transport_security import TransportSecuritySettings
 from backend.app.config import Settings
 from backend.app.mcp_auth import JWTVerifier, invocation_capabilities
 from backend.app.schemas.expedientes import ReleaseEvaluationCreate, ReleaseReceiptCreate, ReleaseReceiptRead, ReleaseEvaluationRead
-from backend.app.release_service import evaluate_release, release_from_execution
+from backend.app.release_service import ReleaseAuditContext, evaluate_release, release_from_execution
 
 
 def build_mcp_server(config: Settings, session_factory) -> MCPServer:
@@ -43,7 +43,8 @@ def build_mcp_server(config: Settings, session_factory) -> MCPServer:
             if not capabilities.can_release:
                 raise ToolError("Release scope and reviewer role required")
             try:
-                execution = evaluate_release(db=db, actor_id=capabilities.actor_id, expediente_id=expediente_id, **payload.model_dump())
+                execution = evaluate_release(db=db, actor_id=capabilities.actor_id, expediente_id=expediente_id,
+                    audit_context=ReleaseAuditContext(channel="mcp_oauth", route=urlsplit(config.oauth_resource_url).path, method="POST", tool="evaluate_document_release"), **payload.model_dump())
                 return ReleaseEvaluationRead.model_validate(execution)
             except HTTPException as exc:
                 raise ToolError(str(exc.detail)) from exc
@@ -56,7 +57,8 @@ def build_mcp_server(config: Settings, session_factory) -> MCPServer:
             if not capabilities.can_release:
                 raise ToolError("Release scope and reviewer role required")
             try:
-                receipt = release_from_execution(db=db, actor_id=capabilities.actor_id, expediente_id=expediente_id, **payload.model_dump())
+                receipt = release_from_execution(db=db, actor_id=capabilities.actor_id, expediente_id=expediente_id,
+                    audit_context=ReleaseAuditContext(channel="mcp_oauth", route=urlsplit(config.oauth_resource_url).path, method="POST", tool="release_document"), **payload.model_dump())
                 return ReleaseReceiptRead.model_validate(receipt)
             except HTTPException as exc:
                 raise ToolError(str(exc.detail)) from exc

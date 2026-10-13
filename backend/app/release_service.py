@@ -4,6 +4,7 @@ import hashlib
 import json
 import uuid
 import subprocess
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -21,6 +22,16 @@ from backend.app.models.enums import ReleaseVerdict, UserRole
 from backend.app.storage import resolve_storage_path
 from backend.app.document_text import ExtractedDocument, extract_document
 from scripts.legal_release_gates import evaluate_release_gates
+
+POLICY_NAMES = ("legal_response_release_policy", "legal_authority_resolution_policy", "jurisprudence_grounding_policy")
+
+
+@dataclass(frozen=True)
+class ReleaseAuditContext:
+    channel: str = "internal"
+    route: str | None = None
+    method: str | None = None
+    tool: str | None = None
 
 
 def canonical_json(value: Any) -> str:
@@ -54,7 +65,7 @@ def version_snapshot(db: Session, expediente_id: uuid.UUID, version_id: uuid.UUI
 
 
 def policy_snapshot(root: Path):
-    names = ("legal_response_release_policy", "legal_authority_resolution_policy", "jurisprudence_grounding_policy")
+    names = POLICY_NAMES
     policies = [json.loads((root / "config" / f"{name}.json").read_text(encoding="utf-8")) for name in names]
     release, authority, grounding = policies
     required = [authority["policy_id"], grounding["policy_id"]]
@@ -69,6 +80,7 @@ def policy_snapshot(root: Path):
 def evaluate_release(
     *, db: Session, actor_id: uuid.UUID, expediente_id: uuid.UUID,
     document_version_id: uuid.UUID, bundle: dict[str, Any], root: Path = REPO_ROOT,
+    audit_context: ReleaseAuditContext = ReleaseAuditContext(),
 ) -> GateExecution:
     check_reviewer(db, actor_id)
     # Take a JSON snapshot so later caller mutations cannot change evaluated data.
@@ -117,7 +129,7 @@ def evaluate_release(
         execution_id=str(execution_id), actor_user_id=str(actor_id), expediente_id=str(expediente_id),
         document_version_id=str(document_version_id), bundle_sha256=bundle_hash,
         document_sha256=document_hash, extraction=extracted.evidence,
-        policy_hashes=hashes, verdict=verdict, gates=gates,
+        policy_hashes=hashes, policy_snapshot=dict(zip(POLICY_NAMES, policies)), verdict=verdict, gates=gates,
     )
     execution = GateExecution(
         id=execution_id, actor_user_id=actor_id, expediente_id=expediente_id,
@@ -126,10 +138,33 @@ def evaluate_release(
         evidence=evidence, evidence_sha256=digest(evidence),
     )
     db.add(execution)
-    record_audit_log(db=db, actor_user_id=actor_id, action="evaluate_release", entity_type="gate_execution", entity_id=execution_id, expediente_id=expediente_id, extra={"verdict": verdict, "bundle_sha256": bundle_hash})
+    record_audit_log(db=db, actor_user_id=actor_id, action="evaluate_release", entity_type="gate_execution", entity_id=execution_id, expediente_id=expediente_id,
+                     route=audit_context.route, method=audit_context.method,
+                     extra={"verdict": verdict, "bundle_sha256": bundle_hash, "channel": audit_context.channel, "tool": audit_context.tool})
     db.commit()
     db.refresh(execution)
     return execution
+
+
+def execution_gate_ids(execution: GateExecution) -> set[str]:
+    # Existing v1 evidence remains immutable. An invalid present snapshot cannot
+    # fall back to legacy validation or select current mutable policy inputs.
+    if "policy_snapshot" not in execution.evidence:
+        return {"legalize-mx-legal-authority-verification-v1", "legalize-mx-jurisprudence-grounding-v1"}
+    snapshot = execution.evidence["policy_snapshot"]
+    if not isinstance(snapshot, dict) or any(not isinstance(snapshot.get(name), dict) for name in POLICY_NAMES):
+        reject("Stored server policy snapshot invalid")
+    if any(digest(snapshot[name]) != execution.policy_hashes.get(name) for name in POLICY_NAMES):
+        reject("Stored server policy snapshot hash mismatch")
+    ids = [snapshot[name].get("policy_id") for name in POLICY_NAMES]
+    if not all(isinstance(value, str) and value.strip() for value in ids):
+        reject("Stored server policy IDs invalid")
+    required = snapshot[POLICY_NAMES[0]].get("required_gates")
+    if not isinstance(required, list) or len(required) != 2 or not all(isinstance(value, str) and value.strip() for value in required) or len(set(required)) != 2:
+        reject("Stored required gates invalid")
+    if set(required) != set(ids[1:]):
+        reject("Stored required gates do not match policy IDs")
+    return set(required)
 
 
 def validate_execution_record(execution: GateExecution) -> None:
@@ -146,7 +181,7 @@ def validate_execution_record(execution: GateExecution) -> None:
     if not isinstance(gates, list) or len(gates) != 2 or not all(isinstance(g, dict) for g in gates):
         reject("Required gate evidence missing")
     gate_ids = {g.get("gate_id") for g in gates}
-    if gate_ids != {"legalize-mx-legal-authority-verification-v1", "legalize-mx-jurisprudence-grounding-v1"}:
+    if gate_ids != execution_gate_ids(execution):
         reject("Required gate evidence missing")
     verdict = "approved" if all(g.get("verdict") == "PASS" and g.get("failures") == [] for g in gates) else "blocked"
     if execution.verdict != verdict:
@@ -164,6 +199,7 @@ def validate_receipt_record(receipt: ReleaseReceipt, execution: GateExecution) -
         or receipt.verdict.value != execution.verdict
         or receipt.response_type != execution.bundle.get("response_type")
         or receipt.gate_summary != execution.evidence
+        or ("policy_snapshot" in execution.evidence and receipt.policy_id != execution.evidence["policy_snapshot"][POLICY_NAMES[0]].get("policy_id"))
     ):
         reject("Existing receipt does not match gate execution")
 
@@ -171,6 +207,7 @@ def validate_receipt_record(receipt: ReleaseReceipt, execution: GateExecution) -
 def release_from_execution(
     *, db: Session, actor_id: uuid.UUID, expediente_id: uuid.UUID,
     execution_id: uuid.UUID, bundle: dict[str, Any], root: Path = REPO_ROOT,
+    audit_context: ReleaseAuditContext = ReleaseAuditContext(),
 ) -> ReleaseReceipt:
     check_reviewer(db, actor_id)
     execution = db.scalar(select(GateExecution).where(GateExecution.id == execution_id).with_for_update())
@@ -185,6 +222,10 @@ def release_from_execution(
         reject("Invalid bundle", 422)
     if digest(execution.bundle) != execution.bundle_sha256 or bundle_hash != execution.bundle_sha256:
         reject("Bundle does not match evaluated evidence")
+    receipt = db.scalar(select(ReleaseReceipt).where(ReleaseReceipt.execution_id == execution.id))
+    if receipt is not None:
+        validate_receipt_record(receipt, execution)
+        return receipt
     extracted = version_snapshot(db, expediente_id, execution.document_version_id)
     if extracted.document_sha256 != execution.document_sha256 or extracted.text != bundle.get("response_text") or extracted.evidence != execution.evidence.get("extraction"):
         reject("Document does not match evaluated evidence")
@@ -205,10 +246,6 @@ def release_from_execution(
     computed_verdict = "approved" if all(g.get("verdict") == "PASS" and g.get("failures") == [] for g in gates) else "blocked"
     if execution.verdict != computed_verdict:
         reject("Gate verdict does not match evidence")
-    receipt = db.scalar(select(ReleaseReceipt).where(ReleaseReceipt.execution_id == execution.id))
-    if receipt is not None:
-        validate_receipt_record(receipt, execution)
-        return receipt
     created = execution.created_at.replace(tzinfo=timezone.utc) if execution.created_at.tzinfo is None else execution.created_at
     if (datetime.now(timezone.utc) - created).total_seconds() > settings.release_evidence_max_age_seconds:
         reject("Gate evidence expired; evaluate again")
@@ -223,14 +260,16 @@ def release_from_execution(
         db.flush()
         payload = dict(receipt_id=str(receipt.id), bundle=execution.bundle, **evidence)
         db.add(ReleaseOutbox(receipt_id=receipt.id, payload=payload, payload_sha256=digest(payload)))
-        record_audit_log(db=db, actor_user_id=actor_id, action="create_release_receipt", entity_type="release_receipt", entity_id=receipt.id, expediente_id=expediente_id, extra={"execution_id": str(execution.id), "bundle_sha256": bundle_hash, "verdict": computed_verdict})
+        record_audit_log(db=db, actor_user_id=actor_id, action="create_release_receipt", entity_type="release_receipt", entity_id=receipt.id, expediente_id=expediente_id,
+                         route=audit_context.route, method=audit_context.method,
+                         extra={"execution_id": str(execution.id), "bundle_sha256": bundle_hash, "verdict": computed_verdict, "channel": audit_context.channel, "tool": audit_context.tool})
         db.commit()
     except IntegrityError:
         db.rollback()
         # The unique execution_id arbitrates equivalent concurrent retries (including SQLite).
         if db.scalar(select(ReleaseReceipt.id).where(ReleaseReceipt.execution_id == execution_id)) is None:
             raise
-        return release_from_execution(db=db, actor_id=actor_id, expediente_id=expediente_id, execution_id=execution_id, bundle=bundle, root=root)
+        return release_from_execution(db=db, actor_id=actor_id, expediente_id=expediente_id, execution_id=execution_id, bundle=bundle, root=root, audit_context=audit_context)
     except Exception:
         db.rollback()
         raise

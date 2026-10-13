@@ -166,6 +166,7 @@ def test_create_release_receipt_tracks_reviewer_actor(app_bundle: dict[str, obje
         execution = app_bundle["expediente_routes"].create_release_evaluation(
             expediente_id=str(expediente.id),
             payload=schemas.ReleaseEvaluationCreate(document_version_id=version_id, bundle=bundle),
+            request=fake_request(f"/api/v1/expedientes/{expediente.id}/release-evaluations", "POST"),
             current_user=reviewer["user"], db=session,
         )
         receipt = app_bundle["expediente_routes"].create_release_receipt(

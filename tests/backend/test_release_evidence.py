@@ -89,6 +89,11 @@ def test_old_direct_approved_payload_and_forged_fields_rejected(app_bundle, rele
         released = client.post(url, headers=headers, json={"execution_id": response.json()["id"], "bundle": case["bundle"]})
         assert released.status_code == 201, released.text
         assert released.json()["execution_id"] == response.json()["id"]
+    with case["factory"]() as db:
+        audits = db.scalars(select(case["models"].AuditLog).where(case["models"].AuditLog.action.in_(["evaluate_release", "create_release_receipt"]))).all()
+        assert len(audits) == 2
+        assert all(log.method == "POST" and log.extra_json["channel"] == "rest_api_key" for log in audits)
+        assert {log.route for log in audits} == {url, evaluation_url}
     with pytest.raises(ValidationError):
         case["schemas"].ReleaseReceiptCreate(execution_id=uuid.uuid4(), bundle=case["bundle"], verdict="approved")
 
@@ -307,3 +312,103 @@ def test_live_jurisprudence_source_is_server_bound(release_case, monkeypatch, so
     execution = release_case["evaluate"](bundle, release_case["version_for"](text))
     assert fetched == ["https://bicentenario.scjn.gob.mx/repositorio-scjn/api/v1/tesis/999999999"]
     assert execution.verdict == ("blocked" if source == "https://www.dof.gob.mx/" else "approved")
+
+
+
+def copied_policy_root(tmp_path):
+    import shutil
+    source = Path(__file__).parents[2]
+    root = tmp_path / "policies"
+    for folder in ("config", "indexes"):
+        shutil.copytree(source / folder, root / folder)
+    return root
+
+
+def test_versioned_server_policy_ids_release_and_deliver_snapshot(release_case, tmp_path):
+    case = release_case
+    root = copied_policy_root(tmp_path)
+    names = case["service"].POLICY_NAMES
+    policies = [json.loads((root / "config" / (name + ".json")).read_text()) for name in names]
+    for policy in policies:
+        policy["policy_id"] = policy["policy_id"].replace("-v1", "-v2")
+    policies[0]["required_gates"] = [policy["policy_id"] for policy in policies[1:]]
+    for name, policy in zip(names, policies):
+        (root / "config" / (name + ".json")).write_text(json.dumps(policy))
+    with case["factory"]() as db:
+        execution = case["service"].evaluate_release(db=db, actor_id=case["actor"]["user"].id, expediente_id=case["expediente"].id, document_version_id=case["version"].id, bundle=case["bundle"], root=root)
+        receipt = case["service"].release_from_execution(db=db, actor_id=case["actor"]["user"].id, expediente_id=case["expediente"].id, execution_id=execution.id, bundle=case["bundle"], root=root)
+        assert receipt.verdict.value == "approved"
+        assert receipt.policy_id == policies[0]["policy_id"]
+        assert {g["gate_id"] for g in execution.evidence["gates"]} == set(policies[0]["required_gates"])
+    # Export validates the committed v2 snapshot even though the repository is v1.
+    assert importlib.import_module("backend.app.outbox").drain_outbox(case["factory"], tmp_path / "exports")["delivered"] == 1
+
+
+@pytest.mark.parametrize("change", ["policy", "index", "document", "expiry"])
+def test_committed_retry_ignores_mutable_inputs_without_duplicating(release_case, tmp_path, change):
+    case = release_case
+    root = copied_policy_root(tmp_path)
+    actor_id, expediente_id = case["actor"]["user"].id, case["expediente"].id
+    with case["factory"]() as db:
+        execution = case["service"].evaluate_release(db=db, actor_id=actor_id, expediente_id=expediente_id, document_version_id=case["version"].id, bundle=case["bundle"], root=root)
+        execution_id = execution.id
+        receipt = case["service"].release_from_execution(db=db, actor_id=actor_id, expediente_id=expediente_id, execution_id=execution_id, bundle=case["bundle"], root=root)
+        receipt_id = receipt.id
+    if change == "policy":
+        path = root / "config/legal_response_release_policy.json"
+        policy = json.loads(path.read_text())
+        policy["description"] = "Changed after committed release"
+        path.write_text(json.dumps(policy))
+    elif change == "index":
+        with (root / "indexes/legislation_chunks.jsonl").open("a") as stream:
+            stream.write('\n{"doc_id":"new-after-commit"}\n')
+    elif change == "document":
+        case["storage"].resolve_storage_path(case["version"].storage_key).unlink()
+    else:
+        with case["factory"]() as db:
+            db.get(case["models"].GateExecution, execution_id).created_at = datetime.now(timezone.utc) - timedelta(days=1)
+            db.commit()
+    execution = SimpleNamespace(id=execution_id)
+    with case["factory"]() as db:
+        retried = case["service"].release_from_execution(db=db, actor_id=actor_id, expediente_id=expediente_id, execution_id=execution_id, bundle=case["bundle"], root=root,
+            audit_context=case["service"].ReleaseAuditContext(channel="mcp_oauth", route="/mcp", method="POST", tool="release_document"))
+        assert retried.id == receipt_id
+    with pytest.raises(HTTPException):
+        case["release"](execution, actor_override=case["other"])
+    with pytest.raises(HTTPException):
+        case["release"](execution, bundle_override={**case["bundle"], "request_id": "different"})
+    with case["factory"]() as db:
+        assert db.scalar(select(func.count()).select_from(case["models"].ReleaseReceipt)) == 1
+        assert db.scalar(select(func.count()).select_from(case["models"].ReleaseOutbox)) == 1
+        audits = db.scalars(select(case["models"].AuditLog).where(case["models"].AuditLog.action == "create_release_receipt")).all()
+        assert len(audits) == 1 and audits[0].extra_json["channel"] == "internal"
+
+
+def test_legacy_execution_snapshot_is_not_rewritten(release_case, tmp_path):
+    case = release_case
+    execution = case["evaluate"]()
+    with case["factory"]() as db:
+        record = db.get(case["models"].GateExecution, execution.id)
+        record.evidence = {k: v for k, v in record.evidence.items() if k != "policy_snapshot"}
+        record.evidence_sha256 = case["service"].digest(record.evidence)
+        legacy_evidence = copy.deepcopy(record.evidence)
+        db.commit()
+    receipt = case["release"](execution)
+    assert receipt.gate_summary == legacy_evidence
+    assert case["release"](execution).id == receipt.id
+    assert importlib.import_module("backend.app.outbox").drain_outbox(case["factory"], tmp_path)["delivered"] == 1
+    with case["factory"]() as db:
+        assert db.get(case["models"].GateExecution, execution.id).evidence == legacy_evidence
+
+
+@pytest.mark.parametrize("snapshot", [None, {}, {"legal_response_release_policy": {"required_gates": ["unknown"]}}])
+def test_invalid_present_policy_snapshot_cannot_use_legacy_fallback(release_case, snapshot):
+    case = release_case
+    execution = case["evaluate"]()
+    with case["factory"]() as db:
+        record = db.get(case["models"].GateExecution, execution.id)
+        record.evidence = {**record.evidence, "policy_snapshot": snapshot}
+        record.evidence_sha256 = case["service"].digest(record.evidence)
+        db.commit()
+    with pytest.raises(HTTPException):
+        case["release"](execution)
