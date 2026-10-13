@@ -6,6 +6,12 @@ requires-python = ">=3.12"
 dependencies = [
   "alembic>=1.14,<2.0",
   "fastapi>=0.116,<1.0",
+  "mcp==2.3.0",
+  "httpx2==2.13.1",
+  "PyJWT[crypto]==2.15.1",
+  "pypdf==6.20.1",
+  "python-docx==1.2.0",
+  "defusedxml==0.7.1",
   "pydantic-settings>=2.7,<3.0",
   "psycopg[binary]>=3.2,<4.0",
   "python-multipart>=0.0.20,<1.0",
@@ -24,4 +30,4 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["backend*"]
+include = ["backend*", "scripts*"]

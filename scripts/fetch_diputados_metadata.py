@@ -28,7 +28,10 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Iterable
 
-import diputados_fetch_utils as fetch_utils
+if __package__:
+    from . import diputados_fetch_utils as fetch_utils
+else:
+    import diputados_fetch_utils as fetch_utils
 
 
 BASE_URL = "https://www.diputados.gob.mx/LeyesBiblio/ref/{source_id}.htm"

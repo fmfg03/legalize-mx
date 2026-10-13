@@ -51,7 +51,7 @@ class Expediente(UUIDPrimaryKeyMixin, TimestampMixin, AuditActorMixin, Base):
     opened_on: Mapped[date | None] = mapped_column(Date, nullable=True)
     closed_on: Mapped[date | None] = mapped_column(Date, nullable=True)
     status: Mapped[ExpedienteStatus] = mapped_column(
-        Enum(ExpedienteStatus, name="expediente_status"), default=ExpedienteStatus.OPEN, nullable=False
+        Enum(ExpedienteStatus, values_callable=lambda kind: [item.value for item in kind], name="expediente_status"), default=ExpedienteStatus.OPEN, nullable=False
     )
     tags: Mapped[list[str]] = mapped_column(JSON, default=list, nullable=False)
     extra: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict, nullable=False)
@@ -75,7 +75,7 @@ class Party(UUIDPrimaryKeyMixin, TimestampMixin, AuditActorMixin, Base):
     __tablename__ = "expediente_parties"
 
     expediente_id: Mapped[str] = mapped_column(ForeignKey("expedientes.id", ondelete="CASCADE"), nullable=False)
-    role: Mapped[PartyRole] = mapped_column(Enum(PartyRole, name="party_role"), nullable=False)
+    role: Mapped[PartyRole] = mapped_column(Enum(PartyRole, values_callable=lambda kind: [item.value for item in kind], name="party_role"), nullable=False)
     display_name: Mapped[str] = mapped_column(String(255), nullable=False)
     entity_type: Mapped[str | None] = mapped_column(String(64), nullable=True)
     identifier: Mapped[str | None] = mapped_column(String(128), nullable=True)
@@ -89,12 +89,12 @@ class ExpedienteDocument(UUIDPrimaryKeyMixin, TimestampMixin, AuditActorMixin, B
 
     expediente_id: Mapped[str] = mapped_column(ForeignKey("expedientes.id", ondelete="CASCADE"), nullable=False)
     document_type: Mapped[DocumentType] = mapped_column(
-        Enum(DocumentType, name="document_type"), nullable=False, index=True
+        Enum(DocumentType, values_callable=lambda kind: [item.value for item in kind], name="document_type"), nullable=False, index=True
     )
     title: Mapped[str] = mapped_column(String(255), nullable=False)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
     status: Mapped[DocumentStatus] = mapped_column(
-        Enum(DocumentStatus, name="document_status"), default=DocumentStatus.ACTIVE, nullable=False
+        Enum(DocumentStatus, values_callable=lambda kind: [item.value for item in kind], name="document_status"), default=DocumentStatus.ACTIVE, nullable=False
     )
     issuing_authority: Mapped[str | None] = mapped_column(String(255), nullable=True)
     source_reference: Mapped[str | None] = mapped_column(String(255), nullable=True)
@@ -129,7 +129,7 @@ class DocumentVersion(UUIDPrimaryKeyMixin, TimestampMixin, AuditCreatedByMixin, 
     )
     version_number: Mapped[int] = mapped_column(Integer, nullable=False)
     source_kind: Mapped[VersionSourceKind] = mapped_column(
-        Enum(VersionSourceKind, name="version_source_kind"), nullable=False
+        Enum(VersionSourceKind, values_callable=lambda kind: [item.value for item in kind], name="version_source_kind"), nullable=False
     )
     file_name: Mapped[str] = mapped_column(String(255), nullable=False)
     mime_type: Mapped[str | None] = mapped_column(String(128), nullable=True)
@@ -154,7 +154,7 @@ class ExpedienteEvent(UUIDPrimaryKeyMixin, TimestampMixin, AuditActorMixin, Base
     document_id: Mapped[str | None] = mapped_column(
         ForeignKey("expediente_documents.id", ondelete="SET NULL"), nullable=True
     )
-    event_type: Mapped[EventType] = mapped_column(Enum(EventType, name="event_type"), nullable=False)
+    event_type: Mapped[EventType] = mapped_column(Enum(EventType, values_callable=lambda kind: [item.value for item in kind], name="event_type"), nullable=False)
     title: Mapped[str] = mapped_column(String(255), nullable=False)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
     event_date: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False, index=True)
@@ -174,7 +174,7 @@ class Deadline(UUIDPrimaryKeyMixin, TimestampMixin, AuditActorMixin, Base):
     label: Mapped[str] = mapped_column(String(255), nullable=False)
     due_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False, index=True)
     status: Mapped[DeadlineStatus] = mapped_column(
-        Enum(DeadlineStatus, name="deadline_status"), default=DeadlineStatus.OPEN, nullable=False
+        Enum(DeadlineStatus, values_callable=lambda kind: [item.value for item in kind], name="deadline_status"), default=DeadlineStatus.OPEN, nullable=False
     )
     notes: Mapped[str | None] = mapped_column(Text, nullable=True)
     extra: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict, nullable=False)
@@ -186,12 +186,16 @@ class Deadline(UUIDPrimaryKeyMixin, TimestampMixin, AuditActorMixin, Base):
 class ReleaseReceipt(UUIDPrimaryKeyMixin, TimestampMixin, AuditCreatedByMixin, Base):
     __tablename__ = "release_receipts"
 
+    execution_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("gate_executions.id", ondelete="RESTRICT"), nullable=True, unique=True
+    )
+
     expediente_id: Mapped[str | None] = mapped_column(ForeignKey("expedientes.id", ondelete="SET NULL"), nullable=True)
     document_version_id: Mapped[str | None] = mapped_column(
         ForeignKey("document_versions.id", ondelete="SET NULL"), nullable=True
     )
     verdict: Mapped[ReleaseVerdict] = mapped_column(
-        Enum(ReleaseVerdict, name="release_verdict"), nullable=False
+        Enum(ReleaseVerdict, values_callable=lambda kind: [item.value for item in kind], name="release_verdict"), nullable=False
     )
     response_type: Mapped[str | None] = mapped_column(String(64), nullable=True)
     policy_id: Mapped[str | None] = mapped_column(String(128), nullable=True)

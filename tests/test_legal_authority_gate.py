@@ -10,7 +10,7 @@ SCRIPTS_ROOT = REPO_ROOT / "scripts"
 if str(SCRIPTS_ROOT) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_ROOT))
 
-import release_legal_response as release_gate  # noqa: E402
+import legal_release_gates as release_gate  # noqa: E402
 import validate_legal_authority as authority  # noqa: E402
 import validate_jurisprudence_grounding as grounding  # noqa: E402
 
@@ -61,22 +61,15 @@ def test_grounding_gate_accepts_supplemental_live_jurisprudence_chunks():
     assert not failures
 
 
-def test_release_gate_approves_bundle_with_live_fixture_support(tmp_path: Path):
-    bundle_path = REPO_ROOT / "fixtures" / "assistant_response_live_resolution.json"
-    exit_code, payload = release_gate.release_bundle(
-        bundle_path=bundle_path,
-        root=REPO_ROOT,
-        release_policy_path=REPO_ROOT / "config" / "legal_response_release_policy.json",
-        grounding_policy_path=REPO_ROOT / "config" / "jurisprudence_grounding_policy.json",
-        authority_policy_path=REPO_ROOT / "config" / "legal_authority_resolution_policy.json",
-        authority_provider_path=REPO_ROOT / "sources" / "licensed_authority_connectors.json",
-        grounding_receipt_log=tmp_path / "grounding.jsonl",
-        authority_receipt_log=tmp_path / "authority.jsonl",
-        release_receipt_log=tmp_path / "release.jsonl",
-        release_dir=tmp_path / "releases",
-        authority_live_fixture_path=REPO_ROOT / "fixtures" / "legal_authority_live_fixture.json",
+def test_shared_gates_use_server_fixture_text_without_emitting_release(tmp_path: Path):
+    bundle = json.loads((REPO_ROOT / "fixtures/assistant_response_live_resolution.json").read_text())
+    fixture = json.loads((REPO_ROOT / "fixtures/legal_authority_live_fixture.json").read_text())
+    authority_result, grounding_result = release_gate.evaluate_release_gates(
+        bundle=bundle, root=REPO_ROOT,
+        grounding_policy=json.loads((REPO_ROOT / "config/jurisprudence_grounding_policy.json").read_text()),
+        authority_policy=json.loads((REPO_ROOT / "config/legal_authority_resolution_policy.json").read_text()),
+        provider_registry={}, live_fixture=fixture,
     )
-    assert exit_code == 0
-    assert payload["release_verdict"] == "APPROVED"
-    assert payload["authority_verdict"] == "PASS"
-    assert payload["gate_verdict"] == "PASS"
+    assert authority_result[0] == "PASS"
+    assert grounding_result[0] == "PASS"
+    assert not list(tmp_path.iterdir())

@@ -2,6 +2,7 @@
 
 from alembic import op
 import sqlalchemy as sa
+from sqlalchemy.dialects.postgresql import ENUM
 
 
 revision = "20260405_0001"
@@ -11,8 +12,8 @@ depends_on = None
 
 
 def upgrade() -> None:
-    expediente_status = sa.Enum("open", "in_progress", "stayed", "closed", "archived", name="expediente_status")
-    party_role = sa.Enum(
+    expediente_status = ENUM("open", "in_progress", "stayed", "closed", "archived", name="expediente_status", create_type=False)
+    party_role = ENUM(
         "actor",
         "demandado",
         "quejoso",
@@ -23,9 +24,9 @@ def upgrade() -> None:
         "defensor",
         "apoderado",
         "other",
-        name="party_role",
+        name="party_role", create_type=False,
     )
-    document_type = sa.Enum(
+    document_type = ENUM(
         "notificacion",
         "emplazamiento",
         "acuerdo",
@@ -37,13 +38,13 @@ def upgrade() -> None:
         "anexo",
         "prueba",
         "otro",
-        name="document_type",
+        name="document_type", create_type=False,
     )
-    document_status = sa.Enum("draft", "active", "superseded", "void", "archived", name="document_status")
-    version_source_kind = sa.Enum("generated", "uploaded", "imported", "ocr", "system", name="version_source_kind")
-    event_type = sa.Enum("actuacion", "notificacion", "audiencia", "presentacion", "resolucion", "other", name="event_type")
-    deadline_status = sa.Enum("open", "satisfied", "missed", "cancelled", name="deadline_status")
-    release_verdict = sa.Enum("approved", "blocked", "bypass", name="release_verdict")
+    document_status = ENUM("draft", "active", "superseded", "void", "archived", name="document_status", create_type=False)
+    version_source_kind = ENUM("generated", "uploaded", "imported", "ocr", "system", name="version_source_kind", create_type=False)
+    event_type = ENUM("actuacion", "notificacion", "audiencia", "presentacion", "resolucion", "other", name="event_type", create_type=False)
+    deadline_status = ENUM("open", "satisfied", "missed", "cancelled", name="deadline_status", create_type=False)
+    release_verdict = ENUM("approved", "blocked", "bypass", name="release_verdict", create_type=False)
 
     bind = op.get_bind()
     expediente_status.create(bind, checkfirst=True)

@@ -161,9 +161,16 @@ def test_create_release_receipt_tracks_reviewer_actor(app_bundle: dict[str, obje
     schemas = __import__("backend.app.schemas.expedientes", fromlist=["ReleaseReceiptCreate"])
     session = app_bundle["db"].SessionLocal()
     try:
+        content = __import__("backend.app.storage", fromlist=["resolve_storage_path"]).resolve_storage_path(document.versions[0].storage_key).read_text()
+        bundle = {"response_text": content, "response_type": "recommendation", "citations": [], "claims": []}
+        execution = app_bundle["expediente_routes"].create_release_evaluation(
+            expediente_id=str(expediente.id),
+            payload=schemas.ReleaseEvaluationCreate(document_version_id=version_id, bundle=bundle),
+            current_user=reviewer["user"], db=session,
+        )
         receipt = app_bundle["expediente_routes"].create_release_receipt(
             expediente_id=str(expediente.id),
-            payload=schemas.ReleaseReceiptCreate(verdict="approved", document_version_id=version_id),
+            payload=schemas.ReleaseReceiptCreate(execution_id=execution.id, bundle=bundle),
             request=fake_request(f"/api/v1/expedientes/{expediente.id}/release-receipts", "POST"),
             current_user=reviewer["user"],
             db=session,

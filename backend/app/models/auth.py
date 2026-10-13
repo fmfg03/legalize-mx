@@ -3,7 +3,7 @@ from __future__ import annotations
 import uuid
 from datetime import datetime
 
-from sqlalchemy import JSON, Boolean, DateTime, Enum, ForeignKey, String, Text, Uuid, func
+from sqlalchemy import JSON, Boolean, DateTime, Enum, ForeignKey, String, Text, Uuid, UniqueConstraint, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from backend.app.models.base import Base, TimestampMixin, UUIDPrimaryKeyMixin
@@ -15,7 +15,7 @@ class AppUser(UUIDPrimaryKeyMixin, TimestampMixin, Base):
 
     email: Mapped[str] = mapped_column(String(255), nullable=False, unique=True, index=True)
     display_name: Mapped[str] = mapped_column(String(255), nullable=False)
-    role: Mapped[UserRole] = mapped_column(Enum(UserRole, name="user_role"), nullable=False, index=True)
+    role: Mapped[UserRole] = mapped_column(Enum(UserRole, values_callable=lambda kind: [item.value for item in kind], name="user_role"), nullable=False, index=True)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
     last_seen_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
@@ -34,6 +34,18 @@ class ApiKey(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     last_used_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
     user: Mapped["AppUser"] = relationship(back_populates="api_keys")
+
+
+class OAuthBinding(UUIDPrimaryKeyMixin, TimestampMixin, Base):
+    __tablename__ = "oauth_bindings"
+    __table_args__ = (UniqueConstraint("issuer", "subject", name="uq_oauth_bindings_issuer_subject"),)
+
+    issuer: Mapped[str] = mapped_column(String(512), nullable=False)
+    subject: Mapped[str] = mapped_column(String(255), nullable=False)
+    user_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("app_users.id", ondelete="RESTRICT"), nullable=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+
+    user: Mapped["AppUser"] = relationship()
 
 
 class AuditLog(UUIDPrimaryKeyMixin, Base):

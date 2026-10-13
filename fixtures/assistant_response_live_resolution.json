@@ -25,7 +25,9 @@
       "locator": "articulo 1",
       "jurisdiction": "federal",
       "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/lfpc.htm",
-      "official_publication": "DOF"
+      "official_publication": "DOF",
+      "quote": "Disposición sintética usada exclusivamente en pruebas.",
+      "quote_sha256": "cb7ac90839aef1bd679ff2cfe8aacade8eb402532be25405f8f27b4be1f4d144"
     }
   ],
   "claims": [
@@ -33,13 +35,17 @@
       "claim_id": "clm-live-juris-1",
       "text": "La tesis de registro digital 2999999 desarrolla la clasificacion del daño moral.",
       "kind": "jurisprudence",
-      "citation_ids": ["cit-live-juris-1"]
+      "citation_ids": [
+        "cit-live-juris-1"
+      ]
     },
     {
       "claim_id": "clm-live-ley-1",
       "text": "La Ley Federal de Proteccion al Consumidor puede citarse como base normativa en el tema.",
       "kind": "legislation",
-      "citation_ids": ["cit-live-ley-1"]
+      "citation_ids": [
+        "cit-live-ley-1"
+      ]
     }
   ]
 }

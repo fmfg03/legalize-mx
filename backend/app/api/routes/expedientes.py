@@ -10,6 +10,8 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session, selectinload
 
 from backend.app.audit import dumps_audit_details, record_audit_log
+from backend.app.release_service import evaluate_release, release_from_execution
+from backend.app.schemas.expedientes import ReleaseEvaluationCreate, ReleaseEvaluationRead
 from backend.app.db import get_db
 from backend.app.deps import require_audit_user, require_operator_user, require_read_user, require_reviewer_user
 from backend.app.models import (
@@ -1050,47 +1052,19 @@ def create_release_receipt(
     db: Session = Depends(get_db),
 ) -> ReleaseReceipt:
     expediente = get_expediente_or_404(db, expediente_id)
-    if payload.document_version_id is not None:
-        version_stmt = (
-            select(DocumentVersion)
-            .join(ExpedienteDocument, DocumentVersion.document_id == ExpedienteDocument.id)
-            .where(
-                DocumentVersion.id == payload.document_version_id,
-                ExpedienteDocument.expediente_id == expediente.id,
-            )
-        )
-        version = db.scalar(version_stmt)
-        if version is None:
-            raise HTTPException(
-                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                detail="document_version_id does not belong to this expediente",
-            )
+    return release_from_execution(
+        db=db, actor_id=current_user.id, expediente_id=expediente.id,
+        execution_id=payload.execution_id, bundle=payload.bundle,
+    )
 
-    receipt = ReleaseReceipt(
-        expediente_id=expediente.id,
-        document_version_id=payload.document_version_id,
-        verdict=payload.verdict,
-        response_type=payload.response_type,
-        policy_id=payload.policy_id,
-        bundle_path=payload.bundle_path,
-        artifact_path=payload.artifact_path,
-        bundle_sha256=payload.bundle_sha256,
-        gate_summary=payload.gate_summary,
-        created_by_user_id=current_user.id,
+
+@router.post("/{expediente_id}/release-evaluations", response_model=ReleaseEvaluationRead, status_code=201)
+def create_release_evaluation(
+    expediente_id: str, payload: ReleaseEvaluationCreate,
+    current_user: AppUser = Depends(require_reviewer_user), db: Session = Depends(get_db),
+):
+    expediente = get_expediente_or_404(db, expediente_id)
+    return evaluate_release(
+        db=db, actor_id=current_user.id, expediente_id=expediente.id,
+        document_version_id=payload.document_version_id, bundle=payload.bundle,
     )
-    db.add(receipt)
-    db.flush()
-    record_audit_log(
-        db=db,
-        actor_user_id=current_user.id,
-        action="create_release_receipt",
-        entity_type="release_receipt",
-        entity_id=receipt.id,
-        expediente_id=expediente.id,
-        route=str(request.url.path),
-        method=request.method,
-        details=dumps_audit_details({"verdict": receipt.verdict, "response_type": receipt.response_type}),
-    )
-    db.commit()
-    db.refresh(receipt)
-    return receipt

@@ -4,7 +4,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import os
 import ssl
 import urllib.parse
 import urllib.request
@@ -13,8 +12,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-import fetch_diputados_metadata as diputados_metadata
-import validate_jurisprudence_grounding as grounding
+if __package__:
+    from . import fetch_diputados_metadata as diputados_metadata
+    from . import validate_jurisprudence_grounding as grounding
+else:
+    import fetch_diputados_metadata as diputados_metadata
+    import validate_jurisprudence_grounding as grounding
 
 
 EXIT_OK = 0
@@ -111,28 +114,26 @@ def local_match_for_citation(
     jurisprudence_chunks: list[dict[str, Any]],
 ) -> dict[str, Any] | None:
     if citation.get("doc_type") == "jurisprudence":
-        for chunk in jurisprudence_chunks:
-            if citation.get("doc_id") and chunk.get("doc_id") == citation.get("doc_id"):
-                return {"match_type": "doc_id", "chunk": chunk}
-            if citation.get("registry_id") and chunk.get("registry_id") == citation.get("registry_id"):
-                return {"match_type": "registry_id", "chunk": chunk}
-            if citation.get("source_url") and chunk.get("source_url") == citation.get("source_url"):
-                return {"match_type": "source_url", "chunk": chunk}
+        ok, chunk, _ = grounding.match_jurisprudence_citation(citation, jurisprudence_chunks, True)
+        if ok:
+            return {"match_type": "canonical_identity+quote", "chunk": chunk}
         return None
     if citation.get("doc_type") == "legislation":
         for chunk in legislation_chunks:
-            if chunk.get("doc_id") == citation.get("doc_id") and chunk.get("source_url") == citation.get("source_url"):
-                return {"match_type": "doc_id+source_url", "chunk": chunk}
+            if grounding.legislation_citation_matches(citation, chunk):
+                return {"match_type": "canonical_identity+locator+quote", "chunk": chunk}
         return None
     return None
 
 
 def build_supplemental_jurisprudence_chunks(citation: dict[str, Any], payload: dict[str, Any]) -> list[dict[str, Any]]:
-    registry_id = str(payload.get("registry_id") or citation.get("registry_id") or "").strip()
+    registry_id = str(payload.get("registry_id") or "").strip()
     title = grounding.normalize_space(payload.get("title") or payload.get("Rubro") or payload.get("rubro"))
     text = grounding.normalize_space(payload.get("text") or payload.get("Texto") or payload.get("texto"))
-    doc_id = str(citation.get("doc_id") or f"mx-sjf-{infer_scjn_kind(citation)}-{registry_id}")
-    source_url = payload.get("source_url") or citation.get("source_url")
+    doc_id = str(payload.get("doc_id") or f"mx-sjf-{infer_scjn_kind(citation)}-{registry_id}")
+    source_url = payload.get("source_url")
+    if not registry_id or not title or not text or not source_url:
+        return []
     base_record = {
         "doc_id": doc_id,
         "doc_type": "jurisprudence",
@@ -165,15 +166,19 @@ def build_supplemental_jurisprudence_chunks(citation: dict[str, Any], payload: d
 
 
 def build_supplemental_legislation_chunks(citation: dict[str, Any], payload: dict[str, Any]) -> list[dict[str, Any]]:
+    # Metadata alone is not evidence of the text or locator supplied by the client.
+    if not all(isinstance(payload.get(field), str) and payload[field].strip() for field in ("doc_id", "title", "source_url", "text", "locator")):
+        return []
     return [
         {
             "chunk_id": f"{citation['doc_id']}:{citation.get('locator', 'live').replace(' ', '_')}:live",
-            "doc_id": citation["doc_id"],
+            "doc_id": payload["doc_id"],
             "doc_type": "legislation",
             "jurisdiction": citation.get("jurisdiction"),
-            "title": payload.get("title") or citation.get("title"),
-            "source_url": payload.get("source_url") or citation.get("source_url"),
-            "text": payload.get("text") or citation.get("quote") or "",
+            "title": payload["title"],
+            "source_url": payload["source_url"],
+            "locator": payload["locator"],
+            "text": payload["text"],
             "citation_label": payload.get("citation_label") or f"{citation.get('title')}, {citation.get('locator')}",
         }
     ]
@@ -181,10 +186,11 @@ def build_supplemental_legislation_chunks(citation: dict[str, Any], payload: dic
 
 def verify_scjn_live(citation: dict[str, Any], *, timeout: int) -> dict[str, Any]:
     registry_id = str(citation.get("registry_id") or "").strip()
-    if not registry_id:
+    if not registry_id.isdecimal():
         return {"verified": False, "reason": "missing_registry_id", "adapter": "scjn_sjf_api"}
     kind = infer_scjn_kind(citation)
-    payload = fetch_json(f"{SCJN_API_BASE}/{kind}/{registry_id}", timeout)
+    source_url = f"{SCJN_API_BASE}/{kind}/{registry_id}"
+    payload = fetch_json(source_url, timeout)
     title = grounding.normalize_space(payload.get("Rubro") or payload.get("rubro"))
     if citation.get("title") and grounding.normalize_space(citation["title"]).lower() != title.lower():
         return {
@@ -196,7 +202,7 @@ def verify_scjn_live(citation: dict[str, Any], *, timeout: int) -> dict[str, Any
         }
     tipo = grounding.normalize_space(payload.get("TipoTesis") or payload.get("tipoTesis"))
     binding_status = "binding" if "jurisprud" in tipo.lower() else "persuasive"
-    payload = {**payload, "registry_id": registry_id}
+    payload = {**payload, "registry_id": registry_id, "source_url": source_url, "doc_id": f"mx-sjf-{kind}-{registry_id}"}
     return {
         "verified": True,
         "adapter": "scjn_sjf_api",
@@ -208,7 +214,10 @@ def verify_scjn_live(citation: dict[str, Any], *, timeout: int) -> dict[str, Any
 
 def verify_legislation_live(citation: dict[str, Any], *, timeout: int) -> dict[str, Any]:
     source_url = str(citation.get("source_url") or "")
-    if "diputados.gob.mx" in source_url:
+    parsed = urllib.parse.urlsplit(source_url)
+    if parsed.scheme != "https" or parsed.username or parsed.password:
+        return {"verified": False, "reason": "invalid_official_source", "adapter": "legislation_live"}
+    if parsed.hostname == "www.diputados.gob.mx":
         source_id = infer_source_id(citation)
         if not source_id:
             return {"verified": False, "reason": "missing_source_id", "adapter": "diputados_ref"}
@@ -225,18 +234,8 @@ def verify_legislation_live(citation: dict[str, Any], *, timeout: int) -> dict[s
             "payload": record,
             "supplemental_legislation_chunks": build_supplemental_legislation_chunks(citation, record),
         }
-    if "dof.gob.mx" in source_url:
-        body = fetch_text(source_url, timeout)
-        if not body.strip():
-            return {"verified": False, "reason": "empty_dof_body", "adapter": "dof_live"}
-        payload = {"title": citation.get("title"), "source_url": source_url}
-        return {
-            "verified": True,
-            "adapter": "dof_live",
-            "binding_status": "binding",
-            "payload": payload,
-            "supplemental_legislation_chunks": build_supplemental_legislation_chunks(citation, payload),
-        }
+    if parsed.hostname in {"dof.gob.mx", "www.dof.gob.mx"}:
+        return {"verified": False, "reason": "authoritative_text_adapter_not_implemented", "adapter": "dof_live"}
     return {"verified": False, "reason": "unsupported_legislation_source", "adapter": "legislation_live"}
 
 
@@ -244,29 +243,8 @@ def verify_licensed_live(citation: dict[str, Any], *, provider_registry: dict[st
     provider_id = citation.get("provider_id")
     if not provider_id or provider_id not in provider_registry:
         return {"verified": False, "reason": "provider_unknown", "adapter": "licensed_provider"}
-    provider = provider_registry[provider_id]
-    base_url = os.getenv(provider["base_url_env"], "").strip()
-    api_key = os.getenv(provider["api_key_env"], "").strip()
-    if not base_url or not api_key:
-        return {"verified": False, "reason": "provider_unconfigured", "adapter": provider_id}
-    query = urllib.parse.quote(str(citation.get("locator") or citation.get("title") or ""))
-    template = provider.get("query_url_template")
-    if not template:
-        return {"verified": False, "reason": "query_template_missing", "adapter": provider_id}
-    url = template.format(base_url=base_url.rstrip("/"), query=query)
-    payload = fetch_text(url, timeout, headers={"Authorization": f"Bearer {api_key}", "User-Agent": "legalize-mx/0.1"})
-    if not payload.strip():
-        return {"verified": False, "reason": "empty_provider_response", "adapter": provider_id}
-    result_payload = {"title": citation.get("title"), "source_url": citation.get("source_url"), "provider_id": provider_id}
-    supplemental = build_supplemental_jurisprudence_chunks(citation, {**result_payload, "text": citation.get("quote") or citation.get("title") or ""}) if citation.get("doc_type") == "jurisprudence" else build_supplemental_legislation_chunks(citation, result_payload)
-    return {
-        "verified": True,
-        "adapter": provider_id,
-        "binding_status": "unknown",
-        "payload": result_payload,
-        "supplemental_jurisprudence_chunks": supplemental if citation.get("doc_type") == "jurisprudence" else [],
-        "supplemental_legislation_chunks": supplemental if citation.get("doc_type") == "legislation" else [],
-    }
+    # Availability alone cannot establish canonical text/identity/locator.
+    return {"verified": False, "reason": "authoritative_text_adapter_not_implemented", "adapter": provider_id}
 
 
 def verify_live_authority(

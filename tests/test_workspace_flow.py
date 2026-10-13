@@ -15,6 +15,7 @@ class FakeHandler:
         self._payload = payload
         self.response: dict[str, object] | None = None
         self.status: HTTPStatus | None = None
+        self.headers: dict[str, str] = {}
 
     def read_json_body(self) -> dict[str, object]:
         return self._payload
@@ -313,6 +314,5 @@ def test_workspace_flow_end_to_end(app_bundle: dict[str, object], make_user, mon
         }
     )
     workspace.OperatorConsoleHandler.handle_workspace_release(release_handler, str(expediente.id))
-    assert release_handler.status == HTTPStatus.CREATED
-    assert release_handler.response["verdict"] == "approved"
-    assert release_handler.response["gate_summary"]["defendability_gate"]["summary_status"] == "defendable"
+    assert release_handler.status == HTTPStatus.UNAUTHORIZED
+    assert "sesion autenticada" in release_handler.response["error"]

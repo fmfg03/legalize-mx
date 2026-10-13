@@ -161,13 +161,16 @@ def match_jurisprudence_citation(
     title = normalize_space(citation.get("title", "")).lower()
     exact: List[Dict[str, Any]] = []
     for chunk in candidates:
+        if any(citation.get(field) and str(chunk.get(field, "")) != str(citation[field]) for field in ("doc_id", "registry_id", "chunk_id")):
+            continue
         if source_url and chunk.get("source_url") != source_url:
             continue
         if title and normalize_space(chunk.get("title", "")).lower() != title:
             continue
         exact.append(chunk)
-    if exact:
-        candidates = exact
+    if not exact:
+        return False, None, f"Los identificadores o metadatos de {citation_id} contradicen la evidencia del servidor."
+    candidates = exact
 
     quote = citation.get("quote")
     if require_quote and (not isinstance(quote, str) or not quote.strip()):
@@ -184,6 +187,19 @@ def match_jurisprudence_citation(
         return False, None, f"La cita jurisprudencial {citation_id} es ambigua en el indice local."
 
     return True, candidates[0], "ok"
+
+
+def legislation_citation_matches(citation: Dict[str, Any], chunk: Dict[str, Any]) -> bool:
+    if any(chunk.get(field) != citation.get(field) for field in ("doc_id", "source_url")):
+        return False
+    if normalize_space(chunk.get("title", "")).lower() != normalize_space(citation.get("title", "")).lower():
+        return False
+    locator = normalize_space(citation.get("locator", "")).lower()
+    expected_locator = normalize_space(chunk.get("locator") or chunk.get("heading") or "").lower()
+    if not locator or locator != expected_locator:
+        return False
+    quote = citation.get("quote")
+    return isinstance(quote, str) and bool(quote.strip()) and normalize_space(quote) in normalize_space(chunk.get("text", ""))
 
 
 def detect_forbidden_mentions(text: str, patterns: List[str]) -> List[str]:
@@ -239,8 +255,7 @@ def evaluate_bundle(
                 )
         elif citation.get("doc_type") == "legislation":
             if any(
-                chunk.get("doc_id") == citation.get("doc_id")
-                and chunk.get("source_url") == citation.get("source_url")
+                legislation_citation_matches(citation, chunk)
                 for chunk in legislation_chunks
             ):
                 validated_legislation_citation_ids.append(citation_id)
@@ -252,6 +267,8 @@ def evaluate_bundle(
                         {"citation_id": citation_id},
                     )
                 )
+        else:
+            failures.append(GateFailure("citation.doc_type.unsupported", "Tipo de cita no soportado.", {"citation_id": citation_id}))
 
     jurisprudence_kinds = set(policy.get("jurisprudence_claim_kinds", []))
     for claim in claims:

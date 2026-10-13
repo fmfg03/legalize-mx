@@ -315,15 +315,30 @@ class CalendarAgendaResponse(BaseModel):
     generated_at: datetime
 
 
+class ReleaseEvaluationCreate(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    document_version_id: uuid.UUID
+    bundle: dict[str, Any]
+
+
+class ReleaseEvaluationRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID
+    actor_user_id: uuid.UUID
+    document_version_id: uuid.UUID
+    bundle_sha256: str
+    verdict: str
+    evidence: dict[str, Any]
+    created_at: datetime
+
+
 class ReleaseReceiptCreate(BaseModel):
-    verdict: ReleaseVerdict
-    response_type: str | None = None
-    policy_id: str | None = None
-    bundle_path: str | None = None
-    artifact_path: str | None = None
-    bundle_sha256: str | None = None
-    document_version_id: uuid.UUID | None = None
-    gate_summary: dict[str, Any] = Field(default_factory=dict)
+    model_config = ConfigDict(extra="forbid")
+
+    execution_id: uuid.UUID
+    bundle: dict[str, Any]
 
 
 class ReleaseReceiptRead(BaseModel):
@@ -331,6 +346,7 @@ class ReleaseReceiptRead(BaseModel):
 
     id: uuid.UUID
     verdict: ReleaseVerdict
+    execution_id: uuid.UUID | None
     response_type: str | None
     policy_id: str | None
     bundle_path: str | None

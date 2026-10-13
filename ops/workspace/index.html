@@ -509,7 +509,7 @@
               </div>
             </article>
 
-            <article class="panel">
+            <article class="panel release-panel">
               <div class="panel-header">
                 <div>
                   <p class="eyebrow">Revisión</p>
@@ -523,27 +523,16 @@
                     <option value="">Selecciona una versión</option>
                   </select>
                 </label>
-                <div class="form-grid">
-                  <label>
-                    <span>Veredicto</span>
-                    <select name="verdict">
-                      <option value="approved">Approved</option>
-                      <option value="blocked">Blocked</option>
-                      <option value="bypass">Bypass</option>
-                    </select>
-                  </label>
-                  <label>
-                    <span>Tipo de respuesta</span>
-                    <input name="response_type" type="text" value="workspace_manual_review" />
-                  </label>
-                </div>
                 <label>
-                  <span>Notas de revisión</span>
-                  <textarea name="notes" rows="4"></textarea>
+                  <span>Bundle de respuesta con citas y claims</span>
+                  <textarea name="bundle" rows="8" placeholder='{"response_type":"recommendation","response_text":"...","citations":[],"claims":[]}' required></textarea>
                 </label>
                 <div class="form-actions">
-                  <button class="primary-button" type="submit">Registrar revisión</button>
+                  <p id="releaseSessionStatus">Sesión de revisión no conectada.</p>
+                  <button class="primary-button" type="submit" id="evaluateReleaseButton" disabled>Evaluar gates</button>
+                  <button class="primary-button" type="button" id="confirmReleaseButton" disabled>Registrar liberación validada</button>
                 </div>
+                <pre id="releaseGateResult" aria-live="polite"></pre>
               </form>
             </article>
 

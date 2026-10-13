@@ -170,12 +170,14 @@ def test_find_document_version_returns_document_and_version() -> None:
 def test_has_approved_receipt_for_version_detects_guard() -> None:
     expediente = {
         "release_receipts": [
-            {"document_version_id": "ver-1", "verdict": "approved"},
+            {"document_version_id": "ver-1", "verdict": "approved", "execution_id": "exec-1"},
             {"document_version_id": "ver-2", "verdict": "blocked"},
+            {"document_version_id": "ver-3", "verdict": "approved"},
         ]
     }
     assert has_approved_receipt_for_version(expediente, "ver-1") is True
     assert has_approved_receipt_for_version(expediente, "ver-2") is False
+    assert has_approved_receipt_for_version(expediente, "ver-3") is False
 
 
 def test_normalize_revision_payload_builds_diff_and_defaults() -> None:
