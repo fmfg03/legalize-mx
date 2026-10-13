@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import asyncio
 import base64
 import difflib
 import json
@@ -24,6 +25,7 @@ OPERATOR_ROOT = REPO_ROOT / "ops" / "console"
 MAX_RECENT_ITEMS = 10
 API_BASE_URL = os.getenv("LEXERA_API_BASE_URL", "http://127.0.0.1:8090/api/v1").rstrip("/")
 API_KEY = os.getenv("LEXERA_API_KEY", "").strip()
+MCP_URL = os.getenv("LEXERA_MCP_URL", "").strip()
 OLLAMA_CHAT_URL = os.getenv("LEXERA_OLLAMA_CHAT_URL", "http://127.0.0.1:11434/api/chat")
 OLLAMA_MODEL = os.getenv("LEXERA_OLLAMA_MODEL", "qwen3:8b")
 MAX_CONTEXT_CHARS = 3500
@@ -586,6 +588,7 @@ def has_approved_receipt_for_version(expediente: dict[str, Any], version_id: str
         if (
             str(receipt.get("document_version_id") or "") == normalized_version_id
             and str(receipt.get("verdict") or "").strip().lower() == "approved"
+            and bool(receipt.get("execution_id"))
         ):
             return True
     return False
@@ -1681,88 +1684,36 @@ class OperatorConsoleHandler(BaseHTTPRequestHandler):
         )
 
     def handle_workspace_release(self, expediente_id: str) -> None:
+        from backend.app.release_client import call_release_tool
+        from backend.app.schemas.expedientes import ReleaseEvaluationCreate, ReleaseReceiptCreate
+
+        authorization = self.headers.get("Authorization", "")
+        if not authorization.lower().startswith("bearer ") or not authorization[7:].strip():
+            self.write_error_json("La liberacion requiere una sesion autenticada del revisor.", status=HTTPStatus.UNAUTHORIZED)
+            return
+        if not MCP_URL:
+            self.write_error_json("La liberacion autenticada no esta configurada.", status=HTTPStatus.SERVICE_UNAVAILABLE)
+            return
         try:
-            payload = self.read_json_body()
-        except ValueError as exc:
-            self.write_error_json(str(exc), status=HTTPStatus.BAD_REQUEST)
+            body = self.read_json_body()
+            action = body.pop("action", None)
+            if action == "evaluate":
+                payload = ReleaseEvaluationCreate.model_validate(body)
+                tool = "evaluate_document_release"
+            elif action == "release":
+                payload = ReleaseReceiptCreate.model_validate(body)
+                tool = "release_document"
+            else:
+                raise ValueError("Usa evaluacion del servidor y su execution_id; verdict manual no esta permitido.")
+        except ValueError:
+            self.write_error_json("Bundle o solicitud de liberacion invalidos; verdict manual no esta permitido.", status=HTTPStatus.UNPROCESSABLE_ENTITY)
             return
-
-        document_version_id = payload.get("document_version_id")
-        verdict = payload.get("verdict")
-        if not document_version_id or not verdict:
-            self.write_error_json("document_version_id and verdict are required.", status=HTTPStatus.UNPROCESSABLE_ENTITY)
-            return
-
         try:
-            gate_summary: dict[str, Any] = {
-                "notes": str(payload.get("notes") or "").strip(),
-                "review_source": "lexera_workspace",
-                "recorded_at": utc_now_iso(),
-            }
-            verdict_text = str(verdict).strip().lower()
-            if verdict_text == "approved":
-                expediente = backend_request("GET", f"/expedientes/{expediente_id}")
-                receipts = backend_request("GET", f"/expedientes/{expediente_id}/release-receipts")
-                if isinstance(receipts, dict):
-                    expediente["release_receipts"] = receipts.get("items") or []
-                document, version = find_document_version(expediente, str(document_version_id))
-                if document is None or version is None:
-                    self.write_error_json(
-                        "La version seleccionada no pertenece al expediente.",
-                        status=HTTPStatus.NOT_FOUND,
-                    )
-                    return
-                synthesis_status, synthesis = get_synthesis_state(expediente)
-                if synthesis_status != "current" or synthesis is None:
-                    self.write_error_json(
-                        "Genera primero una sintesis vigente del expediente antes de liberar textos.",
-                        status=HTTPStatus.PRECONDITION_FAILED,
-                    )
-                    return
-                if not str(version.get("extracted_text") or "").strip():
-                    self.write_error_json(
-                        "La version seleccionada no tiene texto extraido para liberacion.",
-                        status=HTTPStatus.UNPROCESSABLE_ENTITY,
-                    )
-                    return
-                messages = build_defendability_messages(
-                    expediente,
-                    document=document,
-                    version=version,
-                    synthesis=synthesis,
-                )
-                ollama_response = run_ollama_chat(messages)
-                parsed = extract_json_object(str(ollama_response.get("message", {}).get("content") or "").strip())
-                gate = normalize_defendability_gate(expediente, parsed)
-                gate_summary["defendability_gate"] = gate
-                if gate["summary_status"] != "defendable":
-                    self.write_json(
-                        {
-                            "error": "La liberacion approved fue bloqueada por la compuerta de defendibilidad.",
-                            "gate": gate,
-                        },
-                        status=HTTPStatus.CONFLICT,
-                    )
-                    return
-            receipt = backend_request(
-                "POST",
-                f"/expedientes/{expediente_id}/release-receipts",
-                payload={
-                    "document_version_id": document_version_id,
-                    "verdict": verdict,
-                    "response_type": payload.get("response_type") or "workspace_manual_review",
-                    "policy_id": "lexera.workspace.manual_review.v1",
-                    "gate_summary": gate_summary,
-                },
-            )
-        except RuntimeError as exc:
-            self.write_error_json(str(exc), status=HTTPStatus.BAD_GATEWAY)
+            result = asyncio.run(call_release_tool(MCP_URL, authorization[7:].strip(), tool, expediente_id=expediente_id, payload=payload.model_dump(mode="json")))
+        except Exception:
+            self.write_error_json("El servidor rechazo la operacion autenticada de liberacion.", status=HTTPStatus.CONFLICT)
             return
-        except ValueError as exc:
-            self.write_error_json(str(exc), status=HTTPStatus.BAD_GATEWAY)
-            return
-
-        self.write_json(receipt, status=HTTPStatus.CREATED)
+        self.write_json(result, status=HTTPStatus.CREATED)
 
     def serve_static(self, request_path: str, head_only: bool = False) -> None:
         path = request_path or "/"

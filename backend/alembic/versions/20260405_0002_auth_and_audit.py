@@ -2,6 +2,7 @@
 
 from alembic import op
 import sqlalchemy as sa
+from sqlalchemy.dialects.postgresql import ENUM
 
 
 revision = "20260405_0002"
@@ -11,7 +12,7 @@ depends_on = None
 
 
 def upgrade() -> None:
-    user_role = sa.Enum("admin", "operator", "reviewer", "observer", name="user_role")
+    user_role = ENUM("admin", "operator", "reviewer", "observer", name="user_role", create_type=False)
     bind = op.get_bind()
     user_role.create(bind, checkfirst=True)
 

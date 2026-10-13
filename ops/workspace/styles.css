@@ -357,6 +357,24 @@ select {
   justify-content: flex-end;
 }
 
+.release-panel,
+#releaseForm {
+  min-width: 0;
+}
+
+#releaseForm .form-actions {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.65rem;
+}
+
+#releaseGateResult {
+  min-width: 0;
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 .expediente-list {
   display: grid;
   gap: 0.55rem;

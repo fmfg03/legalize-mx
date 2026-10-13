@@ -340,27 +340,14 @@ def evaluate_issue_controls(profile_name: str, profile: Dict[str, Any], final_vo
     return failures, escalations
 
 
-def invoke_release_gate(script_path: Path, bundle_path: Path) -> Tuple[int, Dict[str, Any]]:
-    result = subprocess.run(
-        [sys.executable, str(script_path), "--bundle", str(bundle_path)],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        text=True,
-        check=False,
-    )
-    payload: Dict[str, Any]
-    try:
-        payload = json.loads(result.stdout)
-    except json.JSONDecodeError:
-        payload = {"raw_output": result.stdout}
-    return result.returncode, payload
-
-
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Orquesta un panel colegiado juridico con commitments, reveal, evidencia local y release gate."
     )
     parser.add_argument("--session", required=True, help="JSON de sesion del panel juridico.")
+    parser.add_argument("--expediente-id", help="Expediente persistido para liberacion autenticada.")
+    parser.add_argument("--document-version-id", help="Version persistida para liberacion autenticada.")
+    parser.add_argument("--mcp-url", help="Endpoint autenticado MCP para liberacion.")
     parser.add_argument("--root", default="/root/legalize-mx", help="Raiz del repositorio.")
     parser.add_argument(
         "--policy",
@@ -527,13 +514,22 @@ def main() -> int:
     release_result: Dict[str, Any] | None = None
     release_exit_code: int | None = None
     if not failures and not escalations and not args.skip_release:
-        release_script_path = Path(
-            policy.get("release_gate_script")
-            or routing_policy.get("release_gate_script")
-            or "/root/legalize-mx/scripts/release_legal_response.py"
-        )
-        release_exit_code, release_result = invoke_release_gate(release_script_path, candidate_bundle_path)
-        if release_exit_code != EXIT_OK:
+        if not args.expediente_id or not args.document_version_id or not args.mcp_url:
+            release_exit_code, release_result = EXIT_BLOCKED, {"release_verdict": "BLOCKED", "reason": "authenticated_persistent_release_required"}
+        else:
+            # Only the repository's authenticated client may produce a release result.
+            release_script_path = Path(__file__).with_name("release_legal_response.py")
+            result = subprocess.run(
+                [sys.executable, str(release_script_path), "--bundle", str(candidate_bundle_path),
+                 "--expediente-id", args.expediente_id, "--document-version-id", args.document_version_id,
+                 "--mcp-url", args.mcp_url], capture_output=True, text=True, check=False,
+            )
+            release_exit_code = result.returncode
+            try:
+                release_result = json.loads(result.stdout)
+            except json.JSONDecodeError:
+                release_result = {"release_verdict": "ERROR"}
+        if release_exit_code != EXIT_OK or release_result.get("release_verdict") != "APPROVED" or not release_result.get("receipt", {}).get("execution_id"):
             failures.append(
                 {
                     "code": "release.blocked",
@@ -546,6 +542,8 @@ def main() -> int:
         panel_verdict = "BLOCKED"
     elif escalations:
         panel_verdict = "ESCALATED"
+    elif args.skip_release:
+        panel_verdict = "RELEASE_PENDING"
     else:
         panel_verdict = "APPROVED"
     receipt = {

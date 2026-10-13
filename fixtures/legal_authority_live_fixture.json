@@ -19,7 +19,10 @@
       "payload": {
         "title": "Ley Federal de Proteccion al Consumidor",
         "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/lfpc.htm",
-        "citation_label": "Ley Federal de Proteccion al Consumidor, articulo 1"
+        "citation_label": "Ley Federal de Proteccion al Consumidor, articulo 1",
+        "doc_id": "mx-federal-lfpc",
+        "locator": "articulo 1",
+        "text": "Disposición sintética usada exclusivamente en pruebas."
       }
     },
     "cit-licensed-1": {

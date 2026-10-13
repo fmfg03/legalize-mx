@@ -7,6 +7,27 @@ const state = {
   draftSections: [],
 };
 
+// The host's OAuth session supplies a bearer in memory; actor/permissions remain server decisions.
+let reviewerBearer = "";
+let pendingRelease = null;
+let releaseContextGeneration = 0;
+
+function clearPendingRelease() {
+  releaseContextGeneration += 1;
+  pendingRelease = null;
+  document.querySelector("#confirmReleaseButton").disabled = true;
+  document.querySelector("#releaseGateResult").textContent = "";
+}
+
+window.addEventListener("legalize-auth-session", (event) => {
+  reviewerBearer = typeof event.detail?.accessToken === "string" ? event.detail.accessToken : "";
+  clearPendingRelease();
+  document.querySelector("#evaluateReleaseButton").disabled = !reviewerBearer;
+  document.querySelector("#releaseSessionStatus").textContent = reviewerBearer
+    ? "Sesión de revisión conectada; el servidor verificará identidad y permisos."
+    : "Sesión de revisión no conectada.";
+});
+
 const endpoints = {
   bootstrap: "/app-api/bootstrap",
   expedientes: "/app-api/expedientes",
@@ -659,6 +680,7 @@ async function loadBootstrap() {
 }
 
 async function loadExpediente(expedienteId, options = {}) {
+  if (state.selectedExpedienteId !== expedienteId) clearPendingRelease();
   state.selectedExpedienteId = expedienteId;
   renderExpedienteList();
   if (!options.preserveStatus) setStatus("Cargando expediente...", "loading");
@@ -954,30 +976,67 @@ async function submitDefendabilityForm(event) {
 
 async function submitReleaseForm(event) {
   event.preventDefault();
-  if (!state.selectedExpedienteId) throw new Error("Primero selecciona o crea un expediente.");
+  clearPendingRelease();
+  if (!reviewerBearer) throw new Error("Necesitas una sesión autenticada de revisión.");
+  if (!state.selectedExpedienteId) throw new Error("Selecciona un expediente.");
   const formData = new FormData(releaseFormEl);
   const documentVersionId = String(formData.get("document_version_id") || "");
-  if (!documentVersionId) throw new Error("Selecciona una versión de documento para registrar la revisión.");
-  setStatus("Registrando revisión...", "loading");
-  try {
-    await fetchJson(endpoints.release(state.selectedExpedienteId), {
-      method: "POST",
-      body: JSON.stringify({
-        document_version_id: documentVersionId,
-        verdict: formData.get("verdict"),
-        response_type: String(formData.get("response_type") || "").trim() || null,
-        notes: String(formData.get("notes") || "").trim() || null,
-      }),
-    });
-  } catch (error) {
-    if (error?.payload?.gate) {
-      renderDefendabilityResult({ gate: error.payload.gate });
-    }
-    throw error;
+  if (!documentVersionId) throw new Error("Selecciona una versión almacenada.");
+  const bundle = JSON.parse(String(formData.get("bundle") || ""));
+  const expedienteId = state.selectedExpedienteId;
+  const sessionAtStart = reviewerBearer;
+  const bundleAtStart = String(formData.get("bundle") || "");
+  const contextAtStart = releaseContextGeneration;
+  const result = await fetchJson(endpoints.release(expedienteId), {
+    method: "POST", headers: { Authorization: `Bearer ${reviewerBearer}` },
+    body: JSON.stringify({ action: "evaluate", document_version_id: documentVersionId, bundle }),
+  });
+  if (releaseContextGeneration !== contextAtStart || reviewerBearer !== sessionAtStart || state.selectedExpedienteId !== expedienteId
+    || releaseVersionSelectEl.value !== documentVersionId
+    || String(new FormData(releaseFormEl).get("bundle") || "") !== bundleAtStart) {
+    clearPendingRelease();
+    throw new Error("La sesión, selección o bundle cambió; evalúa nuevamente.");
   }
-  releaseFormEl.reset();
+  document.querySelector("#releaseGateResult").textContent = JSON.stringify({ verdict: result.verdict, gates: result.evidence?.gates }, null, 2);
+  if (result.verdict === "approved" && result.id && result.document_version_id === documentVersionId) {
+    pendingRelease = { expedienteId, documentVersionId, bundle, executionId: result.id };
+    document.querySelector("#confirmReleaseButton").disabled = false;
+  }
+  setStatus(result.verdict === "approved" ? "Validación aprobada; revisa los gates antes de registrar la liberación." : "Liberación bloqueada por los gates del servidor.", result.verdict === "approved" ? "ok" : "error");
+}
+
+async function confirmRelease() {
+  if (!reviewerBearer || !pendingRelease) throw new Error("Evalúa primero el bundle con tu sesión autenticada.");
+  if (pendingRelease.expedienteId !== state.selectedExpedienteId || pendingRelease.documentVersionId !== releaseVersionSelectEl.value) {
+    clearPendingRelease();
+    throw new Error("La selección cambió; evalúa nuevamente.");
+  }
+  const candidate = pendingRelease;
+  const sessionAtStart = reviewerBearer;
+  const bundleAtStart = String(new FormData(releaseFormEl).get("bundle") || "");
+  clearPendingRelease();
+  const contextAtStart = releaseContextGeneration;
+  const receipt = await fetchJson(endpoints.release(candidate.expedienteId), {
+    method: "POST", headers: { Authorization: `Bearer ${reviewerBearer}` },
+    body: JSON.stringify({ action: "release", execution_id: candidate.executionId, bundle: candidate.bundle }),
+  });
+  if (receipt.verdict !== "approved" || receipt.execution_id !== candidate.executionId) throw new Error("El recibo no confirma esta ejecución aprobada.");
+  if (releaseContextGeneration !== contextAtStart || reviewerBearer !== sessionAtStart
+    || state.selectedExpedienteId !== candidate.expedienteId
+    || releaseVersionSelectEl.value !== candidate.documentVersionId
+    || String(new FormData(releaseFormEl).get("bundle") || "") !== bundleAtStart) {
+    setStatus(`La operación anterior terminó para el expediente ${candidate.expedienteId}; recibo ${receipt.id}. Consulta su historial. La sesión o selección cambió.`, "error");
+    return;
+  }
   await loadBootstrap();
-  setStatus("Release receipt registrado.", "ok");
+  if (releaseContextGeneration !== contextAtStart || reviewerBearer !== sessionAtStart
+    || state.selectedExpedienteId !== candidate.expedienteId
+    || releaseVersionSelectEl.value !== candidate.documentVersionId) {
+    setStatus(`La operación anterior terminó para el expediente ${candidate.expedienteId}; recibo ${receipt.id}. Consulta su historial. La sesión o selección cambió.`, "error");
+    return;
+  }
+  document.querySelector("#releaseGateResult").textContent = JSON.stringify(receipt, null, 2);
+  setStatus("Liberación registrada con evidencia del servidor.", "ok");
 }
 
 async function submitCopilot(event) {
@@ -1012,6 +1071,8 @@ function installHandlers() {
   caseAnalysisFormEl.addEventListener("submit", (event) => submitCaseAnalysisForm(event).catch(handleError));
   preflightChecklistFormEl.addEventListener("submit", (event) => submitPreflightChecklistForm(event).catch(handleError));
   releaseFormEl.addEventListener("submit", (event) => submitReleaseForm(event).catch(handleError));
+  releaseFormEl.addEventListener("input", clearPendingRelease);
+  document.querySelector("#confirmReleaseButton").addEventListener("click", () => confirmRelease().catch(handleError));
   copilotFormEl.addEventListener("submit", (event) => submitCopilot(event).catch(handleError));
 }
 
